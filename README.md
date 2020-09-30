@@ -24,6 +24,7 @@ Rules inspired from original Monopoly Game (source:https://simple.wikipedia.org/
 - Bankruptcy. If you are bankrupt, you cannot pay someone rent or cannot pay a tax. If you declare bankruptcy you are done with the game.
 
 Rules we created:
+- Once you own three consecutive regions, you can start to build houses. Houses make the region more costly and every time you add a house the price goes up more. Once there are four houses on each land you can get a special building (there can only be one special building on any region)
 - You can make agreement with other players. These agreements are:
     - You can sell a region.
     - You can take any percentage of the rent of any players' region(s).
