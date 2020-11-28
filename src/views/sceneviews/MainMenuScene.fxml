@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.sceneControllers.MainMenuSceneController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.scenecontrollers.MainMenuSceneController">
    <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
     <Label text="MONOPOLY" textFill="#ffffffaf">
       <font>
@@ -24,7 +24,7 @@
          <graphic>
              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <Image url="@../assets/newGameIcon.png" />
+                     <Image url="@../../assets/newGameIcon.png" />
                  </ImageView>
                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="New Game">
                     <font>
@@ -43,7 +43,7 @@
             <graphic>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../assets/loadGameIcon.png" />
+                        <Image url="@../../assets/loadGameIcon.png" />
                     </ImageView>
                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Load Game">
                         <font>
@@ -62,7 +62,7 @@
             <graphic>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../assets/exitGameIcon.png" />
+                        <Image url="@../../assets/exitGameIcon.png" />
                     </ImageView>
                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit Game">
                         <font>
@@ -89,23 +89,18 @@
          <Insets bottom="10.0" left="50.0" right="50.0" top="10.0" />
       </padding></Button>
    <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-   <HBox alignment="CENTER" opacity="0.6" spacing="10.0" VBox.vgrow="ALWAYS">
-      <children>
-         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@../assets/soundOffIcon.png" />
-            </image>
-         </ImageView>
-         <Slider prefHeight="14.0" prefWidth="366.0">
-            <cursor>
-               <Cursor fx:constant="CLOSED_HAND" />
-            </cursor></Slider>
-         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@../assets/soundOnIcon.png" />
-            </image>
-         </ImageView>
-      </children>
-   </HBox>
+    <HBox alignment="CENTER" opacity="0.6" spacing="10.0" VBox.vgrow="ALWAYS">
+        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../../assets/soundOffIcon.png"/>
+        </ImageView>
+        <Slider prefHeight="14.0" prefWidth="366.0">
+           <cursor>
+               <Cursor fx:constant="CLOSED_HAND"/>
+           </cursor>
+        </Slider>
+        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../../assets/soundOnIcon.png"/>
+        </ImageView>
+    </HBox>
     <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
 </VBox>

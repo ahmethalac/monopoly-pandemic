@@ -1,14 +1,11 @@
-package controllers.sceneControllers;
+package controllers.scenecontrollers;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class SceneManager {
     private static SceneManager instance = null;
@@ -28,13 +25,13 @@ public class SceneManager {
     }
 
     public void showMainMenuScene() throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("../../view/MainMenuScene.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("../../views/sceneviews/MainMenuScene.fxml"));
         stage.setScene(new Scene(parent, width, height));
         stage.setTitle("MAIN MENU");
     }
 
     public void showCreateGameScene() throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("../../view/CreateGameScene.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("../../views/sceneviews/CreateGameScene.fxml"));
         stage.setScene(new Scene(parent, width, height));
         stage.setTitle("NEW GAME");
     }

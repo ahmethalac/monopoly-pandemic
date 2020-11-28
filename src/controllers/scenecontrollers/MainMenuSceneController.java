@@ -1,4 +1,4 @@
-package controllers.sceneControllers;
+package controllers.scenecontrollers;
 
 import javafx.event.ActionEvent;
 

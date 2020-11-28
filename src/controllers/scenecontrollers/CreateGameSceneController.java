@@ -1,11 +1,8 @@
-package controllers.sceneControllers;
+package controllers.scenecontrollers;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class CreateGameSceneController {
     /**
