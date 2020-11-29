@@ -36,6 +36,12 @@ public class SceneManager {
         stage.setTitle("NEW GAME");
     }
 
+    public void showLoadGameScene() throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource("../../views/sceneviews/LoadGameScene.fxml"));
+        stage.setScene(new Scene(parent, width, height));
+        stage.setTitle("LOAD GAME");
+    }
+
     public void exitGame() {
         stage.close();
     }

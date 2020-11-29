@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.scenecontrollers.LoadGameSceneController"
-            prefHeight="400.0" prefWidth="600.0">
-<!-- TODO-Implement -->
-</AnchorPane>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox fx:id="loadBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.scenecontrollers.LoadGameSceneController">
+   <children>
+      <Label alignment="TOP_CENTER" text="Saved Games" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="42.0" />
+         </font>
+         <padding>
+            <Insets left="200.0" right="400.0" top="50.0" />
+         </padding>
+      </Label>
+   </children>
+</VBox>
