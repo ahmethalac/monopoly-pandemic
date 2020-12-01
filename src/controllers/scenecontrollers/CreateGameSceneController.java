@@ -5,14 +5,18 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -57,7 +61,20 @@ public class CreateGameSceneController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         addPlayerButton.setOnAction(actionEvent -> {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/sceneviews/addPlayerPopup.fxml"));
+                Parent parent = fxmlLoader.load();
+                addPlayerPopupController popupController = fxmlLoader.getController();
+                popupController.setAppMainObservableList(playerList);
 
+                Scene scene = new Scene(parent, 300, 200);
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(scene);
+                stage.showAndWait();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         createGameExit.setOnAction(actionEvent -> {
@@ -70,7 +87,7 @@ public class CreateGameSceneController implements Initializable {
 
         lView.setStyle("-fx-control-inner-background: #000a15; -fx-background-insets: 0 ;");
 
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 3; i++) {
             HBoxCell hbox = new HBoxCell("Item " + i);
             playerList.add(hbox);
         }
