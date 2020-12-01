@@ -1,5 +1,6 @@
-package controllers.scenecontrollers;
+package controllers.popupControllers;
 
+import controllers.scenecontrollers.CreateGameSceneController;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

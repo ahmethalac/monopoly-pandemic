@@ -1,9 +1,8 @@
 package controllers.scenecontrollers;
 
+import controllers.popupControllers.addPlayerPopupController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -34,7 +33,7 @@ public class CreateGameSceneController implements Initializable {
         Button avatarButton = new Button();
         Button deleteButton = new Button();
 
-        HBoxCell(String playerName) {
+        public HBoxCell(String playerName) {
             super();
 
             label.setText(playerName);
@@ -65,7 +64,7 @@ public class CreateGameSceneController implements Initializable {
 
         addPlayerButton.setOnAction(actionEvent -> {
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/sceneviews/addPlayerPopup.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/addPlayerPopup.fxml"));
                 Parent parent = fxmlLoader.load();
                 addPlayerPopupController popupController = fxmlLoader.getController();
                 popupController.setObservableList(playerList);
