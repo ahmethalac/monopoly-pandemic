@@ -26,7 +26,7 @@ public class addPlayerPopupController {
             "grey",
             "brown"};
 
-    private ObservableList<CreateGameSceneController.HBoxCell> playerList;
+    private ObservableList<CreateGameSceneController.PlayerHBoxCell> playerList;
 
     @FXML
     private TextField nameField;
@@ -35,14 +35,15 @@ public class addPlayerPopupController {
     void addButtonClicked(ActionEvent event) {
         String name = nameField.getText().trim();
 
-        Player player = new Player(name, "color", "pawn", 0);
+        System.out.println(getColor());
+        Player player = new Player(name, getColor(), "pawn", getId());
 
-        playerList.add(new CreateGameSceneController.HBoxCell(player));
+        playerList.add(new CreateGameSceneController.PlayerHBoxCell(player));
 
         closeStage(event);
     }
 
-    public void setObservableList(ObservableList<CreateGameSceneController.HBoxCell> playerList) {
+    public void setObservableList(ObservableList<CreateGameSceneController.PlayerHBoxCell> playerList) {
         this.playerList = playerList;
     }
 
@@ -50,5 +51,39 @@ public class addPlayerPopupController {
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
+    }
+
+    /**
+     * TODO inspect code
+     * @return
+     */
+    public int getId() {
+        if ( playerList.size() == 0 ) return 0;
+
+        for (int i = 0; i < playerList.size() + 1; i++) {
+            for (int j = 0; j < playerList.size(); j++) {
+                if (i == playerList.get(j).getPlayer().getId()) break;
+                else if (j == playerList.size() - 1 ) return i;
+            }
+        }
+
+        return playerList.size() - 1;
+    }
+
+    /**
+     * TODO inspect code
+     * @return
+     */
+    public String getColor() {
+        if ( playerList.size() == 0 ) return colors[0];
+
+        for (int i = 0; i < playerList.size() + 1; i++) {
+            for (int j = 0; j < playerList.size(); j++) {
+                if (i == playerList.get(j).getPlayer().getId()) break;
+                else if (j == playerList.size() - 1 ) return colors[i];
+            }
+        }
+
+        return colors[playerList.size() - 1];
     }
 }

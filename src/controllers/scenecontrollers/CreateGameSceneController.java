@@ -27,16 +27,21 @@ import java.util.ResourceBundle;
  */
 public class CreateGameSceneController implements Initializable {
 
-    public static class HBoxCell extends HBox {
+    public static class PlayerHBoxCell extends HBox {
         ImageView avatar = new ImageView();
         Label label = new Label();
+
+        //debug
+        Label label2 = new Label();
+        Label label3 = new Label();
+
         Button colorButton = new Button();
         Button avatarButton = new Button();
         Button deleteButton = new Button();
 
         Player player;
 
-        public HBoxCell(Player player) {
+        public PlayerHBoxCell(Player player) {
             super();
 
             this.player = player;
@@ -45,18 +50,31 @@ public class CreateGameSceneController implements Initializable {
             label.setMaxWidth(Double.MAX_VALUE);
             HBox.setHgrow(label, Priority.ALWAYS);
 
+            //debug
+            label2.setText(player.getColor());
+            label2.setMaxWidth(Double.MAX_VALUE);
+            HBox.setHgrow(label2, Priority.ALWAYS);
+
+            //debug
+            label3.setText(String.valueOf(player.getId()));
+            label3.setMaxWidth(Double.MAX_VALUE);
+            HBox.setHgrow(label3, Priority.ALWAYS);
 
             colorButton.setText("Choose color");
             avatarButton.setText("Choose avatar");
 
-            this.getChildren().addAll(avatar, label, colorButton, avatarButton, deleteButton);
+            this.getChildren().addAll(avatar, label, label2, label3, colorButton, avatarButton, deleteButton);
+        }
+
+        public Player getPlayer() {
+            return player;
         }
     }
 
-    private final ObservableList<HBoxCell> playerList = FXCollections.observableArrayList();
+    private final ObservableList<PlayerHBoxCell> playerList = FXCollections.observableArrayList();
 
     @FXML
-    private ListView<HBoxCell> lView;
+    private ListView<PlayerHBoxCell> lView;
 
     @FXML
     private Button createGameExit;
