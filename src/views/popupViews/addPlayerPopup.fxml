@@ -21,7 +21,8 @@
                 </HBox>
                 <HBox alignment="CENTER_RIGHT">
                     <children>
-                        <Button onAction="#addButtonClicked" mnemonicParsing="false" text="Add" />
+                  <Button mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
+                        <Button mnemonicParsing="false" onAction="#addButtonClicked" text="Add" />
                     </children>
                     <opaqueInsets>
                         <Insets />

@@ -43,6 +43,11 @@ public class addPlayerPopupController {
         closeStage(event);
     }
 
+    @FXML
+    void cancelButtonClicked(ActionEvent event) {
+        closeStage(event);
+    }
+
     public void setObservableList(ObservableList<CreateGameSceneController.PlayerHBoxCell> playerList) {
         this.playerList = playerList;
     }
