@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 
 <VBox fx:id="loadBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.scenecontrollers.LoadGameSceneController">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#handleBackButton" prefHeight="67.0" prefWidth="123.0" text="Back" textAlignment="JUSTIFY">
-               <font>
-                  <Font size="20.0" />
-               </font></Button>
+            <Button style="-fx-background-color: transparent;" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="65.0" prefWidth="50.0" text="Back" textAlignment="CENTER">
+               <graphic>
+                     <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../../assets/backIcon.png" />
+                     </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </HBox>
       <Label alignment="TOP_CENTER" text="Saved Games" textFill="WHITE">
