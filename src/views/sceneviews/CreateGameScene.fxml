@@ -3,13 +3,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.Cursor?>
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.scenecontrollers.CreateGameSceneController">
    <children>
       <VBox prefHeight="1080.0" prefWidth="620.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="createGameExit" mnemonicParsing="false" text="Button" />
+                  <Button fx:id="createGameExit" style="-fx-background-color: transparent;" mnemonicParsing="false" prefHeight="65.0" prefWidth="50.0" text="Back" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <Image url="@../../assets/backIcon.png" />
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
