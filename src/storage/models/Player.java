@@ -12,32 +12,25 @@ public class Player {
     private int location;
     private boolean isInfected;
 
-    public Player()
+    public Player(String name, String color, String pawn, int id)
     {
         isInQuarantine = false;
         // TODO - add cities
-        name = "";
-        id = 0;
-        color = "";
-        pawn = "";
+        this.name = name;
+        this.id = id;
+        this.color = color;
+        this.pawn = pawn;
         money = 0;
         isBankrupted = false;
         location = 0;
         isInfected = false;
     }
-    public void bankrupt()
-    {
-        isBankrupted = true;
-    }
+
+    public void bankrupt() { isBankrupted = true; }
 
     public void quarantine(boolean bool)
     {
         isInQuarantine = bool;
-    }
-
-    public void setLocation(int regionID)
-    {
-        location = regionID;
     }
 
     public void addMoney(double money)
@@ -55,25 +48,34 @@ public class Player {
         isInfected = true;
     }
 
+    //  Getters - Setters
+    public void setLocation(int regionID)
+    {
+        location = regionID;
+    }
+
     public int getLocation()
     {
         return location;
     }
+
+    public void setId(int id) { this.id = id; }
 
     public int getId()
     {
         return id;
     }
 
+    public void setColor(String color) { this.color = color; }
+
     public String getColor()
     {
         return color;
     }
 
-    public String getPawn()
-    {
-        return pawn;
-    }
+    public void setPawn(String pawn) { this.pawn = pawn; }
+
+    public String getPawn() { return pawn; }
 
     public double getMoney()
     {
@@ -89,6 +91,8 @@ public class Player {
     {
         return isInfected;
     }
+
+    public void setName(String name) { this.name = name; }
 
     public String getName()
     {
