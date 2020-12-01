@@ -22,6 +22,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for Create Game menu
+ */
 public class CreateGameSceneController implements Initializable {
 
     public static class HBoxCell extends HBox {
@@ -65,7 +68,7 @@ public class CreateGameSceneController implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/sceneviews/addPlayerPopup.fxml"));
                 Parent parent = fxmlLoader.load();
                 addPlayerPopupController popupController = fxmlLoader.getController();
-                popupController.setAppMainObservableList(playerList);
+                popupController.setObservableList(playerList);
 
                 Scene scene = new Scene(parent, 300, 200);
                 Stage stage = new Stage();

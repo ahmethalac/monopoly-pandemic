@@ -7,6 +7,9 @@ import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+/**
+ * Custom controller for add player popup dialog
+ */
 public class addPlayerPopupController {
 
     @FXML
@@ -23,7 +26,7 @@ public class addPlayerPopupController {
         closeStage(event);
     }
 
-    public void setAppMainObservableList(ObservableList<CreateGameSceneController.HBoxCell> playerList) {
+    public void setObservableList(ObservableList<CreateGameSceneController.HBoxCell> playerList) {
         this.playerList = playerList;
     }
 
