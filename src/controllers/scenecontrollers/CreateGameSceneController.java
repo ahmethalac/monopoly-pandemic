@@ -16,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import storage.models.Player;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,10 +34,14 @@ public class CreateGameSceneController implements Initializable {
         Button avatarButton = new Button();
         Button deleteButton = new Button();
 
-        public HBoxCell(String playerName) {
+        Player player;
+
+        public HBoxCell(Player player) {
             super();
 
-            label.setText(playerName);
+            this.player = player;
+
+            label.setText(player.getName());
             label.setMaxWidth(Double.MAX_VALUE);
             HBox.setHgrow(label, Priority.ALWAYS);
 
@@ -89,10 +94,6 @@ public class CreateGameSceneController implements Initializable {
 
         lView.setStyle("-fx-control-inner-background: #000a15; -fx-background-insets: 0 ;");
 
-        for (int i = 0; i < 3; i++) {
-            HBoxCell hbox = new HBoxCell("Item " + i);
-            playerList.add(hbox);
-        }
         lView.setItems(playerList);
     }
 }

@@ -7,22 +7,37 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import storage.models.Player;
 
 /**
  * Custom controller for add player popup dialog
  */
 public class addPlayerPopupController {
 
-    @FXML
-    private TextField playerName;
+    final String[] colors = new String[]{
+            "red",
+            "blue",
+            "pink",
+            "green",
+            "yellow",
+            "orange",
+            "purple",
+            "cyan",
+            "grey",
+            "brown"};
 
     private ObservableList<CreateGameSceneController.HBoxCell> playerList;
 
     @FXML
-    void addButtonClicked(ActionEvent event) {
-        String name = playerName.getText().trim();
+    private TextField nameField;
 
-        playerList.add(new CreateGameSceneController.HBoxCell(name));
+    @FXML
+    void addButtonClicked(ActionEvent event) {
+        String name = nameField.getText().trim();
+
+        Player player = new Player(name, "color", "pawn", 0);
+
+        playerList.add(new CreateGameSceneController.HBoxCell(player));
 
         closeStage(event);
     }
