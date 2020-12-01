@@ -16,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import storage.models.Player;
 
 import java.io.IOException;
@@ -95,6 +96,7 @@ public class CreateGameSceneController implements Initializable {
                 Scene scene = new Scene(parent, 300, 200);
                 Stage stage = new Stage();
                 stage.initModality(Modality.APPLICATION_MODAL);
+                stage.initStyle(StageStyle.UNDECORATED);
                 stage.setScene(scene);
                 stage.showAndWait();
             } catch (IOException e) {
