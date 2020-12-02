@@ -28,6 +28,8 @@ import java.util.ResourceBundle;
  */
 public class CreateGameSceneController implements Initializable {
 
+    private static final ObservableList<PlayerHBoxCell> playerList = FXCollections.observableArrayList();
+
     public static class PlayerHBoxCell extends HBox {
         ImageView avatar = new ImageView();
         Label label = new Label();
@@ -38,7 +40,7 @@ public class CreateGameSceneController implements Initializable {
 
         Button colorButton = new Button();
         Button avatarButton = new Button();
-        Button deleteButton = new Button();
+        playerButton deleteButton;
 
         Player player;
 
@@ -64,6 +66,25 @@ public class CreateGameSceneController implements Initializable {
             colorButton.setText("Choose color");
             avatarButton.setText("Choose avatar");
 
+            deleteButton = new playerButton(player, "delete");
+
+            deleteButton.setOnAction(actionEvent -> {
+                Object node = actionEvent.getSource();
+                System.out.println(node instanceof Button);
+                assert node instanceof playerButton;
+                playerButton b = (playerButton) node;
+                String playerName = b.getPlayer().getName();
+
+                PlayerHBoxCell cell;
+                for (PlayerHBoxCell playerHBoxCell : playerList) {
+                    if (playerName.equals(playerHBoxCell.getPlayer().getName())) {
+                        cell = playerHBoxCell;
+                        playerList.remove(cell);
+                        break;
+                    }
+                }
+            });
+
             this.getChildren().addAll(avatar, label, label2, label3, colorButton, avatarButton, deleteButton);
         }
 
@@ -71,8 +92,6 @@ public class CreateGameSceneController implements Initializable {
             return player;
         }
     }
-
-    private final ObservableList<PlayerHBoxCell> playerList = FXCollections.observableArrayList();
 
     @FXML
     private ListView<PlayerHBoxCell> lView;
