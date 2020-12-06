@@ -53,8 +53,8 @@ public class GameSceneController implements Initializable {
 
     private void addCamera() {
         PerspectiveCamera camera = new PerspectiveCamera(true);
-        camera.translateZProperty().set(-200);
-        camera.translateYProperty().set(480);
+        camera.translateZProperty().set(-500);
+        camera.translateYProperty().set(1200);
         camera.getTransforms().add(new Rotate(63, Rotate.X_AXIS));
         camera.setNearClip(1);
         camera.setFarClip(3000);
