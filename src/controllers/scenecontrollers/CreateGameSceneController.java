@@ -3,6 +3,7 @@ package controllers.scenecontrollers;
 import controllers.popupControllers.addPlayerPopupController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,6 +30,10 @@ import java.util.ResourceBundle;
 public class CreateGameSceneController implements Initializable {
 
     private static final ObservableList<PlayerHBoxCell> playerList = FXCollections.observableArrayList();
+
+    public void handleStartGameButton(ActionEvent actionEvent){
+        SceneManager.getInstance().showGameScene();
+    }
 
     public static class PlayerHBoxCell extends HBox {
         ImageView avatar = new ImageView();
@@ -123,13 +128,7 @@ public class CreateGameSceneController implements Initializable {
             }
         });
 
-        createGameExit.setOnAction(actionEvent -> {
-            try {
-                SceneManager.getInstance().showMainMenuScene();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+        createGameExit.setOnAction(actionEvent -> SceneManager.getInstance().showMainMenuScene());
 
         lView.setStyle("-fx-control-inner-background: #000a15; -fx-background-insets: 0 ;");
 

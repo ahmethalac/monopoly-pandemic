@@ -46,7 +46,7 @@ public class LoadGameSceneController implements Initializable {
         loadBox.getChildren().add(buttonBox);
     }
 
-    public void handleBackButton(ActionEvent actionEvent) throws IOException {
+    public void handleBackButton(ActionEvent actionEvent){
         SceneManager.getInstance().showMainMenuScene();
     }
 }

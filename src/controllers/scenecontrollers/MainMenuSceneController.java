@@ -1,16 +1,13 @@
 package controllers.scenecontrollers;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-
-import java.io.IOException;
 
 public class MainMenuSceneController {
-    public void handleNewGameButton(ActionEvent actionEvent) throws IOException {
+    public void handleNewGameButton(ActionEvent actionEvent){
         SceneManager.getInstance().showCreateGameScene();
     }
 
-    public void handleLoadGameButton(ActionEvent actionEvent) throws IOException {
+    public void handleLoadGameButton(ActionEvent actionEvent){
         SceneManager.getInstance().showLoadGameScene();
     }
 
