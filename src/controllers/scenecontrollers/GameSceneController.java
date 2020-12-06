@@ -1,14 +1,17 @@
 package controllers.scenecontrollers;
 
+import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Point3D;
 import javafx.scene.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Box;
 import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
 import storage.filemanager.MeshImporter;
 
 import java.net.URL;
@@ -53,16 +56,21 @@ public class GameSceneController implements Initializable {
 
     private void addCamera() {
         PerspectiveCamera camera = new PerspectiveCamera(true);
-        camera.translateZProperty().set(-500);
-        camera.translateYProperty().set(1200);
-        camera.getTransforms().add(new Rotate(63, Rotate.X_AXIS));
+        camera.translateZProperty().set(-1100);
+        camera.translateYProperty().set(1250);
+        camera.getTransforms().add(new Rotate(45, Rotate.X_AXIS));
         camera.setNearClip(1);
         camera.setFarClip(3000);
         cameraScene.setCamera(camera);
     }
 
     //For debug purposes
-    public void right(ActionEvent actionEvent) {
-        System.out.println("Right button is clicked");
+    public void rotateTable(ActionEvent actionEvent) {
+        for ( Node node : sceneItems.getChildren()){
+            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(1), node);
+            rotateTransition.setAxis(Rotate.Z_AXIS);
+            rotateTransition.setByAngle(60);
+            rotateTransition.play();
+        }
     }
 }

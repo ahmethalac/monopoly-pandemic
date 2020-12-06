@@ -15,7 +15,7 @@
          <Button text="left"/>
       </left>
       <right>
-         <Button text="right" onAction="#right"/>
+         <Button text="right" onAction="#rotateTable"/>
       </right>
    </BorderPane>
 </StackPane>
