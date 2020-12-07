@@ -34,6 +34,29 @@ public class CreateGameSceneController implements Initializable {
         SceneManager.getInstance().showGameScene();
     }
 
+    public void handleCreateGameExitButton() {
+        SceneManager.getInstance().showMainMenuScene();
+    }
+
+    public void handleAddPlayerButton() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/addPlayerPopup.fxml"));
+            Parent parent = fxmlLoader.load();
+            addPlayerPopupController popupController = fxmlLoader.getController();
+            popupController.setObservableList(playerList);
+
+            Scene scene = new Scene(parent, 300, 200);
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(scene);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public static class PlayerHBoxCell extends HBox {
         ImageView avatar = new ImageView();
         Label label = new Label();
@@ -113,37 +136,9 @@ public class CreateGameSceneController implements Initializable {
     @FXML
     private ListView<PlayerHBoxCell> lView;
 
-    @FXML
-    private Button createGameExit;
-
-    @FXML
-    private Button addPlayerButton;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        addPlayerButton.setOnAction(actionEvent -> {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/addPlayerPopup.fxml"));
-                Parent parent = fxmlLoader.load();
-                addPlayerPopupController popupController = fxmlLoader.getController();
-                popupController.setObservableList(playerList);
-
-                Scene scene = new Scene(parent, 300, 200);
-                Stage stage = new Stage();
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(scene);
-                stage.showAndWait();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-        createGameExit.setOnAction(actionEvent -> SceneManager.getInstance().showMainMenuScene());
-
         lView.setStyle("-fx-control-inner-background: #000a15; -fx-background-insets: 0 ;");
-
         lView.setItems(playerList);
     }
 }
