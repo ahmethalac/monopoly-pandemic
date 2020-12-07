@@ -3,7 +3,6 @@ package controllers.scenecontrollers;
 import controllers.popupControllers.addPlayerPopupController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,7 +30,7 @@ public class CreateGameSceneController implements Initializable {
 
     private static final ObservableList<PlayerHBoxCell> playerList = FXCollections.observableArrayList();
 
-    public void handleStartGameButton(ActionEvent actionEvent){
+    public void handleStartGameButton() {
         SceneManager.getInstance().showGameScene();
     }
 
@@ -40,14 +39,25 @@ public class CreateGameSceneController implements Initializable {
         Label label = new Label();
 
         //debug
-        Label label2 = new Label();
         Label label3 = new Label();
 
-        Button colorButton = new Button();
+        playerComboBox colorBox;
         Button avatarButton = new Button();
         playerButton deleteButton;
 
         Player player;
+
+        final String[] colors = new String[]{
+                "red",
+                "blue",
+                "pink",
+                "green",
+                "yellow",
+                "orange",
+                "purple",
+                "cyan",
+                "grey",
+                "brown"};
 
         public PlayerHBoxCell(Player player) {
             super();
@@ -59,16 +69,18 @@ public class CreateGameSceneController implements Initializable {
             HBox.setHgrow(label, Priority.ALWAYS);
 
             //debug
-            label2.setText(player.getColor());
-            label2.setMaxWidth(Double.MAX_VALUE);
-            HBox.setHgrow(label2, Priority.ALWAYS);
-
-            //debug
             label3.setText(String.valueOf(player.getId()));
             label3.setMaxWidth(Double.MAX_VALUE);
             HBox.setHgrow(label3, Priority.ALWAYS);
 
-            colorButton.setText("Choose color");
+            colorBox = new playerComboBox(FXCollections.observableArrayList(colors), player);
+            colorBox.getSelectionModel().select(player.getColor());
+            colorBox.setOnAction(actionEvent -> {
+                System.out.println(colorBox.getPlayer().getColor());
+                colorBox.getPlayer().setColor(colorBox.getValue());
+                System.out.println(colorBox.getPlayer().getColor());
+            });
+
             avatarButton.setText("Choose avatar");
 
             deleteButton = new playerButton(player, "delete");
@@ -90,7 +102,7 @@ public class CreateGameSceneController implements Initializable {
                 }
             });
 
-            this.getChildren().addAll(avatar, label, label2, label3, colorButton, avatarButton, deleteButton);
+            this.getChildren().addAll(avatar, label, label3, avatarButton, colorBox, deleteButton);
         }
 
         public Player getPlayer() {
