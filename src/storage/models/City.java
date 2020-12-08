@@ -29,12 +29,10 @@ public class City extends Region {
         owner = player;
     }
 
-    public void addBuilding(){
-        numberOfBuildings++;
-    }
+    public void addBuilding(int numberOfBuildings){ this.numberOfBuildings += numberOfBuildings; }
 
-    public void removeBuilding(){
-        numberOfBuildings--;
+    public void removeBuilding(int numberOfBuildings){
+        this.numberOfBuildings -= numberOfBuildings;
     }
 
     public void infect(boolean bool){
