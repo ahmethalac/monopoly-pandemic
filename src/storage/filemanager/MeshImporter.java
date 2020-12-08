@@ -16,4 +16,8 @@ public class MeshImporter {
     public static Node[] getTable(){
         return getNodeArray("Table.obj");
     }
+
+    public static Node[] getPlayer(){
+        return getNodeArray("astronaut.obj");
+    }
 }
