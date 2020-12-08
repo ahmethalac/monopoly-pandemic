@@ -32,18 +32,26 @@ public class LoadGameSceneController implements Initializable {
         buttonBox.setMaxWidth(1500);
         buttonBox.setMaxHeight(700);
         buttonBox.setAlignment(Pos.CENTER);
-        buttonBox.setStyle("-fx-padding: 50;");
+        buttonBox.setStyle("-fx-padding: 50 50 50 220;");
         buttonBox.setSpacing(15.0);
         DataManager dataManager = DataManager.getInstance();
         List<String> savedNames = dataManager.getSavedNames();
         for ( String saveName: savedNames ) {
             Button newButton = new Button(saveName);
+            newButton.setStyle("-fx-background-color: #5b4b4b; -fx-text-fill: #ffffff; -fx-font-size: 2em");
             newButton.setMinWidth(buttonBox.getWidth());
             newButton.setPrefWidth(300);
             newButton.setPrefHeight(100);
             buttonBox.getChildren().add(newButton);
         }
-        loadBox.getChildren().add(buttonBox);
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setStyle("-fx-background: #000000; -fx-border-color: #000000;");
+        scrollPane.setFitToWidth(true);
+        scrollPane.setPrefViewportHeight(500);
+        scrollPane.setPrefViewportWidth(150);
+        scrollPane.setContent(buttonBox);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        loadBox.getChildren().add(scrollPane);
     }
 
     public void handleBackButton(ActionEvent actionEvent){
