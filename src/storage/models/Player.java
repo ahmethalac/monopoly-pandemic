@@ -37,11 +37,17 @@ public class Player {
     public void addMoney(double money)
     {
         this.money = this.money + money;
+        if(isBankrupted && money > 0){
+            isBankrupted = false;
+        }
     }
 
     public void removeMoney(double money)
     {
         this.money = this.money - money;
+        if(this.money < 0){
+            isBankrupted = true;
+        }
     }
 
     public void infect()

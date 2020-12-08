@@ -19,10 +19,7 @@ public class City extends Region {
     }
 
     public void mortgage(boolean bool){
-        if(bool){
-            isMortgaged = true;
-        }
-
+        isMortgaged = bool;
     }
 
     public void setOwner(Player player){
@@ -36,27 +33,15 @@ public class City extends Region {
     }
 
     public void infect(boolean bool){
-        if(bool) {
-            isInfected = true;
-        }
+        isInfected = bool;
     }
 
     public boolean isInfected(){
-        if(isInfected){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return isInfected;
     }
 
     public boolean isMortgaged(){
-        if(isMortgaged){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return isMortgaged;
     }
 
     public double getPrice(){
