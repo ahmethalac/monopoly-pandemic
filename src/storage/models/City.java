@@ -29,12 +29,10 @@ public class City extends Region {
         owner = player;
     }
 
-    //building sayısını her seferinde 1 mi arttırıyor.
     public void addBuilding(){
         numberOfBuildings++;
     }
 
-    //building sayısını her seferinde 1 mi azaltıyor.
     public void removeBuilding(){
         numberOfBuildings--;
     }
@@ -66,8 +64,10 @@ public class City extends Region {
     public double getPrice(){
         return price;
     }
-
-    public double getRent(int noOfBuildings){
-        return rents[noOfBuildings];
+    public int getNumberOfBuildings(){
+        return numberOfBuildings;
+    }
+    public double getRent(){
+        return rents[numberOfBuildings];
     }
 }

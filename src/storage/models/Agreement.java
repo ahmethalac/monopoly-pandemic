@@ -17,7 +17,6 @@ public class Agreement {
         this.secondOffer = secondOffer;
     }
 
-    //TODO methods will be added
     private void performOneTimeOffer(){
         if(firstOffer instanceof OneTimeOffer && secondOffer instanceof OneTimeOffer){
             firstOffer.performOffer(firstPlayer, secondPlayer);

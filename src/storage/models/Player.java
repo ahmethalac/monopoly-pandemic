@@ -1,8 +1,9 @@
 package storage.models;
+import java.util.ArrayList;
 
 public class Player {
     private boolean isInQuarantine;
-    // TODO - private City[] cities;
+    private ArrayList<String> cities;
     private String name;
     private int id;
     private String color;
@@ -15,7 +16,7 @@ public class Player {
     public Player(String name, String color, String pawn, int id)
     {
         isInQuarantine = false;
-        // TODO - add cities
+        cities = new ArrayList<>();
         this.name = name;
         this.id = id;
         this.color = color;
@@ -48,7 +49,22 @@ public class Player {
         isInfected = true;
     }
 
+    public boolean removeCity(String cityName){
+        cities.remove(cities.indexOf(cityName));
+        return true;
+    }
+
+    public boolean addCity(String cityName){
+        cities.add(cityName);
+        return true;
+    }
+
     //  Getters - Setters
+
+    public ArrayList<String> getCities() {
+        return cities;
+    }
+
     public void setLocation(int regionID)
     {
         location = regionID;
