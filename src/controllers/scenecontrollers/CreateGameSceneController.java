@@ -6,14 +6,15 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -95,6 +96,9 @@ public class CreateGameSceneController implements Initializable {
 
             this.player = player;
 
+            Color playerColor = getFXColor(player.getColor());
+            this.setBackground(new Background(new BackgroundFill(playerColor, CornerRadii.EMPTY, Insets.EMPTY)));
+
             label.setText(player.getName());
             label.setMaxWidth(Double.MAX_VALUE);
             HBox.setHgrow(label, Priority.ALWAYS);
@@ -107,9 +111,12 @@ public class CreateGameSceneController implements Initializable {
             colorBox = new playerComboBox(FXCollections.observableArrayList(colors), player);
             colorBox.getSelectionModel().select(player.getColor());
             colorBox.setOnAction(actionEvent -> {
-                System.out.println(colorBox.getPlayer().getColor());
-                colorBox.getPlayer().setColor(colorBox.getValue());
-                System.out.println(colorBox.getPlayer().getColor());
+                String colorValue = colorBox.getValue();
+                colorBox.getPlayer().setColor(colorValue);
+
+                Color color = getFXColor(colorValue);
+
+                this.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
             });
 
             avatarButton.setText("Choose avatar");
@@ -148,6 +155,22 @@ public class CreateGameSceneController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lView.setStyle("-fx-control-inner-background: #000a15; -fx-background-insets: 0 ;");
         lView.setItems(playerList);
+    }
+
+    public static Color getFXColor(String colorString){
+        return switch (colorString) {
+            case "red" -> Color.RED;
+            case "blue" -> Color.BLUE;
+            case "pink" -> Color.PINK;
+            case "green" -> Color.GREEN;
+            case "yellow" -> Color.YELLOW;
+            case "orange" -> Color.ORANGE;
+            case "purple" -> Color.PURPLE;
+            case "cyan" -> Color.CYAN;
+            case "grey" -> Color.GREY;
+            case "brown" -> Color.BROWN;
+            default -> Color.BLACK;
+        };
     }
 }
 
