@@ -6,13 +6,19 @@ import javafx.animation.Timeline;
 import javafx.scene.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
+import javafx.scene.shape.MeshView;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import storage.filemanager.MeshImporter;
+import storage.filemanager.SettingImporter;
+
+import java.util.ArrayList;
 
 public class TableController extends SubScene {
     private final Group sceneItems;
+    private ArrayList<Node> regions = new ArrayList<>();
 
     public TableController() {
         super(new Group(),
@@ -28,19 +34,37 @@ public class TableController extends SubScene {
 
         sceneItems.getChildren().addAll(MeshImporter.getTable());
 
-        //This part is for debug purposes - will be deleted later
-        Box box = new Box(50,50,50);
-        box.translateZProperty().set(-100);
-        box.translateXProperty().set(500);
-        box.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> System.out.println("Box is clicked"));
-        sceneItems.getChildren().add(box);
+        SettingImporter.getRegionCoordinates().forEach(ints -> {
+            MeshView region = MeshImporter.getRegion();
+            region.translateXProperty().set(ints[0]);
+            region.translateYProperty().set(ints[1]);
+            region.translateZProperty().set(0);
 
-        Node[] astronaut = MeshImporter.getPlayer();
-        for ( Node node : astronaut){
+            regions.add(region);
+            sceneItems.getChildren().add(region);
+
+            //Experimental
+            region.setMaterial(new PhongMaterial(Color.LAWNGREEN));
+            region.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+                System.out.println(region.getTranslateX());
+                System.out.println(region.getTranslateY());
+            });
+        });
+
+        //Experimental
+        MeshView[] astronaut = MeshImporter.getPlayer();
+        for ( MeshView node : astronaut){
             node.translateZProperty().set(-100);
             node.translateYProperty().set(-900);
         }
         sceneItems.getChildren().addAll(astronaut);
+
+        Box box = new Box(10,10,10);
+        box.translateXProperty().set(-278);
+        box.translateYProperty().set(157);
+        box.translateZProperty().set(-5);
+        box.setMaterial(new PhongMaterial(Color.YELLOW));
+        sceneItems.getChildren().add(box);
     }
 
     private void addLight() {
@@ -51,9 +75,9 @@ public class TableController extends SubScene {
 
     private void addCamera() {
         PerspectiveCamera camera = new PerspectiveCamera(true);
-        camera.translateZProperty().set(-800);
-        camera.translateYProperty().set(1500);
-        camera.getTransforms().add(new Rotate(60, Rotate.X_AXIS));
+        camera.translateZProperty().set(-900);
+        camera.translateYProperty().set(1300);
+        camera.getTransforms().add(new Rotate(50, Rotate.X_AXIS));
         camera.setNearClip(1);
         camera.setFarClip(3000);
         this.setCamera(camera);
