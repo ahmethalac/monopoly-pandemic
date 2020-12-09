@@ -1,7 +1,7 @@
 package storage.models;
 
 public class City extends Region {
-    private int numberOfBuildings;
+    private Buildings buildings;
     private Player owner;
     private double [] rents;
     private double price;
@@ -10,7 +10,7 @@ public class City extends Region {
 
     public City(double price, double[]rents, String name, int id){
         super(name, id);
-        numberOfBuildings = 0;
+        buildings = new Buildings();
         owner = null;
         this.rents = rents;
         this.price = price;
@@ -26,10 +26,10 @@ public class City extends Region {
         owner = player;
     }
 
-    public void addBuilding(int numberOfBuildings){ this.numberOfBuildings += numberOfBuildings; }
+    public void addBuilding(int count){ buildings.addBuilding(count); }
 
-    public void removeBuilding(int numberOfBuildings){
-        this.numberOfBuildings -= numberOfBuildings;
+    public boolean removeBuilding(int count){
+        return buildings.removeBuilding(count);
     }
 
     public void infect(boolean bool){
@@ -48,9 +48,11 @@ public class City extends Region {
         return price;
     }
     public int getNumberOfBuildings(){
-        return numberOfBuildings;
+        return buildings.getNumberOfBuildings();
     }
+    public int getBuildingPrice(int count) { return buildings.getBuildingPrice(count); }
     public double getRent(){
-        return rents[numberOfBuildings];
+        return buildings.getRent();
     }
+    public Player getOwner() { return owner; }
 }

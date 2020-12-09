@@ -11,10 +11,12 @@ public class SellRegion extends OneTimeOffer {
 
     @Override
     public void performOffer(Player firstPlayer, Player secondPlayer) {
-        // remove city from first player (if possible)
-        if(firstPlayer.removeCity(city)){
-            // add city to second player (if possible)
-            secondPlayer.addCity(city);
+        // remove city from second player (if possible)
+        if(secondPlayer.removeCity(city)){
+            // add city to first player (if possible)
+            firstPlayer.addCity(city);
+            return;
         }
+        System.out.println("Second player does not own city: " + city.getName());
     }
 }

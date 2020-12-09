@@ -93,13 +93,11 @@ public class Game {
         }
     }
 
-    public String[] getAgreementNames(){
-        String[] agreementNames = new String[agreements.size()];
-        int i = 0;
-        for(Agreement agreement : agreements){
-            agreementNames[i] = agreement.getName();
-            i++;
-        }
-        return agreementNames;
+    public ArrayList<Agreement> getAgreements(){
+        return agreements;
+    }
+
+    public int getPlayerNumber(){
+        return players.size();
     }
 }

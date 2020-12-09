@@ -15,8 +15,6 @@ public class PayRentOrNot extends ContiuousOffer {
     @Override
     public void performOffer(Player firstPlayer, Player secondPlayer) {
         //first player does not pay money for the city of second player
-        firstPlayer.removeMoney(0);
-        //second player does not take any money from the first player for the sepecified city
-        secondPlayer.addMoney(0);
+        //second player does not take any money from the first player for the specified city
     }
 }

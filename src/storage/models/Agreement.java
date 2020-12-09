@@ -21,7 +21,7 @@ public class Agreement {
     private void performOneTimeOffer(){
         if(firstOffer instanceof OneTimeOffer && secondOffer instanceof OneTimeOffer){
             firstOffer.performOffer(firstPlayer, secondPlayer);
-            secondOffer.performOffer(secondPlayer, firstPlayer);
+            secondOffer.performOffer(firstPlayer, secondPlayer);
             firstOffer = null;
             secondOffer = null;
             isEmpty = true;
@@ -32,28 +32,60 @@ public class Agreement {
             firstOffer = null;
         }
         if(secondOffer instanceof OneTimeOffer) {
-            secondOffer.performOffer(secondPlayer, firstPlayer);
+            secondOffer.performOffer(firstPlayer, secondPlayer);
             secondOffer = null;
         }
     }
 
     // check offers if they are continuous
-    public boolean checkOffer(City city){
+    public boolean performOffers(City city, Player player){
         if(isAccepted){
             // if firstOffer instanceof ContiuousOffer
             if(firstOffer != null){
                 if(city.getId() == ((ContiuousOffer) firstOffer).getCity().getId()){
+                    if(firstOffer instanceof TakePercentage) {
+                        player.removeMoney(city.getRent());
+                        firstOffer.performOffer(firstPlayer, secondPlayer);
+                    }
+                    else {
+                        if(firstPlayer.getId() != player.getId()){
+                            player.removeMoney(city.getRent());
+                            secondPlayer.addMoney(city.getRent());
+                        }
+                        else {
+                            firstOffer.performOffer(firstPlayer,secondPlayer);
+                        }
+                    }
                     firstOffer.performOffer(firstPlayer, secondPlayer);
                 }
             }
             // if secondOffer instanceof ContiuousOffer
             if(secondOffer != null){
                 if(city.getId() == ((ContiuousOffer) secondOffer).getCity().getId()){
-                    secondOffer.performOffer(secondPlayer, firstPlayer);
+                    if(secondOffer instanceof TakePercentage) {
+                        player.removeMoney(city.getRent());
+                        secondOffer.performOffer(firstPlayer, secondPlayer);
+                    }
+                    else {
+                        if(firstPlayer.getId() != player.getId()){
+                            player.removeMoney(city.getRent());
+                            secondPlayer.addMoney(city.getRent());
+                        }
+                        else {
+                            secondOffer.performOffer(firstPlayer,secondPlayer);
+                        }
+                    }
+                    secondOffer.performOffer(firstPlayer, secondPlayer);
                 }
             }
         }
         return isAccepted;
+    }
+
+    // check offers if city is involved
+    public boolean checkOffers(City city) {
+        return city.getId() == ((ContiuousOffer) firstOffer).getCity().getId()
+                || city.getId() == ((ContiuousOffer) secondOffer).getCity().getId();
     }
 
     // getter method for isEmpty prop

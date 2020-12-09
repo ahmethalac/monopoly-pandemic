@@ -51,25 +51,94 @@ public class GameManager {
     }
 
     // return Agreement names for render
-    public String[] getAgreementNames(){
-        return Game.getInstance().getAgreementNames();
+    public ArrayList<Agreement> getAgreementNames(){
+        return Game.getInstance().getAgreements();
     }
 
     // buy current location if possible
     public boolean buyCurrentLocation(){
         boolean possible = false;
-        if(Game.getInstance().getCurrentPlayer().getMoney() >=
-                ((City) Game.getInstance().getRegion(Game.getInstance().getCurrentPlayer().getLocation())).getPrice()){
-            Game.getInstance().getCurrentPlayer().addCity
-                    ((City) Game.getInstance().getRegion(Game.getInstance().getCurrentPlayer().getLocation()));
+        Player currentPlayer = Game.getInstance().getCurrentPlayer();
+        City currentCity = (City) (Game.getInstance().getRegion(currentPlayer.getLocation()));
+        if(currentPlayer.getMoney() >= currentCity.getPrice()){
+            currentPlayer.removeMoney(currentCity.getPrice());
+            currentPlayer.addCity((City) Game.getInstance().getRegion(currentPlayer.getLocation()));
             possible = true;
         }
         return possible;
     }
 
-    //public boolean buyBuilding(City city, int count){
+    public boolean buyBuilding(City city, int count){
+        boolean possible = false;
+        Player currentPlayer = Game.getInstance().getCurrentPlayer();
+        if(currentPlayer.getMoney() >= city.getBuildingPrice(count)){
+            currentPlayer.removeMoney(city.getBuildingPrice(count));
+            city.addBuilding(count);
+            return true;
+        }
+        return true;
+    }
 
-    //}
+    public boolean sellBuilding(City city, int count){
+        boolean possible;
+        Player currentPlayer = Game.getInstance().getCurrentPlayer();
+        possible = city.removeBuilding(count);
+        if(possible){
+            currentPlayer.addMoney(city.getBuildingPrice(count));
+        }
+        return possible;
+    }
+
+    public void mortgageCity(City city, boolean bool) {
+        city.mortgage(bool);
+    }
+
+    public void checkAgreements(){
+        ArrayList<Agreement> agreements = Game.getInstance().getAgreements();
+        Player currentPlayer = Game.getInstance().getCurrentPlayer();
+        City currentCity = (City) (Game.getInstance().getRegion(currentPlayer.getLocation()));
+        boolean offerPerformed = false;
+
+        if(currentCity.getOwner() != null){
+            if(currentCity.getOwner() != currentPlayer){
+                for( Agreement agreement : agreements ) {
+                    if(agreement.checkOffers(currentCity)) {
+                        offerPerformed = true;
+                        agreement.performOffers(currentCity, currentPlayer);
+                    }
+                }
+                if(!offerPerformed) {
+                    currentPlayer.removeMoney(currentCity.getRent());
+                    currentCity.getOwner().addMoney(currentCity.getRent());
+                }
+            }
+        }
+    }
+
+    public boolean checkPandemic(){
+        for(int i = 0; i<Game.getInstance().getPlayerNumber(); i++){
+            if(!Game.getInstance().getPlayer(i).isInfected()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void performRegionAction(){
+        Player currentPlayer = Game.getInstance().getCurrentPlayer();
+        Region currentRegion = (Game.getInstance().getRegion(currentPlayer.getLocation()));
+        if(currentRegion instanceof ChanceRegion) {
+            pickChanceCard();
+        }
+        else if(currentRegion instanceof SpecialRegion) {
+            // TODO play mini game
+        }
+        else if(currentRegion instanceof City){
+            checkAgreements();
+        }
+    }
+
+
 
 
 
