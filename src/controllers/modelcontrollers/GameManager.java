@@ -8,6 +8,8 @@ public class GameManager {
 
     // properties
     private ArrayList<Player> players;
+    private int turnCounter = 0;
+    private int tourCounter = 0;
 
     // constructors
     public GameManager(ArrayList<Player> players){
@@ -147,5 +149,17 @@ public class GameManager {
         return dice;
     }
 
+    // operations to perform when a turn passes
+    public void nextTurn(){
+        if(tourCounter == 0) {
+            // TODO remove infected cities infection
+            infectRandomCity();
+        }
+        turnCounter++;
+        turnCounter = turnCounter % players.size();
+        if(turnCounter == 0){
+            tourCounter++;
+        }
+    }
 
 }
