@@ -1,4 +1,4 @@
-package controllers.scenecontrollers;
+package views.customJavaFXObjects;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;

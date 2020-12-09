@@ -20,6 +20,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import storage.models.Game;
 import storage.models.Player;
+import views.customJavaFXObjects.playerButton;
+import views.customJavaFXObjects.playerComboBox;
 
 import java.io.IOException;
 import java.net.URL;

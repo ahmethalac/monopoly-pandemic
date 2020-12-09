@@ -1,4 +1,4 @@
-package controllers.scenecontrollers;
+package views.customJavaFXObjects;
 
 import javafx.scene.control.Button;
 import storage.models.Player;
