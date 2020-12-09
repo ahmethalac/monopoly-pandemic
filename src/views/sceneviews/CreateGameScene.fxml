@@ -40,6 +40,6 @@
       <Button text="Start Game" onAction="#handleStartGameButton"/>
    </VBox>
    <Pane prefHeight="1080.0" prefWidth="1300.0">
-      <ListView fx:id="lView" layoutX="90.0" layoutY="90.0" prefHeight="600.0" prefWidth="900.0"/>
+      <ListView fx:id="listView" layoutX="90.0" layoutY="90.0" prefHeight="600.0" prefWidth="900.0" />
    </Pane>
 </HBox>
