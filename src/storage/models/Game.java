@@ -19,7 +19,6 @@ public class Game {
         chanceCards = new ArrayList<>();
         // TODO set chanceCards
         agreements = new ArrayList<>();
-        currentPlayer = ((int)(Math.random()*10))%(players.size());
     }
 
     // methods
@@ -37,6 +36,7 @@ public class Game {
     public boolean setPlayers(ArrayList<Player> players) {
         if(this.players == null){
             this.players = players;
+            currentPlayer = players.isEmpty() ? 0 : ((int)(Math.random()*10))%(players.size());
             return true;
         }
         return false;
@@ -63,7 +63,7 @@ public class Game {
 
     public boolean removeAgreement(String agreementName) {
         for (Agreement agreement : agreements){
-            if( agreement.getName() == agreementName){
+            if(agreement.getName().equals(agreementName)){
                  return agreements.remove(agreement);
             }
         }
