@@ -36,7 +36,7 @@ public class GameManager {
 
     // picks chance card from top and performs operation on currentPlayer
     public void pickChanceCard(){
-        Game.getInstance().getCurrentChanceCard().executeAction(Game.getInstance().getCurrentPlayer());
+        Game.getInstance().getCurrentChanceCard().executeAction();
     }
 
     // set a new agreement
@@ -138,8 +138,14 @@ public class GameManager {
         }
     }
 
-
-
+    // dice[2] contains total dice numbers
+    public int[] rollDice(){
+        int[] dice = new int[3];
+        dice[0] = (int) (6*Math.random());
+        dice[1] = (int) (6*Math.random());
+        dice[2] = dice[0] + dice[1];
+        return dice;
+    }
 
 
 }
