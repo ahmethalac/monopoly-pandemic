@@ -2,26 +2,13 @@ package storage.models;
 
 import java.awt.*;
 
-public class Card {
-    private int id;
-    private String cardName;
-    private Image cardImg;
+public interface Card {
 
-    public Card(int id, String cardName, Image cardImg){
-        this.id = id;
-        this.cardName = cardName;
-        this.cardImg = cardImg;
-    }
+    public int getId();
 
-    public int getId(){
-        return id;
-    }
+    public String getCardName();
 
-    public String getCardName() {
-        return cardName;
-    }
+    public Image getCardImg();
 
-    public Image getCardImg() {
-        return cardImg;
-    }
+    public void executeAction(Player player);
 }

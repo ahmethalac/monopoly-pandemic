@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Player {
     private boolean isInQuarantine;
-    private ArrayList<String> cities;
+    private ArrayList<City> cities;
     private String name;
     private int id;
     private String color;
@@ -60,14 +60,18 @@ public class Player {
         return true;
     }
 
-    public boolean addCity(String cityName){
-        cities.add(cityName);
-        return true;
+    public boolean buyCity(City city){
+        if(city.getPrice() < money){
+            money -= city.getPrice();
+            cities.add(city);
+            return true;
+        }
+        return false;
     }
 
     //  Getters - Setters
 
-    public ArrayList<String> getCities() {
+    public ArrayList<City> getCities() {
         return cities;
     }
 

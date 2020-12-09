@@ -56,10 +56,18 @@ public class Game {
 
     public void addAgreement(Agreement agreement) {
         agreements.add(agreement);
+        if(agreement.isEmpty()){
+            agreements.remove(agreement);
+        }
     }
 
-    public boolean removeAgreement(Agreement agreement) {
-        return agreements.remove(agreement);
+    public boolean removeAgreement(String agreementName) {
+        for (Agreement agreement : agreements){
+            if( agreement.getName() == agreementName){
+                 return agreements.remove(agreement);
+            }
+        }
+        return false;
     }
 
     public Player getCurrentPlayer() {
@@ -83,5 +91,15 @@ public class Game {
         if(currentPlayer > players.size()){
             currentPlayer = 1;
         }
+    }
+
+    public String[] getAgreementNames(){
+        String[] agreementNames = new String[agreements.size()];
+        int i = 0;
+        for(Agreement agreement : agreements){
+            agreementNames[i] = agreement.getName();
+            i++;
+        }
+        return agreementNames;
     }
 }

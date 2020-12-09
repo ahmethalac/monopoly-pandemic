@@ -7,14 +7,15 @@ public class Agreement {
     private Offer secondOffer;
     private boolean isAccepted = false;
     private boolean isOffered = false;
-    private int id;
+    private String name;
     private boolean isEmpty = false;
 
-    public Agreement(Offer firstOffer, Offer secondOffer, Player firstPlayer, Player secondPlayer){
+    public Agreement(Offer firstOffer, Offer secondOffer, Player firstPlayer, Player secondPlayer, String name){
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
         this.firstOffer = firstOffer;
         this.secondOffer = secondOffer;
+        this.name = name;
     }
 
     private void performOneTimeOffer(){
@@ -76,5 +77,8 @@ public class Agreement {
     public Player getFirstPlayer(){
         return firstPlayer;
     }
+
+    // get id
+    public String getName() { return name; }
 
 }
