@@ -38,7 +38,7 @@ public class CreateGameSceneController implements Initializable {
             players.add(cell.getPlayer());
         }
         System.out.println(players);
-        Game.getInstance(players);
+        Game.getInstance().setPlayers(players);
         SceneManager.getInstance().showGameScene();
     }
 
