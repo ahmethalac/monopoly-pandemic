@@ -17,6 +17,7 @@ import javafx.scene.layout.Priority;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import storage.models.Game;
 import storage.models.Player;
 
 import java.io.IOException;
@@ -37,6 +38,7 @@ public class CreateGameSceneController implements Initializable {
             players.add(cell.getPlayer());
         }
         System.out.println(players);
+        Game.getInstance(players);
         SceneManager.getInstance().showGameScene();
     }
 
