@@ -13,28 +13,33 @@ public class Game {
     private int currentPlayer;
 
     // constructor
-    private Game(ArrayList<Player> players){
-        players = new ArrayList<>(players);
+    private Game(){
         regions = new ArrayList<>();
+        // TODO set regions
         chanceCards = new ArrayList<>();
+        // TODO set chanceCards
         agreements = new ArrayList<>();
         currentPlayer = ((int)(Math.random()*10))%(players.size());
     }
 
     // methods
-    public static Game getInstance(ArrayList<Player> players) {
+    public static Game getInstance() {
         if(game == null) {
-            game = new Game(players);
+            game = new Game();
         }
-        return game;
-    }
-
-    public static Game getInstance(){
         return game;
     }
 
     public static void setInstance(Game saveGame ){
         game = saveGame;
+    }
+
+    public boolean setPlayers(ArrayList<Player> players) {
+        if(this.players == null){
+            this.players = players;
+            return true;
+        }
+        return false;
     }
 
     public Player getPlayer(int id) {
