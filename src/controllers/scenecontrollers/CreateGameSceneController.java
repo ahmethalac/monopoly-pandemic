@@ -21,6 +21,7 @@ import storage.models.Player;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -31,6 +32,11 @@ public class CreateGameSceneController implements Initializable {
     private static final ObservableList<PlayerHBoxCell> playerList = FXCollections.observableArrayList();
 
     public void handleStartGameButton() {
+        ArrayList<Player> players = new ArrayList<>();
+        for (PlayerHBoxCell cell : playerList) {
+            players.add(cell.getPlayer());
+        }
+        System.out.println(players);
         SceneManager.getInstance().showGameScene();
     }
 

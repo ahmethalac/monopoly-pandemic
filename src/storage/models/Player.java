@@ -125,4 +125,18 @@ public class Player {
     {
         return isInQuarantine;
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "  name='" + name + '\'' +
+                ", id=" + id +
+                ", color='" + color + '\'' +
+                ", pawn='" + pawn + '\'' +
+                ", money=" + money +
+                ", isBankrupted=" + isBankrupted +
+                ", location=" + location +
+                ", isInfected=" + isInfected +
+                "}\n";
+    }
 }
