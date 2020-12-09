@@ -55,18 +55,12 @@ public class Player {
         isInfected = true;
     }
 
-    public boolean removeCity(String cityName){
-        cities.remove(cities.indexOf(cityName));
-        return true;
+    public boolean removeCity(City city){
+        return cities.remove(city);
     }
 
-    public boolean buyCity(City city){
-        if(city.getPrice() < money){
-            money -= city.getPrice();
-            cities.add(city);
-            return true;
-        }
-        return false;
+    public void addCity(City city){
+        cities.add(city);
     }
 
     //  Getters - Setters

@@ -57,8 +57,14 @@ public class GameManager {
 
     // buy current location if possible
     public boolean buyCurrentLocation(){
-        return Game.getInstance().getCurrentPlayer().buyCity
-                ((City) Game.getInstance().getRegion(Game.getInstance().getCurrentPlayer().getLocation()));
+        boolean possible = false;
+        if(Game.getInstance().getCurrentPlayer().getMoney() >=
+                ((City) Game.getInstance().getRegion(Game.getInstance().getCurrentPlayer().getLocation())).getPrice()){
+            Game.getInstance().getCurrentPlayer().addCity
+                    ((City) Game.getInstance().getRegion(Game.getInstance().getCurrentPlayer().getLocation()));
+            possible = true;
+        }
+        return possible;
     }
 
     //public boolean buyBuilding(City city, int count){
