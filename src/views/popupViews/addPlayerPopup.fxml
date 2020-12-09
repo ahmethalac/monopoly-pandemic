@@ -13,7 +13,7 @@
                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                     <children>
                         <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Name" />
-                        <TextField fx:id="nameField" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="nameField" HBox.hgrow="ALWAYS" onAction="#onEnter"/>
                     </children>
                     <padding>
                         <Insets right="30.0" />
