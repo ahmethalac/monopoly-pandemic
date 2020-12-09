@@ -32,6 +32,11 @@ public class addPlayerPopupController {
     private TextField nameField;
 
     @FXML
+    void onEnter(ActionEvent event) {
+        addButtonClicked(event);
+    }
+
+    @FXML
     void addButtonClicked(ActionEvent event) {
         String name = nameField.getText().trim();
 
