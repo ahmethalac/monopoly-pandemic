@@ -4,11 +4,11 @@ import java.awt.*;
 
 public interface Card {
 
-    public int getId();
+    //public int getId();
 
-    public String getCardName();
+    //public String getCardName();
 
-    public Image getCardImg();
+    //public Image getCardImg();
 
     public void executeAction();
 }
