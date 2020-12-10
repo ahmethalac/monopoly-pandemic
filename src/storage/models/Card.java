@@ -10,5 +10,5 @@ public interface Card {
 
     //public Image getCardImg();
 
-    public void executeAction();
+    public void executeAction(Game game);
 }

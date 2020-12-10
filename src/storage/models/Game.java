@@ -101,8 +101,4 @@ public class Game {
         return players.size();
     }
 
-    public int getPlayerArraySize()
-    {
-        return players.size();
-    }
 }

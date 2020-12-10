@@ -3,10 +3,10 @@ package storage.models.chanceCards;
 import storage.models.Card;
 import storage.models.Game;
 
-public class MedicalPayment implements Card {
-    //Pay $10000 for medical payments
+public class BeautyContest implements Card {
+    // you win the beauty contest take $1000
     @Override
     public void executeAction(Game game) {
-        game.getCurrentPlayer().removeMoney(10000);
+        game.getCurrentPlayer().addMoney(1000);
     }
 }

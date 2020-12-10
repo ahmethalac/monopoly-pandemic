@@ -6,19 +6,19 @@ import storage.models.Game;
 public class BirthdayPresent implements Card {
     // take $1000 from each player fro your birthday
     @Override
-    public void executeAction() {
-        int numberOfPlayers = Game.getInstance().getPlayerArraySize();
+    public void executeAction(Game game) {
+        int numberOfPlayers = game.getPlayerNumber();
         int loopCount = 0;
         while(loopCount < numberOfPlayers)
         {
-            if(Game.getInstance().getPlayer(loopCount) == Game.getInstance().getCurrentPlayer())
+            if(game.getPlayer(loopCount) == game.getCurrentPlayer())
             {
                 loopCount++;
                 continue;
             }
-            Game.getInstance().getPlayer(loopCount).removeMoney(1000);
+            game.getPlayer(loopCount).removeMoney(1000);
             loopCount++;
         }
-        Game.getInstance().getCurrentPlayer().addMoney( 1000 * (numberOfPlayers - 1) );
+        game.getCurrentPlayer().addMoney( 1000 * (numberOfPlayers - 1) );
     }
 }

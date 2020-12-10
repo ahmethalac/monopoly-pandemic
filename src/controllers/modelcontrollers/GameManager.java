@@ -38,7 +38,7 @@ public class GameManager {
 
     // picks chance card from top and performs operation on currentPlayer
     public void pickChanceCard(){
-        Game.getInstance().getCurrentChanceCard().executeAction();
+        Game.getInstance().getCurrentChanceCard().executeAction(Game.getInstance());
     }
 
     // set a new agreement
