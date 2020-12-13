@@ -1,4 +1,4 @@
-package storage.models;
+package models;
 import java.util.ArrayList;
 
 public class Player {

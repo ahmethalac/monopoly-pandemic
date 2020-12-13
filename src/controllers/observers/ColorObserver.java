@@ -1,14 +1,13 @@
 package controllers.observers;
 
 import controllers.scenecontrollers.CreateGameSceneController;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
 import javafx.scene.shape.Shape3D;
-import storage.models.City;
-import storage.models.Observable;
+import models.City;
+import models.Observable;
 
 import java.util.ArrayList;
 

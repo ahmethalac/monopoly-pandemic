@@ -12,9 +12,9 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import storage.models.City;
-import storage.models.Game;
-import storage.models.Player;
+import models.City;
+import models.Game;
+import models.Player;
 
 import java.io.IOException;
 import java.net.URL;

@@ -1,7 +1,7 @@
-package storage.models.chanceCards;
+package models.chanceCards;
 
-import storage.models.Card;
-import storage.models.Game;
+import models.Card;
+import models.Game;
 
 public class ConfusionInBankAccount implements Card{
     // there is a confusion in bank accounts, get $20000

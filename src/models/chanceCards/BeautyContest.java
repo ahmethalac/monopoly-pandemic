@@ -1,7 +1,7 @@
-package storage.models.chanceCards;
+package models.chanceCards;
 
-import storage.models.Card;
-import storage.models.Game;
+import models.Card;
+import models.Game;
 
 public class BeautyContest implements Card {
     // you win the beauty contest take $1000

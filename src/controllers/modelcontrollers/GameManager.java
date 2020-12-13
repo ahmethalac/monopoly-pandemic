@@ -1,8 +1,10 @@
 package controllers.modelcontrollers;
 
-import storage.models.*;
+import models.*;
+import storage.filemanager.SettingImporter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameManager {
 
@@ -10,17 +12,24 @@ public class GameManager {
     private ArrayList<Player> players;
     private int turnCounter = 0;
     private int tourCounter = 0;
+    private final int PIRATE_FEE = 10000;
+    private final int STARTING_REGION_BONUS = 20000;
 
     // constructors
     public GameManager(ArrayList<Player> players){
         this.players = players;
+        initGame();
     }
 
-    public GameManager(Game saveGame){
-        Game.setInstance(saveGame);
-    }
+    public GameManager(Game saveGame){ Game.setInstance(saveGame); }
 
     // methods
+
+    // setup a game
+    public void initGame() {
+        ArrayList<Region> regions = SettingImporter.getRegions();
+        Game.getInstance().setRegions(regions);
+    }
 
     // infects a random city in a game
     public void infectRandomCity() {
@@ -129,15 +138,22 @@ public class GameManager {
     public void performRegionAction(){
         Player currentPlayer = Game.getInstance().getCurrentPlayer();
         Region currentRegion = (Game.getInstance().getRegion(currentPlayer.getLocation()));
-        if(currentRegion instanceof ChanceRegion) {
-            pickChanceCard();
-        }
-        else if(currentRegion instanceof SpecialRegion) {
-            // TODO play mini game
-        }
-        else if(currentRegion instanceof City){
+        if(currentRegion instanceof City) {
             checkAgreements();
         }
+        else if(currentRegion instanceof ChanceRegion) {
+            pickChanceCard();
+        }
+        else if(currentRegion instanceof PirateRegion) {
+            pirateAction(currentPlayer);
+        }
+
+        // add money if player pass over starting point
+        if(currentPlayer.getLocation() <= currentRegion.getId()){
+            startingRegionAction(currentPlayer);
+        }
+        currentPlayer.setLocation(currentRegion.getId());
+        checkPandemic();
     }
 
     // dice[2] contains total dice numbers
@@ -160,6 +176,14 @@ public class GameManager {
         if(turnCounter == 0){
             tourCounter++;
         }
+    }
+
+    private void pirateAction(Player currentPlayer){
+        currentPlayer.removeMoney(PIRATE_FEE);
+    }
+
+    private void startingRegionAction(Player currentPlayer){
+        currentPlayer.addMoney(STARTING_REGION_BONUS);
     }
 
 }

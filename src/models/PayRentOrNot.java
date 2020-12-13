@@ -1,4 +1,4 @@
-package storage.models;
+package models;
 
 public class PayRentOrNot extends ContiuousOffer {
     private City city;

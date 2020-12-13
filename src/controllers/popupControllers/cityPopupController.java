@@ -8,7 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import storage.models.City;
+import models.City;
 
 public class cityPopupController {
     private City city;

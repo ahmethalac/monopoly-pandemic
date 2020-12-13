@@ -1,6 +1,5 @@
 package controllers.scenecontrollers;
 
-import controllers.observers.ColorObserver;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -15,8 +14,6 @@ import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import storage.filemanager.MeshImporter;
 import storage.filemanager.SettingImporter;
-import storage.models.City;
-import storage.models.Player;
 
 import java.util.ArrayList;
 

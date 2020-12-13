@@ -2,7 +2,7 @@ package views.customJavaFXObjects;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
-import storage.models.Player;
+import models.Player;
 
 public class playerComboBox extends ComboBox<String> {
 

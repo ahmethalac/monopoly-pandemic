@@ -1,3 +1,3 @@
-package storage.models;
+package models;
 
 public abstract class OneTimeOffer extends Offer { }

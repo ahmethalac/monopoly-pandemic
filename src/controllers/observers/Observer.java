@@ -1,6 +1,6 @@
 package controllers.observers;
 
-import storage.models.Observable;
+import models.Observable;
 
 public abstract class Observer {
     protected Observable subject;

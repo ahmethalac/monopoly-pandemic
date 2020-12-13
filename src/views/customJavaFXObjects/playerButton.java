@@ -1,7 +1,7 @@
 package views.customJavaFXObjects;
 
 import javafx.scene.control.Button;
-import storage.models.Player;
+import models.Player;
 
 public class playerButton extends Button {
 

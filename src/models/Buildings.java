@@ -1,18 +1,18 @@
-package storage.models;
+package models;
 
 public class Buildings {
 
     // properties
     private int numberOfBuildings;
     private final int MAX_NUMBER_OF_BUILDINGS = 5;
-    private int[] prices;
-    private int[] rents;
+    private double[] prices;
+    private double[] rents;
 
     // constructor
-    public Buildings() {
+    public Buildings(double[] rents) {
         numberOfBuildings = 0;
-        prices = new int[MAX_NUMBER_OF_BUILDINGS];
-        rents = new int[MAX_NUMBER_OF_BUILDINGS];
+        this.rents = rents;
+        prices = new double[MAX_NUMBER_OF_BUILDINGS];
     }
 
     // methods
@@ -50,7 +50,7 @@ public class Buildings {
         return -1;
     }
 
-    public int getRent(){
+    public double getRent(){
         return rents[numberOfBuildings-1];
     }
 

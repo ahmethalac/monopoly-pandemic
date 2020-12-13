@@ -1,4 +1,4 @@
-package storage.models;
+package models;
 
 public class SellRegion extends OneTimeOffer {
     // properties

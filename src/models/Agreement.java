@@ -1,4 +1,4 @@
-package storage.models;
+package models;
 
 public class Agreement {
     private Player firstPlayer;

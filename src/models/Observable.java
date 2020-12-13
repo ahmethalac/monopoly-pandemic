@@ -1,4 +1,4 @@
-package storage.models;
+package models;
 
 import controllers.observers.Observer;
 

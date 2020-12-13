@@ -1,7 +1,7 @@
-package storage.models.chanceCards;
+package models.chanceCards;
 
-import storage.models.Card;
-import storage.models.Game;
+import models.Card;
+import models.Game;
 
 public class MedicalPayment implements Card {
     //Pay $10000 for medical payments

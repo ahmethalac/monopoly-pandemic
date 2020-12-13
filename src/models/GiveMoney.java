@@ -1,4 +1,4 @@
-package storage.models;
+package models;
 
 public class GiveMoney extends OneTimeOffer {
     private double money;

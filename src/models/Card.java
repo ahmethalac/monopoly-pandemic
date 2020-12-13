@@ -1,6 +1,4 @@
-package storage.models;
-
-import java.awt.*;
+package models;
 
 public interface Card {
 

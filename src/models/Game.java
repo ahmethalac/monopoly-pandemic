@@ -1,5 +1,6 @@
-package storage.models;
+package models;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Game {
@@ -14,10 +15,6 @@ public class Game {
 
     // constructor
     private Game(){
-        regions = new ArrayList<>();
-        // TODO set regions
-        chanceCards = new ArrayList<>();
-        // TODO set chanceCards
         agreements = new ArrayList<>();
     }
 
@@ -48,6 +45,10 @@ public class Game {
 
     public Region getRegion(int id) {
         return regions.get(id);
+    }
+
+    public void setRegions(ArrayList<Region> regions) {
+        this.regions = regions;
     }
 
     public int getRegionNumber() {
@@ -83,6 +84,7 @@ public class Game {
         Card currentChanceCard = chanceCards.get(0);
         chanceCards.remove(0);
         chanceCards.add(currentChanceCard);
+        // TODO OBSERVE
         return currentChanceCard;
     }
 
