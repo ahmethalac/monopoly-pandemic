@@ -9,7 +9,6 @@ import java.util.List;
 public class GameManager {
 
     // properties
-    private ArrayList<Player> players;
     private int turnCounter = 0;
     private int tourCounter = 0;
     private final int PIRATE_FEE = 10000;
@@ -17,7 +16,7 @@ public class GameManager {
 
     // constructors
     public GameManager(ArrayList<Player> players){
-        this.players = players;
+        Game.getInstance().setPlayers(players);
         initGame();
     }
 
@@ -104,7 +103,7 @@ public class GameManager {
         city.mortgage(bool);
     }
 
-    public void checkAgreements(){
+    private void checkAgreements(){
         ArrayList<Agreement> agreements = Game.getInstance().getAgreements();
         Player currentPlayer = Game.getInstance().getCurrentPlayer();
         City currentCity = (City) (Game.getInstance().getRegion(currentPlayer.getLocation()));
@@ -126,7 +125,7 @@ public class GameManager {
         }
     }
 
-    public boolean checkPandemic(){
+    private boolean checkPandemic(){
         for(int i = 0; i<Game.getInstance().getPlayerNumber(); i++){
             if(!Game.getInstance().getPlayer(i).isInfected()){
                 return false;
@@ -172,7 +171,7 @@ public class GameManager {
             infectRandomCity();
         }
         turnCounter++;
-        turnCounter = turnCounter % players.size();
+        turnCounter = turnCounter % Game.getInstance().getPlayerNumber();
         if(turnCounter == 0){
             tourCounter++;
         }

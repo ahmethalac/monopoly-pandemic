@@ -105,6 +105,12 @@ public class Agreement {
         performOneTimeOffer();
     }
 
+    // decline agreement
+    public void decline(){
+        isOffered = true;
+        isEmpty = true;
+    }
+
     // get first player
     public Player getFirstPlayer(){
         return firstPlayer;
