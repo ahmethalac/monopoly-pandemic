@@ -39,17 +39,20 @@ public class GameSceneController implements Initializable {
         cameraScene.rotateTable();
     }
 
-    public void handleCityPopup(City city) {
+    public void handleCityPopup() {
+
+        City city = new City(12.123, new double[]{100.0,200.0,300.0}, "Yozgat", 111);
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/cityPopup.fxml"));
             Parent parent = fxmlLoader.load();
             cityPopupController popupController = fxmlLoader.getController();
             popupController.setCity(city);
 
-            Scene scene = new Scene(parent, 300, 200);
+            Scene scene = new Scene(parent, 600, 400);
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
+            stage.initStyle(StageStyle.UTILITY);
             stage.setScene(scene);
             stage.showAndWait();
 
