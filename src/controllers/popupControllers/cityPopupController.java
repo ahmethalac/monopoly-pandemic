@@ -11,10 +11,13 @@ import javafx.stage.Stage;
 import models.City;
 
 public class cityPopupController {
+
     private City city;
 
     @FXML
     private Label cityName;
+    public Label cityText1;
+    public Label cityText2;
 
     @FXML
     void cancelButtonClicked(ActionEvent event) {

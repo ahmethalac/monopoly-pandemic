@@ -41,6 +41,7 @@ public class GameSceneController implements Initializable {
 
     public void handleCityPopup() {
 
+        //debug
         City city = new City(12.123, new double[]{100.0,200.0,300.0}, "Yozgat", 111);
 
         try {
@@ -49,10 +50,11 @@ public class GameSceneController implements Initializable {
             cityPopupController popupController = fxmlLoader.getController();
             popupController.setCity(city);
 
-            Scene scene = new Scene(parent, 600, 400);
+            Scene scene = new Scene(parent, 300, 400);
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.UTILITY);
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.showAndWait();
 
