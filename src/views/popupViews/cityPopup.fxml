@@ -13,7 +13,7 @@
     <children>
         <VBox alignment="CENTER" layoutX="131.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
             <children>
-                  <Label fx:id="cityName" alignment="CENTER" contentDisplay="CENTER" minWidth="100.0" text="City Name">
+                  <Label fx:id="cityNameLabel" alignment="CENTER" contentDisplay="CENTER" minWidth="100.0" text="City Name">
                <font>
                   <Font size="24.0" />
                </font>
@@ -21,7 +21,7 @@
                   <Insets bottom="35.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="cityText1" alignment="CENTER" contentDisplay="CENTER" minWidth="100.0" text="City Text1">
+            <Label fx:id="cityPriceLabel" alignment="CENTER" contentDisplay="CENTER" minWidth="100.0" text="City Price">
                <font>
                   <Font size="24.0" />
                </font>

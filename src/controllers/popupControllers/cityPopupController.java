@@ -15,8 +15,8 @@ public class cityPopupController {
     private City city;
 
     @FXML
-    private Label cityName;
-    public Label cityText1;
+    private Label cityNameLabel;
+    public Label cityPriceLabel;
     public Label cityText2;
 
     @FXML
@@ -26,7 +26,8 @@ public class cityPopupController {
 
     public void setCity(City city) {
         this.city = city;
-        cityName.setText(city.getName());
+        cityNameLabel.setText(city.getName());
+        cityPriceLabel.setText("Price: " + city.getPrice());
     }
 
     private void closeStage(ActionEvent event) {
