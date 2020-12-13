@@ -12,21 +12,25 @@ import javafx.scene.shape.Box;
 import javafx.scene.shape.MeshView;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
+import models.City;
 import storage.filemanager.MeshImporter;
 import storage.filemanager.SettingImporter;
+import utils.RegionList;
 
 import java.util.ArrayList;
 
 public class TableController extends SubScene {
+    private GameSceneController gameSceneController;
     private final Group sceneItems;
-    private ArrayList<ArrayList<Node>> regions = new ArrayList<>();
+    private ArrayList<RegionList> regions = new ArrayList<>();
 
-    public TableController() {
+    public TableController(GameSceneController gameSceneController) {
         super(new Group(),
                 SceneManager.getInstance().getWidth(),
                 SceneManager.getInstance().getHeight(),
                 true,
                 SceneAntialiasing.DISABLED);
+        this.gameSceneController = gameSceneController;
         this.setFill(Color.SILVER);
         sceneItems = (Group) this.getRoot();
 
@@ -41,7 +45,11 @@ public class TableController extends SubScene {
             region.translateYProperty().set(ints[1]);
             region.translateZProperty().set(0);
 
-            ArrayList<Node> group = new ArrayList<>();
+
+            RegionList group = new RegionList(mouseEvent -> {
+                double[] rents = new double[3];
+                gameSceneController.handleCityPopup(new City(5, rents, "Yozgat", 5));
+            });
             group.add(region);
 
             regions.add(group);
@@ -54,16 +62,15 @@ public class TableController extends SubScene {
                 System.out.println(region.getTranslateY());
             });
 
-            Box box = new Box(10,10,10);
-            box.translateXProperty().set(ints[0]);
-            box.translateYProperty().set(ints[1]);
-            box.translateZProperty().set(-5);
+            MeshView house = MeshImporter.getHouse();
+            house.translateXProperty().set(ints[0]);
+            house.translateYProperty().set(ints[1]);
             PhongMaterial material = new PhongMaterial();
-            Image image = new Image(getClass().getResourceAsStream("../../assets/textures/wood.png"));
+            Image image = new Image(getClass().getResourceAsStream("../../assets/textures/Red.png"));
             material.setDiffuseMap(image);
-            box.setMaterial(material);
-            group.add(box);
-            sceneItems.getChildren().add(box);
+            house.setMaterial(material);
+            group.add(house);
+            sceneItems.getChildren().add(house);
         });
 
         //Experimental
@@ -76,9 +83,9 @@ public class TableController extends SubScene {
     }
 
     private void addLight() {
-        AmbientLight light = new AmbientLight();
-        light.translateZProperty().set(-500);
-        sceneItems.getChildren().add(light);
+        LightBase ambient = new AmbientLight();
+        ambient.translateZProperty().set(-1000);
+        sceneItems.getChildren().add(ambient);
     }
 
     private void addCamera() {

@@ -29,7 +29,7 @@ public class GameSceneController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        cameraScene = new TableController();
+        cameraScene = new TableController(this);
         stackPane.getChildren().add(cameraScene);
         cameraScene.toBack();
     }
@@ -39,11 +39,7 @@ public class GameSceneController implements Initializable {
         cameraScene.rotateTable();
     }
 
-    public void handleCityPopup() {
-
-        //debug
-        City city = new City(12.123, new double[]{100.0,200.0,300.0}, "Yozgat", 111);
-
+    public void handleCityPopup(City city) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/cityPopup.fxml"));
             Parent parent = fxmlLoader.load();
