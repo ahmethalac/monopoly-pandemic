@@ -24,6 +24,7 @@ public class City extends Region {
 
     public void setOwner(Player player){
         owner = player;
+        this.notifyAllObservers();
     }
 
     public void addBuilding(int count){ buildings.addBuilding(count); }

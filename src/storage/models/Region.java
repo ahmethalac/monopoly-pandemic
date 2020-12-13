@@ -1,6 +1,6 @@
 package storage.models;
 
-public abstract class Region {
+public abstract class Region extends Observable {
     private String name;
     private int id;
 
