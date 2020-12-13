@@ -6,7 +6,6 @@
 <StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="controllers.scenecontrollers.GameSceneController">
    <BorderPane pickOnBounds="false">
-
       <top>
          <Button text="top"/>
       </top>
@@ -19,8 +18,5 @@
       <right>
          <Button onAction="#rotateTable" text="right"/>
       </right>
-      <center>
-         <Button mnemonicParsing="false" BorderPane.alignment="CENTER" text="Test city button"/>
-      </center>
    </BorderPane>
 </StackPane>
