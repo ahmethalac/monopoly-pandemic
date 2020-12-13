@@ -12,6 +12,8 @@ import storage.models.Observable;
 
 import java.util.ArrayList;
 
+import static utils.colorUtil.getFXColor;
+
 public class ColorObserver extends Observer {
 
     private final ArrayList<Node> region;
@@ -25,7 +27,7 @@ public class ColorObserver extends Observer {
     @Override
     public void update() {
         for ( Node node : region){
-            Color color = CreateGameSceneController.getFXColor(((City)subject).getOwner().getColor());
+            Color color = getFXColor(((City)subject).getOwner().getColor());
             if ( node instanceof Box ){
 
             }else{

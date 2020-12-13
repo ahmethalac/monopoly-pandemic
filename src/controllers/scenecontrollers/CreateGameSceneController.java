@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import storage.models.Game;
 import storage.models.Player;
+import utils.colorUtil;
 import views.customJavaFXObjects.playerButton;
 import views.customJavaFXObjects.playerComboBox;
 
@@ -27,6 +28,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import static utils.colorUtil.getFXColor;
 
 /**
  * Controller for Create Game menu
@@ -99,18 +102,6 @@ public class CreateGameSceneController implements Initializable {
 
         Player player;
 
-        final String[] colors = new String[]{
-                "red",
-                "blue",
-                "pink",
-                "green",
-                "yellow",
-                "orange",
-                "purple",
-                "cyan",
-                "grey",
-                "brown"};
-
         // Constructor
         public PlayerHBoxCell(Player player) {
             super();
@@ -129,7 +120,7 @@ public class CreateGameSceneController implements Initializable {
             idLabel.setMaxWidth(Double.MAX_VALUE);
             HBox.setHgrow(idLabel, Priority.ALWAYS);
 
-            colorBox = new playerComboBox(FXCollections.observableArrayList(colors), player);
+            colorBox = new playerComboBox(FXCollections.observableArrayList(colorUtil.colors), player);
             colorBox.getSelectionModel().select(player.getColor());
             colorBox.setOnAction(actionEvent -> {
                 String colorValue = colorBox.getValue();
@@ -147,9 +138,10 @@ public class CreateGameSceneController implements Initializable {
             deleteButton.setOnAction(actionEvent -> {
                 Object node = actionEvent.getSource();
                 System.out.println(node instanceof Button);
+
                 assert node instanceof playerButton;
-                playerButton b = (playerButton) node;
-                String playerName = b.getPlayer().getName();
+
+                String playerName = ((playerButton) node ).getPlayer().getName();
 
                 PlayerHBoxCell cell;
                 for (PlayerHBoxCell playerHBoxCell : playerList) {
@@ -163,26 +155,11 @@ public class CreateGameSceneController implements Initializable {
 
             this.getChildren().addAll(avatar, nameLabel, idLabel, avatarButton, colorBox, deleteButton);
         }
+
         public Player getPlayer() {
             return player;
         }
 
-    }
-
-    public static Color getFXColor(String colorString){
-        return switch (colorString) {
-            case "red" -> Color.RED;
-            case "blue" -> Color.BLUE;
-            case "pink" -> Color.PINK;
-            case "green" -> Color.GREEN;
-            case "yellow" -> Color.YELLOW;
-            case "orange" -> Color.ORANGE;
-            case "purple" -> Color.PURPLE;
-            case "cyan" -> Color.CYAN;
-            case "grey" -> Color.GREY;
-            case "brown" -> Color.BROWN;
-            default -> Color.BLACK;
-        };
     }
 }
 
