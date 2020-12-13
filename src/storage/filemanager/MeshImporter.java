@@ -24,4 +24,8 @@ public class MeshImporter {
     public static MeshView getRegion() {
         return getNodeArray("Region.obj")[0];
     }
+
+    public static MeshView getHouse() {
+        return getNodeArray("House.obj")[0];
+    }
 }
