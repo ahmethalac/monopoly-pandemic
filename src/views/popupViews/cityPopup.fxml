@@ -18,7 +18,7 @@
                   <Font size="24.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="35.0" />
+                  <Insets bottom="25.0" />
                </VBox.margin>
             </Label>
             <Label fx:id="cityPriceLabel" alignment="CENTER" contentDisplay="CENTER" minWidth="100.0" text="City Price">
@@ -26,17 +26,14 @@
                   <Font size="24.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="35.0" />
+                  <Insets bottom="25.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="cityText2" alignment="CENTER" contentDisplay="CENTER" minWidth="100.0" text="City Text2">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <padding>
-                  <Insets bottom="35.0" />
-               </padding>
-            </Label>
+            <ListView fx:id="rentView" prefHeight="200.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="25.0" />
+               </VBox.margin>
+            </ListView>
              <Button mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
             </children>
         </VBox>

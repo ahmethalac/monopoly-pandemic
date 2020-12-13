@@ -10,7 +10,7 @@ public class City extends Region {
     private final double MORGAGE_PENALTY = 0.8;
     private final double MORGAGE_RATE = 0.7;
 
-    public City(double price, double[]rents, String name, int id){
+    public City(double price, double[] rents, String name, int id) {
         super(id);
         buildings = new Buildings(rents);
         owner = null;
@@ -20,52 +20,66 @@ public class City extends Region {
         this.name = name;
     }
 
-    public void mortgage(boolean bool){
-        if(bool && !isMortgaged){
+    public void mortgage(boolean bool) {
+        if (bool && !isMortgaged) {
             owner.addMoney(price * MORGAGE_RATE);
             isMortgaged = bool;
-        }
-        else if(!bool && isMortgaged){
+        } else if (!bool && isMortgaged) {
             owner.removeMoney(price * MORGAGE_PENALTY);
             isMortgaged = bool;
         }
     }
 
-    public void setOwner(Player player){
+    public void setOwner(Player player) {
         owner = player;
         this.notifyAllObservers();
     }
 
-    public void addBuilding(int count){ buildings.addBuilding(count); }
+    public void addBuilding(int count) {
+        buildings.addBuilding(count);
+    }
 
-    public boolean removeBuilding(int count){
+    public boolean removeBuilding(int count) {
         return buildings.removeBuilding(count);
     }
 
-    public void infect(boolean bool){
+    public void infect(boolean bool) {
         isInfected = bool;
     }
 
-    public boolean isInfected(){
+    public boolean isInfected() {
         return isInfected;
     }
 
-    public boolean isMortgaged(){
+    public boolean isMortgaged() {
         return isMortgaged;
     }
 
-    public double getPrice(){
+    public double getPrice() {
         return price;
     }
-    public int getNumberOfBuildings(){
+
+    public int getNumberOfBuildings() {
         return buildings.getNumberOfBuildings();
     }
-    public int getBuildingPrice(int count) { return buildings.getBuildingPrice(count); }
-    public double getRent(){
+
+    public int getBuildingPrice(int count) {
+        return buildings.getBuildingPrice(count);
+    }
+
+    public double getRent() {
         return buildings.getRent();
     }
-    public Player getOwner() { return owner; }
+
+    public Player getOwner() {
+        return owner;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public Buildings getBuildings() {
+        return buildings;
     }
 }

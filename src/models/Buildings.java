@@ -19,7 +19,7 @@ public class Buildings {
 
     // add a building if not at max
     public boolean addBuilding(int count) {
-        if(numberOfBuildings + count <= MAX_NUMBER_OF_BUILDINGS){
+        if (numberOfBuildings + count <= MAX_NUMBER_OF_BUILDINGS) {
             numberOfBuildings += count;
             return true;
         }
@@ -27,31 +27,34 @@ public class Buildings {
     }
 
     public boolean removeBuilding(int count) {
-        if(numberOfBuildings - count >= 0) {
+        if (numberOfBuildings - count >= 0) {
             numberOfBuildings -= count;
             return true;
         }
         return false;
     }
 
-    public int getNumberOfBuildings(){
+    public int getNumberOfBuildings() {
         return numberOfBuildings;
     }
 
     // return prices for count number of buildings.
-    public int getBuildingPrice(int count){
-        if(numberOfBuildings + count <= MAX_NUMBER_OF_BUILDINGS){
+    public int getBuildingPrice(int count) {
+        if (numberOfBuildings + count <= MAX_NUMBER_OF_BUILDINGS) {
             int price = 0;
-            for(int i = numberOfBuildings; i< numberOfBuildings + count; i++){
-                price += prices[i-1];
+            for (int i = numberOfBuildings; i < numberOfBuildings + count; i++) {
+                price += prices[i - 1];
             }
             return price;
         }
         return -1;
     }
 
-    public double getRent(){
-        return rents[numberOfBuildings-1];
+    public double getRent() {
+        return rents[numberOfBuildings - 1];
     }
 
+    public double[] getRents() {
+        return rents;
+    }
 }
