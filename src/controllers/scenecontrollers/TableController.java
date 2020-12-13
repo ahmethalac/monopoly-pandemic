@@ -1,5 +1,7 @@
 package controllers.scenecontrollers;
 
+import controllers.modelcontrollers.GameManager;
+import controllers.observers.ColorObserver;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -8,21 +10,21 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
-import javafx.scene.shape.Box;
 import javafx.scene.shape.MeshView;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
-import models.City;
+import models.*;
 import storage.filemanager.MeshImporter;
 import storage.filemanager.SettingImporter;
 import utils.RegionList;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TableController extends SubScene {
     private GameSceneController gameSceneController;
     private final Group sceneItems;
-    private ArrayList<RegionList> regions = new ArrayList<>();
+    private ArrayList<RegionList> regionsList = new ArrayList<>();
 
     public TableController(GameSceneController gameSceneController) {
         super(new Group(),
@@ -39,41 +41,52 @@ public class TableController extends SubScene {
 
         sceneItems.getChildren().addAll(MeshImporter.getTable());
 
-        SettingImporter.getRegionCoordinates().forEach(ints -> {
+        ArrayList<Region> regions = GameManager.getInstance().getRegions();
+        List<int[]> coordinates = SettingImporter.getRegionCoordinates();
+
+        for ( int i = 0; i < coordinates.size(); i++){
             MeshView region = MeshImporter.getRegion();
-            region.translateXProperty().set(ints[0]);
-            region.translateYProperty().set(ints[1]);
+            region.translateXProperty().set(coordinates.get(i)[0]);
+            region.translateYProperty().set(coordinates.get(i)[1]);
             region.translateZProperty().set(0);
 
+            int finalI = i;
 
             RegionList group = new RegionList(mouseEvent -> {
-                double[] rents = new double[3];
-                gameSceneController.handleCityPopup(new City(5, rents, "Yozgat", 5));
+                if ( regions.get(finalI) instanceof City){
+                    gameSceneController.handleCityPopup((City) regions.get(finalI));
+                } else{
+                    //Debug Purposes
+                    System.out.println(regions.get(finalI).getClass().getName());
+                }
             });
             group.add(region);
-
-            regions.add(group);
+            regionsList.add(group);
             sceneItems.getChildren().add(region);
+            if ( regions.get(i) instanceof City){
+                new ColorObserver(regions.get(i), group);
+                region.setMaterial(new PhongMaterial(Color.GREY));
 
-            //Experimental
-            region.setMaterial(new PhongMaterial(Color.GREY));
-            region.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-                System.out.println(region.getTranslateX());
-                System.out.println(region.getTranslateY());
-            });
+                //Experimental
+                MeshView house = MeshImporter.getHouse();
+                house.translateXProperty().set(coordinates.get(i)[0]);
+                house.translateYProperty().set(coordinates.get(i)[1]);
+                PhongMaterial material = new PhongMaterial();
+                Image image = new Image(getClass().getResourceAsStream("../../assets/textures/Red.png"));
+                material.setDiffuseMap(image);
+                house.setMaterial(material);
+                group.add(house);
+                sceneItems.getChildren().add(house);
+            } else if ( regions.get(i) instanceof ChanceRegion){
+                region.setMaterial(new PhongMaterial(Color.GREEN));
+            } else if ( regions.get(i) instanceof PirateRegion){
+                region.setMaterial(new PhongMaterial(Color.RED));
+            } else if ( regions.get(i) instanceof StartingRegion){
+                region.setMaterial(new PhongMaterial(Color.WHITE));
+            }
 
-            MeshView house = MeshImporter.getHouse();
-            house.translateXProperty().set(ints[0]);
-            house.translateYProperty().set(ints[1]);
-            PhongMaterial material = new PhongMaterial();
-            Image image = new Image(getClass().getResourceAsStream("../../assets/textures/Red.png"));
-            material.setDiffuseMap(image);
-            house.setMaterial(material);
-            group.add(house);
-            sceneItems.getChildren().add(house);
-        });
+        }
 
-        //Experimental
         MeshView[] astronaut = MeshImporter.getPlayer();
         for ( MeshView node : astronaut){
             node.translateZProperty().set(-100);
@@ -120,6 +133,15 @@ public class TableController extends SubScene {
     }
 
     public void rotateTable(){
-        rotateAroundCenter(this.getCamera(), 90);
+//        rotateAroundCenter(this.getCamera(), 90);
+        //Experimental
+        ((City)GameManager.getInstance().getRegions().get(1)).setOwner(new Player("ahmet","red","a",2));
+        ((City)GameManager.getInstance().getRegions().get(2)).setOwner(new Player("ahmet","blue","a",2));
+        ((City)GameManager.getInstance().getRegions().get(3)).setOwner(new Player("ahmet","pink","a",2));
+        ((City)GameManager.getInstance().getRegions().get(4)).setOwner(new Player("ahmet","green","a",2));
+        ((City)GameManager.getInstance().getRegions().get(5)).setOwner(new Player("ahmet","yellow","a",2));
+        ((City)GameManager.getInstance().getRegions().get(6)).setOwner(new Player("ahmet","orange","a",2));
+        ((City)GameManager.getInstance().getRegions().get(7)).setOwner(new Player("ahmet","purple","a",2));
+        ((City)GameManager.getInstance().getRegions().get(8)).setOwner(new Player("ahmet","cyan","a",2));
     }
 }

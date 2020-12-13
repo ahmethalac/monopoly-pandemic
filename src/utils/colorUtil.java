@@ -12,9 +12,7 @@ public class colorUtil {
             "yellow",
             "orange",
             "purple",
-            "cyan",
-            "grey",
-            "brown"};
+            "cyan"};
     public static Color getFXColor(String colorString) {
 
         return switch (colorString) {
@@ -26,8 +24,20 @@ public class colorUtil {
             case "orange" -> Color.ORANGE;
             case "purple" -> Color.PURPLE;
             case "cyan" -> Color.CYAN;
-            case "grey" -> Color.GREY;
-            case "brown" -> Color.BROWN;
+            default -> Color.BLACK;
+        };
+    }
+
+    public static Color getLightColor(String colorString) {
+        return switch (colorString) {
+            case "red" -> Color.rgb(255,127,127);
+            case "blue" -> Color.LIGHTBLUE;
+            case "pink" -> Color.LIGHTPINK;
+            case "green" -> Color.LIGHTGREEN;
+            case "yellow" -> Color.LIGHTYELLOW;
+            case "orange" -> Color.ORANGE;
+            case "purple" -> Color.rgb(214,127,255);
+            case "cyan" -> Color.LIGHTCYAN;
             default -> Color.BLACK;
         };
     }
