@@ -8,24 +8,12 @@ import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import storage.models.Player;
+import utils.colorUtil;
 
 /**
  * Custom controller for add player popup dialog
  */
 public class addPlayerPopupController {
-
-    final String[] colors = new String[]{
-            "red",
-            "blue",
-            "pink",
-            "green",
-            "yellow",
-            "orange",
-            "purple",
-            "cyan",
-            "grey",
-            "brown"};
-
     private ObservableList<CreateGameSceneController.PlayerHBoxCell> playerList;
 
     @FXML
@@ -85,15 +73,15 @@ public class addPlayerPopupController {
      * @return
      */
     public String getColor() {
-        if ( playerList.size() == 0 ) return colors[0];
+        if ( playerList.size() == 0 ) return colorUtil.colors[0];
 
         for (int i = 0; i < playerList.size() + 1; i++) {
             for (int j = 0; j < playerList.size(); j++) {
                 if (i == playerList.get(j).getPlayer().getId()) break;
-                else if (j == playerList.size() - 1 ) return colors[i];
+                else if (j == playerList.size() - 1 ) return colorUtil.colors[i];
             }
         }
 
-        return colors[playerList.size() - 1];
+        return colorUtil.colors[playerList.size() - 1];
     }
 }
