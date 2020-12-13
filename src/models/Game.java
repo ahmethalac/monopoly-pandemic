@@ -47,6 +47,10 @@ public class Game {
         return regions.get(id);
     }
 
+    public ArrayList<Region> getRegions() {
+        return regions;
+    }
+
     public void setRegions(ArrayList<Region> regions) {
         this.regions = regions;
     }

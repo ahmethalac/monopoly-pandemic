@@ -1,5 +1,6 @@
 package controllers.scenecontrollers;
 
+import controllers.modelcontrollers.GameManager;
 import controllers.popupControllers.addPlayerPopupController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -55,8 +56,7 @@ public class CreateGameSceneController implements Initializable {
         for (PlayerHBoxCell cell : playerList) {
             players.add(cell.getPlayer());
         }
-        System.out.println(players);
-        Game.getInstance().setPlayers(players);
+        GameManager.getInstance().initGame(players);
         SceneManager.getInstance().showGameScene();
     }
 

@@ -9,25 +9,33 @@ import java.util.List;
 public class GameManager {
 
     // properties
+    private static GameManager instance = null;
     private int turnCounter = 0;
     private int tourCounter = 0;
     private final int PIRATE_FEE = 10000;
     private final int STARTING_REGION_BONUS = 20000;
 
-    // constructors
-    public GameManager(ArrayList<Player> players){
-        Game.getInstance().setPlayers(players);
-        initGame();
+    public static GameManager getInstance(){
+        if (instance == null){
+            instance = new GameManager();
+        }
+        return instance;
     }
 
-    public GameManager(Game saveGame){ Game.setInstance(saveGame); }
-
+    public void setGame(Game saveGame){
+        Game.setInstance(saveGame);
+    }
     // methods
 
     // setup a game
-    public void initGame() {
+    public void initGame(ArrayList<Player> players) {
+        Game.getInstance().setPlayers(players);
         ArrayList<Region> regions = SettingImporter.getRegions();
         Game.getInstance().setRegions(regions);
+    }
+
+    public ArrayList<Region> getRegions(){
+        return Game.getInstance().getRegions();
     }
 
     // infects a random city in a game

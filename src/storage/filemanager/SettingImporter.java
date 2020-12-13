@@ -47,10 +47,11 @@ public class SettingImporter {
             if(stringRegions[0].equals("0")){
                 double price = Double.parseDouble(stringRegions[2]);
                 double[] rents = { Double.parseDouble(stringRegions[3])
-                        , Double.parseDouble(stringRegions[3])
-                        , Double.parseDouble(stringRegions[3])
-                        , Double.parseDouble(stringRegions[3])
-                        , Double.parseDouble(stringRegions[3]) };
+                        , Double.parseDouble(stringRegions[4])
+                        , Double.parseDouble(stringRegions[5])
+                        , Double.parseDouble(stringRegions[6])
+                        , Double.parseDouble(stringRegions[7])
+                        , Double.parseDouble(stringRegions[8])};
                 String name = stringRegions[1];
                 newRegion = new City(price,rents,name,id);
             }
