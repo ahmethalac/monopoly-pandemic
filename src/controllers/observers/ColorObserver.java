@@ -1,20 +1,12 @@
 package controllers.observers;
 
-import controllers.scenecontrollers.CreateGameSceneController;
-import javafx.scene.Node;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
-import javafx.scene.shape.Box;
-import javafx.scene.shape.Shape3D;
 import models.City;
 import models.Observable;
 import utils.RegionList;
 
-import java.util.ArrayList;
-
-import static utils.colorUtil.getFXColor;
-import static utils.colorUtil.getLightColor;
+import static utils.ColorUtil.getLightColor;
 
 public class ColorObserver extends Observer {
 

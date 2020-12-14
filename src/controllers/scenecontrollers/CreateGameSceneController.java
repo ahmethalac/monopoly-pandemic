@@ -19,9 +19,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import models.Game;
 import models.Player;
-import utils.colorUtil;
+import utils.ColorUtil;
 import views.customJavaFXObjects.playerButton;
 import views.customJavaFXObjects.playerComboBox;
 
@@ -30,7 +29,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static utils.colorUtil.getFXColor;
+import static utils.ColorUtil.getFXColor;
 
 /**
  * Controller for Create Game menu
@@ -120,7 +119,7 @@ public class CreateGameSceneController implements Initializable {
             idLabel.setMaxWidth(Double.MAX_VALUE);
             HBox.setHgrow(idLabel, Priority.ALWAYS);
 
-            colorBox = new playerComboBox(FXCollections.observableArrayList(colorUtil.colors), player);
+            colorBox = new playerComboBox(FXCollections.observableArrayList(ColorUtil.colors), player);
             colorBox.getSelectionModel().select(player.getColor());
             colorBox.setOnAction(actionEvent -> {
                 String colorValue = colorBox.getValue();

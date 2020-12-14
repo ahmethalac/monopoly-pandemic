@@ -2,7 +2,7 @@ package utils;
 
 import javafx.scene.paint.Color;
 
-public class colorUtil {
+public class ColorUtil {
 
     public static final String[] colors = new String[]{
             "red",

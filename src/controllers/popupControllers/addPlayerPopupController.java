@@ -8,7 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.Player;
-import utils.colorUtil;
+import utils.ColorUtil;
 
 /**
  * Custom controller for add player popup dialog
@@ -73,15 +73,15 @@ public class addPlayerPopupController {
      * @return
      */
     public String getColor() {
-        if ( playerList.size() == 0 ) return colorUtil.colors[0];
+        if ( playerList.size() == 0 ) return ColorUtil.colors[0];
 
         for (int i = 0; i < playerList.size() + 1; i++) {
             for (int j = 0; j < playerList.size(); j++) {
                 if (i == playerList.get(j).getPlayer().getId()) break;
-                else if (j == playerList.size() - 1 ) return colorUtil.colors[i];
+                else if (j == playerList.size() - 1 ) return ColorUtil.colors[i];
             }
         }
 
-        return colorUtil.colors[playerList.size() - 1];
+        return ColorUtil.colors[playerList.size() - 1];
     }
 }
