@@ -28,4 +28,12 @@ public class MeshImporter {
     public static MeshView getHouse() {
         return getNodeArray("House.obj")[0];
     }
+
+    public static MeshView getPirate() {
+        return getNodeArray("Pirate.obj")[0];
+    }
+
+    public static MeshView getQuestionMark(){
+        return getNodeArray("QuestionMark.obj")[0];
+    }
 }

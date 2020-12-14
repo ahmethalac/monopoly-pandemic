@@ -3,11 +3,8 @@ package controllers.scenecontrollers;
 import controllers.modelcontrollers.GameManager;
 import controllers.observers.BuildingObserver;
 import controllers.observers.ColorObserver;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.scene.*;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.MeshView;
@@ -88,13 +85,15 @@ public class TableController extends SubScene {
             regionsList.add(group);
 
             if ( regions.get(i) instanceof City){
+                region.setMaterial(new PhongMaterial(Color.GREY));
                 new ColorObserver(regions.get(i), group);
                 new BuildingObserver(regions.get(i), group);
-                region.setMaterial(new PhongMaterial(Color.GREY));
             } else if ( regions.get(i) instanceof ChanceRegion){
-                region.setMaterial(new PhongMaterial(Color.GREEN));
+                region.setMaterial(new PhongMaterial(Color.BLACK));
+                group.add(getQuestionMark(coordinates.get(i)[0], coordinates.get(i)[1]));
             } else if ( regions.get(i) instanceof PirateRegion){
-                region.setMaterial(new PhongMaterial(Color.RED));
+                region.setMaterial(new PhongMaterial(Color.BLACK));
+                group.add(getPirate(coordinates.get(i)[0], coordinates.get(i)[1]));
             } else if ( regions.get(i) instanceof StartingRegion){
                 region.setMaterial(new PhongMaterial(Color.WHITE));
             }
@@ -137,5 +136,39 @@ public class TableController extends SubScene {
                 new KeyFrame(Duration.seconds(angle / 60), new KeyValue(node.rotateProperty(), rotate + angle))
         );
         timeline3.play();
+    }
+
+    private MeshView getPirate(int x, int y){
+        MeshView pirate = MeshImporter.getPirate();
+        pirate.setTranslateX(x);
+        pirate.setTranslateY(y);
+
+        setAnimation(pirate);
+
+        return pirate;
+    }
+
+    private MeshView getQuestionMark(int x, int y){
+        MeshView questionMark = MeshImporter.getQuestionMark();
+        questionMark.setTranslateX(x);
+        questionMark.setTranslateY(y);
+
+        setAnimation(questionMark);
+
+        return questionMark;
+    }
+    private void setAnimation(Node node){
+        Timeline rotation = new Timeline(
+                new KeyFrame(Duration.seconds(3), new KeyValue(node.rotateProperty(), 360))
+        );
+        rotation.setCycleCount(Timeline.INDEFINITE);
+        rotation.play();
+
+        Timeline translation = new Timeline(
+                new KeyFrame(Duration.seconds(1), new KeyValue(node.translateZProperty(), -10, Interpolator.EASE_BOTH))
+        );
+        translation.setAutoReverse(true);
+        translation.setCycleCount(Timeline.INDEFINITE);
+        translation.play();
     }
 }
