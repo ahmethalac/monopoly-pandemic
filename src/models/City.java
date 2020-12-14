@@ -37,10 +37,15 @@ public class City extends Region {
 
     public void addBuilding(int count) {
         buildings.addBuilding(count);
+        this.notifyAllObservers();
     }
 
     public boolean removeBuilding(int count) {
-        return buildings.removeBuilding(count);
+        if ( buildings.removeBuilding(count)){
+            this.notifyAllObservers();
+            return true;
+        }
+        return false;
     }
 
     public void infect(boolean bool) {
