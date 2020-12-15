@@ -1,21 +1,15 @@
 package controllers.popupControllers;
 
-import controllers.scenecontrollers.CreateGameSceneController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.stage.Stage;
 import models.City;
 
-public class cityPopupController {
+public class cityPopupController extends popupController{
 
 
     private City city;
@@ -63,11 +57,5 @@ public class cityPopupController {
         // make listview unclickable
         rentView.setMouseTransparent(true);
         rentView.setFocusTraversable(false);
-    }
-
-    private void closeStage(ActionEvent event) {
-        Node source = (Node) event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
     }
 }

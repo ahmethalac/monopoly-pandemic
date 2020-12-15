@@ -4,16 +4,14 @@ import controllers.scenecontrollers.CreateGameSceneController;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import models.Player;
 import utils.ColorUtil;
 
 /**
  * Custom controller for add player popup dialog
  */
-public class addPlayerPopupController {
+public class addPlayerPopupController extends popupController{
     private ObservableList<CreateGameSceneController.PlayerHBoxCell> playerList;
 
     @FXML
@@ -22,6 +20,11 @@ public class addPlayerPopupController {
     @FXML
     void onEnter(ActionEvent event) {
         addButtonClicked(event);
+    }
+
+    @FXML
+    void cancelButtonClicked(ActionEvent event) {
+        closeStage(event);
     }
 
     @FXML
@@ -36,19 +39,10 @@ public class addPlayerPopupController {
         closeStage(event);
     }
 
-    @FXML
-    void cancelButtonClicked(ActionEvent event) {
-        closeStage(event);
-    }
+
 
     public void setObservableList(ObservableList<CreateGameSceneController.PlayerHBoxCell> playerList) {
         this.playerList = playerList;
-    }
-
-    private void closeStage(ActionEvent event) {
-        Node source = (Node) event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
     }
 
     /**
@@ -84,4 +78,6 @@ public class addPlayerPopupController {
 
         return ColorUtil.colors[playerList.size() - 1];
     }
+
+
 }
