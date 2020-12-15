@@ -59,6 +59,10 @@ public class cityPopupController {
 
         ObservableList<BorderPane> rentList = FXCollections.observableArrayList(rentBoxList);
         rentView.setItems(rentList);
+
+        // make listview unclickable
+        rentView.setMouseTransparent(true);
+        rentView.setFocusTraversable(false);
     }
 
     private void closeStage(ActionEvent event) {
