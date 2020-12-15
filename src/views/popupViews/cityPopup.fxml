@@ -34,7 +34,7 @@
                   <Insets bottom="25.0" />
                </VBox.margin>
             </ListView>
-             <Button mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
+             <Button mnemonicParsing="false" onAction="#closeButtonClicked" text="Close" />
             </children>
         </VBox>
     </children>

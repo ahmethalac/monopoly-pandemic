@@ -28,7 +28,7 @@ public class cityPopupController {
     public ListView<BorderPane> rentView;
 
     @FXML
-    void cancelButtonClicked(ActionEvent event) {
+    void closeButtonClicked(ActionEvent event) {
         closeStage(event);
     }
 
