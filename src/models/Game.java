@@ -16,6 +16,7 @@ public class Game {
     // constructor
     private Game(){
         agreements = new ArrayList<>();
+        currentPlayer = 0;
     }
 
     // methods
@@ -41,6 +42,10 @@ public class Game {
 
     public Player getPlayer(int id) {
         return players.get(id);
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
     }
 
     public Region getRegion(int id) {
@@ -76,12 +81,7 @@ public class Game {
     }
 
     public Player getCurrentPlayer() {
-        for ( Player player : players ) {
-            if(player.getId() == currentPlayer){
-                return player;
-            }
-        }
-        return null;
+        return players.isEmpty() ? null : players.get(currentPlayer);
     }
 
     public Card getCurrentChanceCard() {
@@ -94,9 +94,10 @@ public class Game {
 
     public void nextPlayer() {
         currentPlayer++;
-        if(currentPlayer > players.size()){
-            currentPlayer = 1;
+        if(currentPlayer == players.size()){
+            currentPlayer = 0;
         }
+        players.get(currentPlayer).notifyAllObservers();
     }
 
     public ArrayList<Agreement> getAgreements(){

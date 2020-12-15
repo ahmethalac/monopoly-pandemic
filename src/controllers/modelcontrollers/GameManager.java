@@ -1,5 +1,7 @@
 package controllers.modelcontrollers;
 
+import controllers.observers.PlayerObserver;
+import controllers.scenecontrollers.GameSceneController;
 import models.*;
 import storage.filemanager.SettingImporter;
 
@@ -182,6 +184,12 @@ public class GameManager {
         turnCounter = turnCounter % Game.getInstance().getPlayerNumber();
         if(turnCounter == 0){
             tourCounter++;
+        }
+    }
+
+    public void setPlayerObservers(GameSceneController controller){
+        for ( Player player : Game.getInstance().getPlayers()){
+            new PlayerObserver(player, controller);
         }
     }
 

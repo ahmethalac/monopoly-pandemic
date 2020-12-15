@@ -1,7 +1,7 @@
 package models;
 import java.util.ArrayList;
 
-public class Player {
+public class Player extends Observable {
     private boolean isInQuarantine;
     private ArrayList<City> cities;
     private String name;
@@ -40,6 +40,7 @@ public class Player {
         if(isBankrupted && money > 0){
             isBankrupted = false;
         }
+        this.notifyAllObservers();
     }
 
     public void removeMoney(double money)
@@ -48,6 +49,7 @@ public class Player {
         if(this.money < 0){
             isBankrupted = true;
         }
+        this.notifyAllObservers();
     }
 
     public void infect()
@@ -56,11 +58,16 @@ public class Player {
     }
 
     public boolean removeCity(City city){
-        return cities.remove(city);
+        if (cities.remove(city)){
+            this.notifyAllObservers();
+            return true;
+        }
+        return false;
     }
 
     public void addCity(City city){
         cities.add(city);
+        this.notifyAllObservers();
     }
 
     //  Getters - Setters

@@ -1,5 +1,6 @@
 package controllers.scenecontrollers;
 
+import controllers.modelcontrollers.GameManager;
 import controllers.popupControllers.addPlayerPopupController;
 import controllers.popupControllers.cityPopupController;
 import javafx.event.ActionEvent;
@@ -32,11 +33,16 @@ public class GameSceneController implements Initializable {
         cameraScene = new TableController(this);
         stackPane.getChildren().add(cameraScene);
         cameraScene.toBack();
+        GameManager.getInstance().setPlayerObservers(this);
     }
 
     //For debug purposes
     public void rotateTable(ActionEvent actionEvent) {
         cameraScene.rotateTable();
+    }
+
+    public void renderPlayer(Player player){
+        //TODO Render Game Scene with the information of player
     }
 
     public void handleCityPopup(City city) {
