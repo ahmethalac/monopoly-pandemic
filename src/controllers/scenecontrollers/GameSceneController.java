@@ -3,6 +3,7 @@ package controllers.scenecontrollers;
 import controllers.modelcontrollers.GameManager;
 import controllers.popupControllers.addPlayerPopupController;
 import controllers.popupControllers.agreementPopupController;
+import controllers.popupControllers.buyBuildingPopupController;
 import controllers.popupControllers.cityPopupController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -119,7 +120,7 @@ public class GameSceneController implements Initializable {
             handlePopup(parent);
     }
 
-    public void handleBuyBuildingPopup(City city, Player player) throws IOException{
+    public void handleBuyBuildingPopup()/*City city, Player player)*/ throws IOException{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/buyBuildingPopup.fxml"));
             Parent parent = fxmlLoader.load();
 

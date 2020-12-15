@@ -13,7 +13,7 @@ import models.Player;
 import java.util.ArrayList;
 
 public class buyBuildingPopupController extends popupController{
-    Player player;
+    private Player player;
 
     @FXML
     public ListView<BorderPane> cityView;
@@ -23,9 +23,7 @@ public class buyBuildingPopupController extends popupController{
     }
 
     public void displayPlayersCities(){
-
         ArrayList<City> cities = player.getCities();
-
         BorderPane[] cityList = new BorderPane[cities.size()];
 
         for (int i = 0; i < cities.size(); i++) {
@@ -33,8 +31,8 @@ public class buyBuildingPopupController extends popupController{
             cityList[i].setLeft(new Label("" + cities.get(i)));
         }
 
-        ObservableList<BorderPane> rentList = FXCollections.observableArrayList(cityList);
-        cityView.setItems(rentList);
+        ObservableList<BorderPane> citylist = FXCollections.observableArrayList(cityList);
+        cityView.setItems(citylist);
     }
     public void buyOneHouse(){
 
