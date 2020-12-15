@@ -201,4 +201,7 @@ public class GameManager {
         currentPlayer.addMoney(STARTING_REGION_BONUS);
     }
 
+    public Player getCurrentPlayer(){
+        return Game.getInstance().getCurrentPlayer();
+    }
 }
