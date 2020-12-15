@@ -1,17 +1,40 @@
 package controllers.popupControllers;
 
 import controllers.modelcontrollers.GameManager;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.BorderPane;
+import models.City;
 import models.Player;
+
+import java.util.ArrayList;
 
 public class buyBuildingPopupController {
     Player player;
+
+    @FXML
+    public ListView<BorderPane> cityView;
 
     public buyBuildingPopupController(){
         player = GameManager.getInstance().getCurrentPlayer();
     }
 
     public void displayPlayersCities(){
-        player.getCities();
+
+        ArrayList<City> cities = player.getCities();
+
+        BorderPane[] rentBoxList = new BorderPane[cities.size()];
+
+        for (int i = 0; i < cities.size(); i++) {
+            rentBoxList[i] = new BorderPane();
+            rentBoxList[i].setLeft(new Label("" + cities.get(i)));
+        }
+
+        ObservableList<BorderPane> rentList = FXCollections.observableArrayList(rentBoxList);
+        cityView.setItems(rentList);
     }
     public void buyOneHouse(){
 
