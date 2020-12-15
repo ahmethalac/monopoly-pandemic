@@ -89,6 +89,16 @@ public class GameSceneController implements Initializable {
         cameraScene.rotateTable();
     }
 
+    private void handlePopup(Parent parent) {
+        Scene scene = new Scene(parent, 300, 400);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+
     public void handleCityPopup(City city) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/cityPopup.fxml"));
@@ -96,73 +106,30 @@ public class GameSceneController implements Initializable {
             cityPopupController popupController = fxmlLoader.getController();
             popupController.setCity(city);
 
-            Scene scene = new Scene(parent, 300, 400);
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setResizable(false);
-            stage.setScene(scene);
-            stage.showAndWait();
+            handlePopup(parent);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void handleAgreementPopup(){
-        try {
-
+    public void handleAgreementPopup() throws IOException {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/agreementPopup.fxml"));
             Parent parent = fxmlLoader.load();
-
-            Scene scene = new Scene(parent, 300, 400);
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setResizable(false);
-            stage.setScene(scene);
-            stage.showAndWait();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            handlePopup(parent);
     }
 
-    public void handleBuyBuildingPopup(City city, Player player){
-        try {
-
+    public void handleBuyBuildingPopup(City city, Player player) throws IOException{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/buyBuildingPopup.fxml"));
             Parent parent = fxmlLoader.load();
 
-            Scene scene = new Scene(parent, 300, 400);
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setResizable(false);
-            stage.setScene(scene);
-            stage.showAndWait();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            handlePopup(parent);
     }
 
-    public void handleSellBuildingPopup(City city, Player player){
-        try {
-
+    public void handleSellBuildingPopup(City city, Player player) throws IOException{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/sellBuildingPopup.fxml"));
             Parent parent = fxmlLoader.load();
 
-            Scene scene = new Scene(parent, 300, 400);
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setResizable(false);
-            stage.setScene(scene);
-            stage.showAndWait();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            handlePopup(parent);
     }
 }
