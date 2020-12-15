@@ -3,14 +3,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
 <StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="controllers.scenecontrollers.GameSceneController">
    <BorderPane pickOnBounds="false">
       <top>
-         <Button text="top"/>
+         <ToolBar style="-fx-background-color: Transparent"  prefHeight="40.0" prefWidth="318.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+            <Text text="Player: " style="-fx-font-size: 20" />
+            <Text fx:id="playerName" text="Default" style="-fx-font-size: 20" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <Text text="Money: " style="-fx-font-size: 20" />
+            <Text fx:id="money" text="0$" style="-fx-font-size: 20" />
+         </ToolBar>
       </top>
       <bottom>
-         <Button text="bottom"/>
+         <HBox fx:id="cardsBar" style="-fx-background-color: Transparent" prefHeight="40.0" prefWidth="318.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+
+         </HBox>
       </bottom>
       <left>
          <Button text="left"/>

@@ -9,14 +9,16 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import models.Agreement;
 import models.City;
 import models.Game;
 import models.Player;
@@ -31,6 +33,13 @@ public class GameSceneController implements Initializable {
 
     @FXML
     private StackPane stackPane;
+    @FXML
+    private HBox cardsBar;
+    @FXML
+    private Text money;
+    @FXML
+    private Text playerName;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -39,15 +48,45 @@ public class GameSceneController implements Initializable {
         cameraScene.toBack();
         GameManager.getInstance().setPlayerObservers(this);
 
+
+        //test purpose
+        //double[] rents = {1,2,3,4,5,6};
+        //Player player1 = new Player("goktug", "blue", "car", 1);
+        //City city1 = new City(100, rents, "ankara", 1);
+        //City city2 = new City(100, rents, "istanbul", 2);
+        //City city3 = new City(100, rents, "malata", 3);
+        // player1.addCity(city1);
+        //player1.addCity(city2);
+        //player1.addCity(city3);
+        //renderPlayer(player1);
+    }
+
+    //Update the game scene according to the current player
+    public void renderPlayer(Player player){
+        playerName.setText(player.getName());
+        money.setText(Double.toString(player.getMoney()));
+        cardsBar.setStyle("-fx-spacing: 10;");
+        for(int i = 0; i < player.getCities().size(); i++){
+            Button button = new Button(player.getCities().get(i).getName());
+            int finalI = i;
+            button.setStyle("-fx-border-color: black");
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    handleCityPopup(player.getCities().get(finalI));
+                }
+            });
+
+            cardsBar.setAlignment(Pos.CENTER);
+            cardsBar.getChildren().add(button);
+        }
+
+
     }
 
     //For debug purposes
     public void rotateTable(ActionEvent actionEvent) {
         cameraScene.rotateTable();
-    }
-
-    public void renderPlayer(Player player){
-        //TODO Render Game Scene with the information of player
     }
 
     public void handleCityPopup(City city) {
@@ -69,7 +108,7 @@ public class GameSceneController implements Initializable {
             e.printStackTrace();
         }
     }
-    
+
     public void handleAgreementPopup(){
         try {
 
