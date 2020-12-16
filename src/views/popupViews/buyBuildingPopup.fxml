@@ -13,7 +13,7 @@
    <children>
       <VBox prefHeight="382.0" prefWidth="218.0">
          <children>
-            <Label fx:id="comboBoxLabel" text="Select City and Building">
+            <Label text="Select City and Building">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>

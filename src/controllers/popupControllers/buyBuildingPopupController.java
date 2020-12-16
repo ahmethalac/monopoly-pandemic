@@ -29,6 +29,11 @@ public class buyBuildingPopupController implements Initializable {
         player = GameManager.getInstance().getCurrentPlayer();
     }
 
+    @FXML
+    void closeButtonClicked(ActionEvent event) {
+        closeStage(event);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb){
         setPlayer();
