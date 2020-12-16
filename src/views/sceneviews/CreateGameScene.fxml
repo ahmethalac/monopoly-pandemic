@@ -7,60 +7,94 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0"
-      prefWidth="1920.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.scenecontrollers.CreateGameSceneController">
-   <VBox prefHeight="1080.0" prefWidth="620.0">
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <Button onAction="#handleCreateGameExitButton" mnemonicParsing="false" prefHeight="65.0" prefWidth="50.0"
-                 style="-fx-background-color: transparent;" text="Back" textAlignment="CENTER">
-            <graphic>
-               <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@../../assets/icons/backIcon.png"/>
-               </ImageView>
-            </graphic>
-            <cursor>
-               <Cursor fx:constant="HAND"/>
-            </cursor>
-            <HBox.margin>
-               <Insets left="75.0" top="75.0"/>
-            </HBox.margin>
-         </Button>
-      </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <Button onAction="#handleAddPlayerButton" mnemonicParsing="false" prefHeight="65.0" prefWidth="50.0"
-                 style="-fx-background-color: transparent;" text="Add Player" textAlignment="CENTER">
-            <graphic>
-               <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@../../assets/icons/addPlayerIcon.png"/>
-               </ImageView>
-            </graphic>
-            <cursor>
-               <Cursor fx:constant="HAND"/>
-            </cursor>
-            <HBox.margin>
-               <Insets left="75.0" top="75.0"/>
-            </HBox.margin>
-         </Button>
-      </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <Button onAction="#handleStartGameButton" mnemonicParsing="false" prefHeight="65.0" prefWidth="50.0"
-                 style="-fx-background-color: transparent;" text="Start Game" textAlignment="CENTER">
-            <graphic>
-               <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@../../assets/icons/newGameIcon.png"/>
-               </ImageView>
-            </graphic>
-            <cursor>
-               <Cursor fx:constant="HAND"/>
-            </cursor>
-            <HBox.margin>
-               <Insets left="75.0" top="75.0"/>
-            </HBox.margin>
-         </Button>
-      </HBox>
-   </VBox>
-   <Pane prefHeight="1080.0" prefWidth="1300.0">
-      <ListView fx:id="listView" layoutX="90.0" layoutY="90.0" prefHeight="600.0" prefWidth="900.0" />
-   </Pane>
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.scenecontrollers.CreateGameSceneController">
+   <children>
+      <VBox prefHeight="1080.0" prefWidth="620.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handleCreateGameExitButton" prefHeight="65.0" prefWidth="50.0" style="-fx-background-color: transparent;" text="Back" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../assets/icons/backIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets left="75.0" top="75.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label text="Go Back" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <padding>
+                        <Insets top="115.0" />
+                     </padding></Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handleAddPlayerButton" prefHeight="65.0" prefWidth="50.0" style="-fx-background-color: transparent;" text="Add Player" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../assets/icons/addPlayerIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets left="75.0" top="75.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label text="Add Player" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <padding>
+                        <Insets top="115.0" />
+                     </padding></Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handleStartGameButton" prefHeight="65.0" prefWidth="50.0" style="-fx-background-color: transparent;" text="Start Game" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../assets/icons/newGameIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets left="75.0" top="75.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label text="Start Game" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <padding>
+                        <Insets top="115.0" />
+                     </padding></Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Pane prefHeight="1080.0" prefWidth="1300.0">
+         <children>
+            <ListView fx:id="listView" layoutX="90.0" layoutY="90.0" prefHeight="600.0" prefWidth="900.0" />
+         </children>
+      </Pane>
+   </children>
 </HBox>
