@@ -28,23 +28,35 @@
          </Button>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
-         <Button onAction="#handleAddPlayerButton" mnemonicParsing="false" text="Add Player">
+         <Button onAction="#handleAddPlayerButton" mnemonicParsing="false" prefHeight="65.0" prefWidth="50.0"
+                 style="-fx-background-color: transparent;" text="Add Player" textAlignment="CENTER">
+            <graphic>
+               <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../../assets/icons/addPlayerIcon.png"/>
+               </ImageView>
+            </graphic>
+            <cursor>
+               <Cursor fx:constant="HAND"/>
+            </cursor>
             <HBox.margin>
-               <Insets left="95.0" top="110.0"/>
+               <Insets left="75.0" top="75.0"/>
             </HBox.margin>
-            <font>
-               <Font size="18.0"/>
-            </font>
          </Button>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
-         <Button text="Start Game" onAction="#handleStartGameButton" mnemonicParsing="false">
+         <Button onAction="#handleStartGameButton" mnemonicParsing="false" prefHeight="65.0" prefWidth="50.0"
+                 style="-fx-background-color: transparent;" text="Start Game" textAlignment="CENTER">
+            <graphic>
+               <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../../assets/icons/newGameIcon.png"/>
+               </ImageView>
+            </graphic>
+            <cursor>
+               <Cursor fx:constant="HAND"/>
+            </cursor>
             <HBox.margin>
-               <Insets left="95.0" top="110.0"/>
+               <Insets left="75.0" top="75.0"/>
             </HBox.margin>
-            <font>
-               <Font size="18.0"/>
-            </font>
          </Button>
       </HBox>
    </VBox>
