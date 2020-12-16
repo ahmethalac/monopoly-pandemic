@@ -46,14 +46,14 @@ public class sellBuildingPopupController implements Initializable {
         buildingNumberLabel.setText("There are " + findCity(cityName).getNumberOfBuildings() + " buildings on " + findCity(cityName).getName());
     }
 
-    public int sellBuildings(){
+    public void sellBuildings(){
         boolean isNumber = true;
         //First check whether user input is an integer
         if(userInput.getText().equals(""))
         {
             // no input is written, no operation
         }
-        else()
+        else
         {
             for(int i = 0; i < userInput.getText().length(); i++)
             {
@@ -72,10 +72,13 @@ public class sellBuildingPopupController implements Initializable {
             String cityName = cityComboBox.getValue().toString();
             if(numberOfBuildingsWantedToSell > findCity(cityName).getNumberOfBuildings()) {
                 // incorrect entry more buildings are tried to be sold
+                resultLabel.setText("Your value is higher than total number of houses");
             }
             else {
                 findCity(cityName).removeBuilding(numberOfBuildingsWantedToSell);
                 player.addMoney(findCity(cityName).getPrice() / 4 * numberOfBuildingsWantedToSell);
+                resultLabel.setText(numberOfBuildingsWantedToSell + " houses are removed from " + cityName);
+                sellButton.setDisable(true);
             }
         }
     }
