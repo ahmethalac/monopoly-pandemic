@@ -56,7 +56,7 @@ public class CreateGameSceneController implements Initializable {
      * A method to handle start game button
      */
     public void handleStartGameButton() {
-        if (playerList.size() < 2 ) {
+        if (playerList.size() < 1 ) {
             errorLabel.setVisible(true);
             PauseTransition delay = new PauseTransition(Duration.seconds(1));
             delay.setOnFinished(e -> errorLabel.setVisible(false));
