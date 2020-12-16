@@ -75,8 +75,7 @@ public class RegionList extends ArrayList<Shape3D> {
             house.translateXProperty().set(this.get(0).getTranslateX());
             house.translateYProperty().set(this.get(0).getTranslateY());
             PhongMaterial material = new PhongMaterial();
-            Image image = new Image(getClass().getResourceAsStream("../assets/textures/" + color +".png"));
-            material.setDiffuseMap(image);
+            material.setDiffuseMap(Texture.getTexture(color));
             house.setMaterial(material);
             this.add(house);
         }else{
@@ -88,8 +87,7 @@ public class RegionList extends ArrayList<Shape3D> {
             box.translateYProperty().set(this.get(0).getTranslateY());
             box.translateZProperty().set(-6);
             PhongMaterial material = new PhongMaterial();
-            Image image = new Image(getClass().getResourceAsStream("../assets/textures/" + color +".png"));
-            material.setDiffuseMap(image);
+            material.setDiffuseMap(Texture.getTexture(color));
             box.setMaterial(material);
             this.add(box);
         }

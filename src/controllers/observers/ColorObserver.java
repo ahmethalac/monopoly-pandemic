@@ -5,6 +5,7 @@ import javafx.scene.paint.PhongMaterial;
 import models.City;
 import models.Observable;
 import utils.RegionList;
+import utils.Texture;
 
 import static utils.ColorUtil.getLightColor;
 
@@ -26,8 +27,7 @@ public class ColorObserver extends Observer {
                 region.get(i).setMaterial(new PhongMaterial(getLightColor(color)));
             } else {
                 PhongMaterial material = new PhongMaterial();
-                Image image = new Image(getClass().getResourceAsStream("../../assets/textures/" + color +".png"));
-                material.setDiffuseMap(image);
+                material.setDiffuseMap(Texture.getTexture(color));
                 region.get(i).setMaterial(material);
             }
         }
