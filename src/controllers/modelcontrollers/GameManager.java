@@ -12,6 +12,7 @@ public class GameManager {
 
     // properties
     private static GameManager instance = null;
+    private Game game;
     private int turnCounter = 0;
     private int tourCounter = 0;
     private final int PIRATE_FEE = 10000;
@@ -25,64 +26,63 @@ public class GameManager {
     }
 
     public void setGame(Game saveGame){
-        Game.setInstance(saveGame);
+        game = new Game(saveGame);
     }
     // methods
 
     // setup a game
     public void initGame(ArrayList<Player> players) {
-        Game.getInstance().setPlayers(players);
         ArrayList<Region> regions = SettingImporter.getRegions();
-        Game.getInstance().setRegions(regions);
+        game = new Game(players,regions);
     }
 
     public ArrayList<Region> getRegions(){
-        return Game.getInstance().getRegions();
+        return this.game.getRegions();
     }
 
     // infects a random city in a game
     public void infectRandomCity() {
-        int random = (int) (Game.getInstance().getRegionNumber() * Math.random());
-        while( !(Game.getInstance().getRegion(random) instanceof City) ){
-            random = (int) (Game.getInstance().getRegionNumber() * Math.random());
+        int random = (int) (this.game.getRegionNumber() * Math.random());
+        while( !(this.game.getRegion(random) instanceof City) ){
+            random = (int) (this.game.getRegionNumber() * Math.random());
         }
-        ((City) Game.getInstance().getRegion(random)).infect(true);
+        ((City) this.game.getRegion(random)).infect(true);
     }
 
     // moves current player count number of steps
     public void moveForward(int count) {
-        Game.getInstance().getCurrentPlayer().setLocation(Game.getInstance().getCurrentPlayer().getLocation() + count);
+        this.game.getCurrentPlayer().setLocation(this.game.getCurrentPlayer().getLocation() + count);
     }
 
     // picks chance card from top and performs operation on currentPlayer
     public void pickChanceCard(){
-        Game.getInstance().getCurrentChanceCard().executeAction(Game.getInstance());
+        this.game.getCurrentChanceCard().executeAction(this.game);
     }
 
     // set a new agreement
     public void newAgreement(Offer firstOffer, Offer secondOffer,
                              Player firstPlayer, Player secondPlayer, String agreementName){
-        Game.getInstance().addAgreement(new Agreement(firstOffer, secondOffer, firstPlayer, secondPlayer, agreementName));
+        this.game.addAgreement(new Agreement(firstOffer, secondOffer, firstPlayer, secondPlayer, agreementName));
     }
 
     // delete an existing agreement
     public boolean deleteAgreement(String agreementName){
-        return Game.getInstance().removeAgreement(agreementName);
+        return this.game.removeAgreement(agreementName);
     }
 
     // return Agreement names for render
     public ArrayList<Agreement> getAgreementNames(){
-        return Game.getInstance().getAgreements();
+        return this.game.getAgreements();
     }
 
     // buy current location if possible
     public boolean buyCurrentLocation(){
         boolean possible = false;
-        Player currentPlayer = Game.getInstance().getCurrentPlayer();
-        City currentCity = (City) (Game.getInstance().getRegion(currentPlayer.getLocation()));
+        Player currentPlayer = this.game.getCurrentPlayer();
+        City currentCity = (City) (this.game.getRegion(currentPlayer.getLocation()));
         if(currentPlayer.getMoney() >= currentCity.getPrice()){
             currentPlayer.removeMoney(currentCity.getPrice());
-            currentPlayer.addCity((City) Game.getInstance().getRegion(currentPlayer.getLocation()));
+            currentPlayer.addCity((City) this.game.getRegion(currentPlayer.getLocation()));
             possible = true;
         }
         return possible;
@@ -90,7 +90,7 @@ public class GameManager {
 
     public boolean buyBuilding(City city, int count){
         boolean possible = false;
-        Player currentPlayer = Game.getInstance().getCurrentPlayer();
+        Player currentPlayer = this.game.getCurrentPlayer();
         if(currentPlayer.getMoney() >= city.getBuildingPrice(count)){
             currentPlayer.removeMoney(city.getBuildingPrice(count));
             city.addBuilding(count);
@@ -101,7 +101,7 @@ public class GameManager {
 
     public boolean sellBuilding(City city, int count){
         boolean possible;
-        Player currentPlayer = Game.getInstance().getCurrentPlayer();
+        Player currentPlayer = this.game.getCurrentPlayer();
         possible = city.removeBuilding(count);
         if(possible){
             currentPlayer.addMoney(city.getBuildingPrice(count));
@@ -114,9 +114,9 @@ public class GameManager {
     }
 
     private void checkAgreements(){
-        ArrayList<Agreement> agreements = Game.getInstance().getAgreements();
-        Player currentPlayer = Game.getInstance().getCurrentPlayer();
-        City currentCity = (City) (Game.getInstance().getRegion(currentPlayer.getLocation()));
+        ArrayList<Agreement> agreements = this.game.getAgreements();
+        Player currentPlayer = this.game.getCurrentPlayer();
+        City currentCity = (City) (this.game.getRegion(currentPlayer.getLocation()));
         boolean offerPerformed = false;
 
         if(currentCity.getOwner() != null){
@@ -136,8 +136,8 @@ public class GameManager {
     }
 
     private boolean checkPandemic(){
-        for(int i = 0; i<Game.getInstance().getPlayerNumber(); i++){
-            if(!Game.getInstance().getPlayer(i).isInfected()){
+        for(int i = 0; i<this.game.getPlayerNumber(); i++){
+            if(!this.game.getPlayer(i).isInfected()){
                 return false;
             }
         }
@@ -145,8 +145,8 @@ public class GameManager {
     }
 
     public void performRegionAction(){
-        Player currentPlayer = Game.getInstance().getCurrentPlayer();
-        Region currentRegion = (Game.getInstance().getRegion(currentPlayer.getLocation()));
+        Player currentPlayer = this.game.getCurrentPlayer();
+        Region currentRegion = (this.game.getRegion(currentPlayer.getLocation()));
         if(currentRegion instanceof City) {
             checkAgreements();
         }
@@ -181,14 +181,14 @@ public class GameManager {
             infectRandomCity();
         }
         turnCounter++;
-        turnCounter = turnCounter % Game.getInstance().getPlayerNumber();
+        turnCounter = turnCounter % this.game.getPlayerNumber();
         if(turnCounter == 0){
             tourCounter++;
         }
     }
 
     public void setPlayerObservers(GameSceneController controller){
-        for ( Player player : Game.getInstance().getPlayers()){
+        for ( Player player : this.game.getPlayers()){
             new PlayerObserver(player, controller);
         }
     }
@@ -202,6 +202,6 @@ public class GameManager {
     }
 
     public Player getCurrentPlayer(){
-        return Game.getInstance().getCurrentPlayer();
+        return this.game.getCurrentPlayer();
     }
 }

@@ -1,12 +1,10 @@
 package models;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Game {
 
     // properties
-    private static Game game;
     private ArrayList<Player> players;
     private ArrayList<Region> regions;
     private ArrayList<Card> chanceCards;
@@ -14,32 +12,23 @@ public class Game {
     private int currentPlayer;
 
     // constructor
-    private Game(){
+    public Game(ArrayList<Player> players, ArrayList<Region> regions){
         agreements = new ArrayList<>();
         currentPlayer = 0;
+        this.players = players;
+        this.regions = regions;
+    }
+
+    // copy constructor to load game
+    public Game(Game game){
+        this.players = game.players;
+        this.regions = game.regions;
+        this.chanceCards = game.chanceCards;
+        this.agreements = game.agreements;
+        this.currentPlayer = game.currentPlayer;
     }
 
     // methods
-    public static Game getInstance() {
-        if(game == null) {
-            game = new Game();
-        }
-        return game;
-    }
-
-    public static void setInstance(Game saveGame ){
-        game = saveGame;
-    }
-
-    public boolean setPlayers(ArrayList<Player> players) {
-        if(this.players == null){
-            this.players = players;
-            currentPlayer = players.isEmpty() ? 0 : ((int)(Math.random()*10))%(players.size());
-            return true;
-        }
-        return false;
-    }
-
     public Player getPlayer(int id) {
         return players.get(id);
     }
@@ -54,10 +43,6 @@ public class Game {
 
     public ArrayList<Region> getRegions() {
         return regions;
-    }
-
-    public void setRegions(ArrayList<Region> regions) {
-        this.regions = regions;
     }
 
     public int getRegionNumber() {
