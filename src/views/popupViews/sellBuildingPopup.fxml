@@ -9,29 +9,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="178.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.popupControllers.sellBuildingPopupController">
+<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.popupControllers.sellBuildingPopupController">
    <children>
-      <VBox prefHeight="457.0" prefWidth="188.0">
+      <VBox prefHeight="400.0" prefWidth="300.0">
          <children>
             <Label prefHeight="20.0" prefWidth="77.0" text="Select City">
                <VBox.margin>
-                  <Insets left="55.0" right="55.0" top="20.0" />
+                  <Insets left="115.0" right="55.0" top="20.0" />
                </VBox.margin>
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cityComboBox" prefWidth="150.0">
+            <ComboBox fx:id="cityComboBox" prefHeight="26.0" prefWidth="152.0">
                <VBox.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                  <Insets bottom="20.0" left="78.0" right="20.0" top="20.0" />
                </VBox.margin>
             </ComboBox>
             <Button mnemonicParsing="false" onAction="#showBuildingNumber" prefHeight="25.0" prefWidth="148.0" text="Show Building Number">
                <VBox.margin>
-                  <Insets bottom="20.0" left="20.0" />
+                  <Insets bottom="20.0" left="80.0" />
                </VBox.margin>
             </Button>
-            <Label fx:id="buildingNumberLabel" alignment="TOP_LEFT" prefHeight="53.0" prefWidth="148.0" text="Label">
+            <Label fx:id="buildingNumberLabel" alignment="TOP_LEFT" prefHeight="39.0" prefWidth="282.0" text="Label">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" />
                </VBox.margin>
@@ -39,9 +39,9 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label prefHeight="20.0" prefWidth="149.0" text="Write Number to Sell">
+            <Label prefHeight="20.0" prefWidth="134.0" text="Write Number to Sell">
                <VBox.margin>
-                  <Insets left="28.0" right="25.0" />
+                  <Insets left="85.0" right="25.0" />
                </VBox.margin>
                <font>
                   <Font size="14.0" />
@@ -54,10 +54,10 @@
             </TextField>
             <Button fx:id="sellButton" mnemonicParsing="false" onAction="#sellBuildings" text="Sell">
                <VBox.margin>
-                  <Insets bottom="10.0" left="74.0" right="65.0" />
+                  <Insets bottom="10.0" left="135.0" right="65.0" />
                </VBox.margin>
             </Button>
-            <Label fx:id="resultLabel" alignment="TOP_LEFT" prefHeight="77.0" prefWidth="168.0" text="Label">
+            <Label fx:id="resultLabel" alignment="TOP_LEFT" prefHeight="26.0" prefWidth="310.0" text="Label">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" />
                </VBox.margin>
@@ -67,7 +67,7 @@
             </Label>
             <Button mnemonicParsing="false" onAction="#closeButtonClicked" text="Close">
                <VBox.margin>
-                  <Insets bottom="10.0" left="66.0" right="20.0" />
+                  <Insets bottom="10.0" left="130.0" right="20.0" />
                </VBox.margin>
             </Button>
          </children>
