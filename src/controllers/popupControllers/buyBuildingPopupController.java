@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class buyBuildingPopupController implements Initializable {
+public class buyBuildingPopupController extends popupController implements Initializable {
     private Player player;
 
     @FXML private ComboBox comboBox;
@@ -27,11 +27,6 @@ public class buyBuildingPopupController implements Initializable {
 
     public void setPlayer(){
         player = GameManager.getInstance().getCurrentPlayer();
-    }
-
-    @FXML
-    void closeButtonClicked(ActionEvent event) {
-        closeStage(event);
     }
 
     @Override
@@ -151,4 +146,8 @@ public class buyBuildingPopupController implements Initializable {
         hotelButton.setDisable(true);
     }
 
+    @FXML
+    void closeButtonClicked(ActionEvent event) {
+        closeStage(event);
+    }
 }

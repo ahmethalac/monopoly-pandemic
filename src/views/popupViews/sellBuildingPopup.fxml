@@ -9,10 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="178.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.popupControllers.sellBuildingPopupController">
    <children>
-      <VBox prefHeight="400.0" prefWidth="188.0">
+      <VBox prefHeight="457.0" prefWidth="188.0">
          <children>
             <Label prefHeight="20.0" prefWidth="77.0" text="Select City">
                <VBox.margin>
@@ -66,6 +65,11 @@
                   <Font size="14.0" />
                </font>
             </Label>
+            <Button mnemonicParsing="false" onAction="#closeButtonClicked" text="Close">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="66.0" right="20.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </children>

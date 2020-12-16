@@ -1,6 +1,7 @@
 package controllers.popupControllers;
 
 import controllers.modelcontrollers.GameManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,7 +16,7 @@ import java.util.ResourceBundle;
 
 import static java.lang.Character.isDigit;
 
-public class sellBuildingPopupController implements Initializable {
+public class sellBuildingPopupController extends popupController implements Initializable {
     private Player player;
 
     @FXML private ComboBox cityComboBox;
@@ -37,6 +38,7 @@ public class sellBuildingPopupController implements Initializable {
         }
         buildingNumberLabel.setText("");
         resultLabel.setText("");
+        userInput = new TextField();
         userInput.setText("");
     }
 
@@ -98,5 +100,10 @@ public class sellBuildingPopupController implements Initializable {
             }
         }
         return player.getCities().get(index);
+    }
+
+    @FXML
+    void closeButtonClicked(ActionEvent event) {
+        closeStage(event);
     }
 }
