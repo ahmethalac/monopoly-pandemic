@@ -121,8 +121,6 @@ public class GameSceneController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/buyBuildingPopup.fxml"));
             Parent parent = fxmlLoader.load();
             buyBuildingPopupController buyBuildingController = fxmlLoader.getController();
-            buyBuildingController.setPlayer();
-
             handlePopup(parent);
     }
 
@@ -130,7 +128,6 @@ public class GameSceneController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/sellBuildingPopup.fxml"));
             Parent parent = fxmlLoader.load();
             sellBuildingPopupController sbpc = fxmlLoader.getController();
-            sbpc.setPlayer();
             handlePopup(parent);
     }
 }

@@ -31,7 +31,7 @@ public class buyBuildingPopupController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        player = GameManager.getInstance().getCurrentPlayer();
+        setPlayer();
         int listLength = player.getCities().size();
         for(int i = 0; i < listLength; i++)
         {

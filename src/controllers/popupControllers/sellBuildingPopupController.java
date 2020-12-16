@@ -30,6 +30,7 @@ public class sellBuildingPopupController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setPlayer();
         int listLength = player.getCities().size();
         for(int i = 0; i < listLength; i++) {
             cityComboBox.getItems().add(player.getCities().get(i).getName());
