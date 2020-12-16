@@ -62,6 +62,7 @@ public class GameSceneController implements Initializable {
         playerName.setText(player.getName());
         money.setText(Double.toString(player.getMoney()));
         cardsBar.setStyle("-fx-spacing: 10;");
+        cardsBar.getChildren().clear();
         for(int i = 0; i < player.getCities().size(); i++){
             Button button = new Button(player.getCities().get(i).getName());
             int finalI = i;
