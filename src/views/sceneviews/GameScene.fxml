@@ -1,101 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.Cursor?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.scenecontrollers.GameSceneController">
-   <BorderPane pickOnBounds="false">
-      <top>
-         <ToolBar prefHeight="40.0" prefWidth="318.0" style="-fx-background-color: Transparent" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-            <Text style="-fx-font-size: 20" text="Player: " />
-            <Text fx:id="playerName" style="-fx-font-size: 20" text="Default" />
-            <Pane HBox.hgrow="ALWAYS" />
-            <Text style="-fx-font-size: 20" text="Money: " />
-            <Text fx:id="money" style="-fx-font-size: 20" text="0$" />
-         </ToolBar>
-      </top>
-      <bottom>
-         <HBox fx:id="cardsBar" prefHeight="40.0" prefWidth="318.0" style="-fx-background-color: Transparent" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.scenecontrollers.GameSceneController">
+   <children>
+      <BorderPane pickOnBounds="false">
+         <top>
+            <ToolBar prefHeight="40.0" prefWidth="318.0" style="-fx-background-color: Transparent" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+               <items>
+                  <Text style="-fx-font-size: 20" text="Player: " />
+                  <Text fx:id="playerName" style="-fx-font-size: 20" text="Default" />
+                  <Pane HBox.hgrow="ALWAYS" />
+                  <Text style="-fx-font-size: 20" text="Money: " />
+                  <Text fx:id="money" style="-fx-font-size: 20" text="0$" />
+               </items>
+            </ToolBar>
+         </top>
+         <bottom>
+            <HBox fx:id="cardsBar" prefHeight="40.0" prefWidth="318.0" style="-fx-background-color: Transparent" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 
          </HBox>
-      </bottom>
-      <left>
+         </bottom>
+         <left>
 
       </left>
-      <right>
-         <VBox style="-fx-spacing: 30; -fx-padding: 30" >
-            <Button onAction="#handleBuyBuildingPopup" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
-               <graphic>
-                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../assets/icons/buyBuildingIcon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <HBox.margin>
-                  <Insets left="75.0" top="75.0" />
-               </HBox.margin>
-            </Button>
-            <Button onAction="#handleSellBuildingPopup" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
-               <graphic>
-                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../assets/icons/sellBuildingIcon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <HBox.margin>
-                  <Insets left="75.0" top="75.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
-               <graphic>
-                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../assets/icons/mortgageIcon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <HBox.margin>
-                  <Insets left="75.0" top="75.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
-               <graphic>
-                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../assets/icons/agreementIcon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <HBox.margin>
-                  <Insets left="75.0" top="75.0" />
-               </HBox.margin>
-            </Button>
-         </VBox>
-      </right>
-   </BorderPane>
+         <right>
+            <VBox style="-fx-spacing: 30; -fx-padding: 30">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handleBuyBuildingPopup" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../assets/icons/buyBuildingIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets left="75.0" top="75.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label text="Buy Building" />
+                  <Button mnemonicParsing="false" onAction="#handleSellBuildingPopup" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../assets/icons/sellBuildingIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets left="75.0" top="75.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label text="Sell Building" />
+                  <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../assets/icons/mortgageIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets left="75.0" top="75.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label text="Mortgage" />
+                  <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../assets/icons/agreementIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets left="75.0" top="75.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label text="Agreement" />
+               </children>
+            </VBox>
+         </right>
+      </BorderPane>
+   </children>
 </StackPane>
