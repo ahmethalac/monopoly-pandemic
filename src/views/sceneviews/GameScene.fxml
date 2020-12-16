@@ -28,7 +28,7 @@
                 </HBox>
             </bottom>
             <left>
-
+                <Button onAction="#rotateTable" text="Rotate"/>
             </left>
             <right>
                 <VBox style="-fx-spacing: 30; -fx-padding: 30">
