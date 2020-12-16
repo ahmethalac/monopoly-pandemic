@@ -24,7 +24,7 @@ public class buyBuildingPopupController implements Initializable {
     @FXML private Button fourHouseButton;
     @FXML private Button hotelButton;
 
-    public buyBuildingPopupController(){
+    public void setPlayer(){
         player = GameManager.getInstance().getCurrentPlayer();
     }
 
