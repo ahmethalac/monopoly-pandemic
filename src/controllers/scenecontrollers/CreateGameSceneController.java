@@ -44,7 +44,7 @@ public class CreateGameSceneController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        listView.setStyle("-fx-control-inner-background: #000a15; -fx-background-insets: 0 ;");
+        listView.setStyle("-fx-control-inner-background: #000a15; -fx-background-insets: 0 ; -fx-background-radius: 20;");
         listView.setItems(playerList);
     }
 
@@ -111,13 +111,16 @@ public class CreateGameSceneController implements Initializable {
             this.setMaxHeight(40);
             this.setPrefHeight(40);
 
+
             Color playerColor = getFXColor(player.getColor());
-            this.setBackground(new Background(new BackgroundFill(playerColor, CornerRadii.EMPTY, Insets.EMPTY)));
+            this.setBackground(new Background(new BackgroundFill(playerColor, new CornerRadii(25), Insets.EMPTY)));
+
 
             nameLabel.setText(player.getName());
             nameLabel.setMaxWidth(Double.MAX_VALUE);
             HBox.setHgrow(nameLabel, Priority.ALWAYS);
             nameLabel.setFont(new Font(32));
+            setMargin(nameLabel,new Insets(0, 0, 0, 20));
 
             //debug
             idLabel.setText(String.valueOf(player.getId()));
@@ -145,6 +148,7 @@ public class CreateGameSceneController implements Initializable {
             deleteButton = new PlayerButton(player, "Delete Player");
             deleteButton.setMaxHeight(39);
             deleteButton.setPrefHeight(39);
+            setMargin(deleteButton,new Insets(0, 20, 0, 0));
 
             deleteButton.setOnAction(actionEvent -> {
                 Object node = actionEvent.getSource();
