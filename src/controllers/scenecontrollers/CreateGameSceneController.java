@@ -16,6 +16,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -107,17 +108,22 @@ public class CreateGameSceneController implements Initializable {
 
             this.player = player;
 
+            this.setMaxHeight(40);
+            this.setPrefHeight(40);
+
             Color playerColor = getFXColor(player.getColor());
             this.setBackground(new Background(new BackgroundFill(playerColor, CornerRadii.EMPTY, Insets.EMPTY)));
 
             nameLabel.setText(player.getName());
             nameLabel.setMaxWidth(Double.MAX_VALUE);
             HBox.setHgrow(nameLabel, Priority.ALWAYS);
+            nameLabel.setFont(new Font(32));
 
             //debug
             idLabel.setText(String.valueOf(player.getId()));
             idLabel.setMaxWidth(Double.MAX_VALUE);
             HBox.setHgrow(idLabel, Priority.ALWAYS);
+            idLabel.setFont(new Font(32));
 
             colorBox = new playerComboBox(FXCollections.observableArrayList(ColorUtil.colors), player);
             colorBox.getSelectionModel().select(player.getColor());
@@ -129,10 +135,16 @@ public class CreateGameSceneController implements Initializable {
 
                 this.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
             });
+            colorBox.setMaxHeight(39);
+            colorBox.setPrefHeight(39);
 
             avatarButton.setText("Choose avatar");
+            avatarButton.setMaxHeight(39);
+            avatarButton.setPrefHeight(39);
 
-            deleteButton = new playerButton(player, "delete");
+            deleteButton = new playerButton(player, "Delete Player");
+            deleteButton.setMaxHeight(39);
+            deleteButton.setPrefHeight(39);
 
             deleteButton.setOnAction(actionEvent -> {
                 Object node = actionEvent.getSource();
