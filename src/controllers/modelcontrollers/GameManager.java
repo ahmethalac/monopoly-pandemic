@@ -175,7 +175,7 @@ public class GameManager {
     }
 
     // operations to perform when a turn passes
-    public void nextTurn(){
+    public void endTurn(){
         if(tourCounter == 0) {
             // TODO remove infected cities infection
             infectRandomCity();
@@ -204,5 +204,9 @@ public class GameManager {
 
     public Player getCurrentPlayer(){
         return this.game.getCurrentPlayer();
+    }
+
+    public Region getCurrentRegion(){
+        return this.game.getRegion(this.game.getCurrentPlayer().getLocation());
     }
 }

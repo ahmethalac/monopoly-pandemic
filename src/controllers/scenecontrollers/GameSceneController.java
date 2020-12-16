@@ -129,4 +129,16 @@ public class GameSceneController implements Initializable {
             SellBuildingPopupController sbpc = fxmlLoader.getController();
             handlePopup(parent);
     }
+
+    public void handleRollDiceButton() throws IOException{
+        int[] dice = GameManager.getInstance().rollDice();
+        GameManager.getInstance().moveForward(dice[2]);
+        // open buy city popup
+    }
+
+    public void handleBuyCityPopup() throws IOException{
+        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/SellBuildingPopup.fxml"));
+        //Parent parent = fxmlLoader.load();
+        //handlePopup(parent);
+    }
 }

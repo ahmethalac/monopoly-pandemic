@@ -21,7 +21,7 @@ public class Player extends Observable {
         this.id = id;
         this.color = color;
         this.pawn = pawn;
-        money = 0;
+        money = 200000;
         isBankrupted = false;
         location = 0;
         isInfected = false;
