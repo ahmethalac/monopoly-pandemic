@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
@@ -43,11 +44,11 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
-                     <HBox.margin>
-                        <Insets left="75.0" top="75.0" />
-                     </HBox.margin>
                   </Button>
-                  <Label text="Buy Building" />
+                  <Label text="Buy Building">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                   <Button mnemonicParsing="false" onAction="#handleSellBuildingPopup" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
                      <graphic>
                         <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
@@ -59,11 +60,11 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
-                     <HBox.margin>
-                        <Insets left="75.0" top="75.0" />
-                     </HBox.margin>
                   </Button>
-                  <Label text="Sell Building" />
+                  <Label text="Sell Building">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                   <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
                      <graphic>
                         <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
@@ -75,11 +76,11 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
-                     <HBox.margin>
-                        <Insets left="75.0" top="75.0" />
-                     </HBox.margin>
                   </Button>
-                  <Label text="Mortgage" />
+                  <Label text="Mortgage">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                   <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
                      <graphic>
                         <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
@@ -91,11 +92,11 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
-                     <HBox.margin>
-                        <Insets left="75.0" top="75.0" />
-                     </HBox.margin>
                   </Button>
-                  <Label text="Agreement" />
+                  <Label text="Agreement">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                </children>
             </VBox>
          </right>
