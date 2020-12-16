@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
@@ -89,6 +90,14 @@
                      </padding></Label>
                </children>
             </HBox>
+            <Label fx:id="errorLabel" text="Please add at least 2 players" textFill="WHITE" visible="false">
+               <font>
+                  <Font size="32.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="50.0" top="200.0" />
+               </VBox.margin>
+            </Label>
          </children>
       </VBox>
       <Pane prefHeight="1080.0" prefWidth="1300.0">

@@ -2,6 +2,7 @@ package controllers.scenecontrollers;
 
 import controllers.modelcontrollers.GameManager;
 import controllers.popupControllers.AddPlayerPopupController;
+import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import models.Player;
 import utils.ColorUtil;
 import views.customJavaFXObjects.PlayerButton;
@@ -38,6 +40,8 @@ import static utils.ColorUtil.getFXColor;
 public class CreateGameSceneController implements Initializable {
 
     @FXML
+    public Label errorLabel;
+    @FXML
     private ListView<PlayerHBoxCell> listView;
 
     private static final ObservableList<PlayerHBoxCell> playerList = FXCollections.observableArrayList();
@@ -52,12 +56,20 @@ public class CreateGameSceneController implements Initializable {
      * A method to handle start game button
      */
     public void handleStartGameButton() {
+        if (playerList.size() < 2 ) {
+            errorLabel.setVisible(true);
+            PauseTransition delay = new PauseTransition(Duration.seconds(1));
+            delay.setOnFinished(e -> errorLabel.setVisible(false));
+            delay.play();
+        }
+        else {
         ArrayList<Player> players = new ArrayList<>();
         for (PlayerHBoxCell cell : playerList) {
             players.add(cell.getPlayer());
         }
         GameManager.getInstance().initGame(players);
         SceneManager.getInstance().showGameScene();
+        }
     }
 
     /**
