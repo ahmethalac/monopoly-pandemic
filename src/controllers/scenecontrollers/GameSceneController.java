@@ -1,10 +1,7 @@
 package controllers.scenecontrollers;
 
 import controllers.modelcontrollers.GameManager;
-import controllers.popupControllers.addPlayerPopupController;
-import controllers.popupControllers.agreementPopupController;
-import controllers.popupControllers.buyBuildingPopupController;
-import controllers.popupControllers.cityPopupController;
+import controllers.popupControllers.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -132,7 +129,8 @@ public class GameSceneController implements Initializable {
     public void handleSellBuildingPopup() throws IOException{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/sellBuildingPopup.fxml"));
             Parent parent = fxmlLoader.load();
-
+            sellBuildingPopupController sbpc = fxmlLoader.getController();
+            sbpc.setPlayer();
             handlePopup(parent);
     }
 }
