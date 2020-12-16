@@ -129,7 +129,7 @@ public class GameSceneController implements Initializable {
             handlePopup(parent);
     }
 
-    public void handleSellBuildingPopup(City city, Player player) throws IOException{
+    public void handleSellBuildingPopup() throws IOException{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/sellBuildingPopup.fxml"));
             Parent parent = fxmlLoader.load();
 

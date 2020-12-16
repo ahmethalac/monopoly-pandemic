@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import models.City;
 import models.Player;
 
 import java.net.URL;
@@ -38,10 +39,10 @@ public class buyBuildingPopupController implements Initializable {
         comboBoxLabel.setText("");
     }
 
-    /* Finds the index of the city from player's city array list
+    /* Finds the city from player's city array list
     * @param name of the city that is searched
     */
-    public int findCity(String cityName){
+    public City findCity(String cityName){
         int listLength = player.getCities().size();
         int index = 0;
         for(int i = 0; i < listLength; i++)
@@ -52,19 +53,19 @@ public class buyBuildingPopupController implements Initializable {
                 break;
             }
         }
-        return index;
+        return player.getCities().get(index);
     }
 
     // onclick method for oneHouse button
     public void oneHouse(){
         String cityName = comboBox.getValue().toString();
-        int index = findCity(cityName);
-        double costOfOneHouse = (player.getCities().get(index).getPrice()) / 4;
+        City city = findCity(cityName);
+        double costOfOneHouse = (city.getPrice()) / 4;
         if(player.getMoney() >= costOfOneHouse)
         {
             player.removeMoney(costOfOneHouse);
-            player.getCities().get(index).addBuilding(1);
-            comboBoxLabel.setText("One house is added to" + player.getCities().get(index).getName());
+            city.addBuilding(1);
+            comboBoxLabel.setText("One house is added to " + city.getName());
             // if the action is succesful player cannot click any more buttons
             disableButtons();
         }
@@ -74,13 +75,13 @@ public class buyBuildingPopupController implements Initializable {
 
     public void twoHouses(){
         String cityName = comboBox.getValue().toString();
-        int index = findCity(cityName);
-        double costOfTwoHouses = (player.getCities().get(index).getPrice()) / 2;
+        City city = findCity(cityName);
+        double costOfTwoHouses = (city.getPrice()) / 2;
         if(player.getMoney() >= costOfTwoHouses)
         {
             player.removeMoney(costOfTwoHouses);
-            player.getCities().get(index).addBuilding(2);
-            comboBoxLabel.setText("Two house is added to" + player.getCities().get(index).getName());
+            city.addBuilding(2);
+            comboBoxLabel.setText("Two house is added to " + city.getName());
             // if the action is succesful player cannot click any more buttons
             disableButtons();
         }
@@ -90,13 +91,13 @@ public class buyBuildingPopupController implements Initializable {
 
     public void threeHouses(){
         String cityName = comboBox.getValue().toString();
-        int index = findCity(cityName);
-        double costOfThreeHouses = (player.getCities().get(index).getPrice()) / 4 * 3;
+        City city = findCity(cityName);
+        double costOfThreeHouses = (city.getPrice()) / 4 * 3;
         if(player.getMoney() >= costOfThreeHouses)
         {
             player.removeMoney(costOfThreeHouses);
-            player.getCities().get(index).addBuilding(3);
-            comboBoxLabel.setText("Three house is added to" + player.getCities().get(index).getName());
+            city.addBuilding(3);
+            comboBoxLabel.setText("Three house is added to " + city.getName());
             // if the action is succesful player cannot click any more buttons
             disableButtons();
         }
@@ -106,13 +107,13 @@ public class buyBuildingPopupController implements Initializable {
 
     public void fourHouses(){
         String cityName = comboBox.getValue().toString();
-        int index = findCity(cityName);
-        double costOfFourHouses = (player.getCities().get(index).getPrice());
+        City city = findCity(cityName);
+        double costOfFourHouses = city.getPrice();
         if(player.getMoney() >= costOfFourHouses)
         {
             player.removeMoney(costOfFourHouses);
-            player.getCities().get(index).addBuilding(4);
-            comboBoxLabel.setText("Four house is added to" + player.getCities().get(index).getName());
+            city.addBuilding(4);
+            comboBoxLabel.setText("Four house is added to " + city.getName());
             // if the action is succesful player cannot click any more buttons
             disableButtons();
         }
@@ -122,13 +123,13 @@ public class buyBuildingPopupController implements Initializable {
 
     public void hotel(){
         String cityName = comboBox.getValue().toString();
-        int index = findCity(cityName);
-        double costOfHotel = (player.getCities().get(index).getPrice()) / 4 * 5;
+        City city = findCity(cityName);
+        double costOfHotel = (city.getPrice()) / 4 * 5;
         if(player.getMoney() >= costOfHotel)
         {
             player.removeMoney(costOfHotel);
-            player.getCities().get(index).addBuilding(5);
-            comboBoxLabel.setText("Hotel is added to" + player.getCities().get(index).getName());
+            city.addBuilding(5);
+            comboBoxLabel.setText("Hotel is added to " + city.getName());
             // if the action is succesful player cannot click any more buttons
             disableButtons();
         }
