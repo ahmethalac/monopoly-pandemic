@@ -136,7 +136,7 @@ public class CreateGameSceneController implements Initializable {
 
                 Color color = getFXColor(colorValue);
 
-                this.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+                this.setBackground(new Background(new BackgroundFill(color, new CornerRadii(25), Insets.EMPTY)));
             });
             colorBox.setMaxHeight(39);
             colorBox.setPrefHeight(39);
