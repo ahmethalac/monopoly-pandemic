@@ -18,12 +18,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.City;
-import models.Game;
 import models.Player;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class GameSceneController implements Initializable {
@@ -101,7 +99,7 @@ public class GameSceneController implements Initializable {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/cityPopup.fxml"));
             Parent parent = fxmlLoader.load();
-            cityPopupController popupController = fxmlLoader.getController();
+            CityPopupController popupController = fxmlLoader.getController();
             popupController.setCity(city);
 
             handlePopup(parent);
@@ -120,14 +118,14 @@ public class GameSceneController implements Initializable {
     public void handleBuyBuildingPopup() throws IOException{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/buyBuildingPopup.fxml"));
             Parent parent = fxmlLoader.load();
-            buyBuildingPopupController buyBuildingController = fxmlLoader.getController();
+            BuyBuildingPopupController buyBuildingController = fxmlLoader.getController();
             handlePopup(parent);
     }
 
     public void handleSellBuildingPopup() throws IOException{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/sellBuildingPopup.fxml"));
             Parent parent = fxmlLoader.load();
-            sellBuildingPopupController sbpc = fxmlLoader.getController();
+            SellBuildingPopupController sbpc = fxmlLoader.getController();
             handlePopup(parent);
     }
 }

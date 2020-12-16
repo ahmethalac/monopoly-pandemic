@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 
 import static java.lang.Character.isDigit;
 
-public class sellBuildingPopupController extends popupController implements Initializable {
+public class SellBuildingPopupController extends PopupController implements Initializable {
     private Player player;
 
     @FXML private ComboBox cityComboBox;

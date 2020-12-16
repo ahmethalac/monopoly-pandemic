@@ -11,7 +11,7 @@ import utils.ColorUtil;
 /**
  * Custom controller for add player popup dialog
  */
-public class addPlayerPopupController extends popupController{
+public class AddPlayerPopupController extends PopupController {
     private ObservableList<CreateGameSceneController.PlayerHBoxCell> playerList;
 
     @FXML

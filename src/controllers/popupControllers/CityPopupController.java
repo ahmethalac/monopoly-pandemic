@@ -9,7 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import models.City;
 
-public class cityPopupController extends popupController{
+public class CityPopupController extends PopupController {
 
 
     private City city;

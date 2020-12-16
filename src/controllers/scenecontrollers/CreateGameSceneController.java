@@ -1,7 +1,7 @@
 package controllers.scenecontrollers;
 
 import controllers.modelcontrollers.GameManager;
-import controllers.popupControllers.addPlayerPopupController;
+import controllers.popupControllers.AddPlayerPopupController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -74,7 +74,7 @@ public class CreateGameSceneController implements Initializable {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/addPlayerPopup.fxml"));
             Parent parent = fxmlLoader.load();
-            addPlayerPopupController popupController = fxmlLoader.getController();
+            AddPlayerPopupController popupController = fxmlLoader.getController();
             popupController.setObservableList(playerList);
 
             Scene scene = new Scene(parent, 300, 200);

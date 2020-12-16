@@ -11,10 +11,9 @@ import models.City;
 import models.Player;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class buyBuildingPopupController extends popupController implements Initializable {
+public class BuyBuildingPopupController extends PopupController implements Initializable {
     private Player player;
 
     @FXML private ComboBox comboBox;
