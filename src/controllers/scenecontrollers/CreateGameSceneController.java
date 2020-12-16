@@ -22,8 +22,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Player;
 import utils.ColorUtil;
-import views.customJavaFXObjects.playerButton;
-import views.customJavaFXObjects.playerComboBox;
+import views.customJavaFXObjects.PlayerButton;
+import views.customJavaFXObjects.PlayerComboBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -72,7 +72,7 @@ public class CreateGameSceneController implements Initializable {
      */
     public void handleAddPlayerButton() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/addPlayerPopup.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/AddPlayerPopup.fxml"));
             Parent parent = fxmlLoader.load();
             AddPlayerPopupController popupController = fxmlLoader.getController();
             popupController.setObservableList(playerList);
@@ -96,9 +96,9 @@ public class CreateGameSceneController implements Initializable {
         //debug
         Label idLabel = new Label();
 
-        playerComboBox colorBox;
+        PlayerComboBox colorBox;
         Button avatarButton = new Button();
-        playerButton deleteButton;
+        PlayerButton deleteButton;
 
         Player player;
 
@@ -125,7 +125,7 @@ public class CreateGameSceneController implements Initializable {
             HBox.setHgrow(idLabel, Priority.ALWAYS);
             idLabel.setFont(new Font(32));
 
-            colorBox = new playerComboBox(FXCollections.observableArrayList(ColorUtil.colors), player);
+            colorBox = new PlayerComboBox(FXCollections.observableArrayList(ColorUtil.colors), player);
             colorBox.getSelectionModel().select(player.getColor());
             colorBox.setOnAction(actionEvent -> {
                 String colorValue = colorBox.getValue();
@@ -142,7 +142,7 @@ public class CreateGameSceneController implements Initializable {
             avatarButton.setMaxHeight(39);
             avatarButton.setPrefHeight(39);
 
-            deleteButton = new playerButton(player, "Delete Player");
+            deleteButton = new PlayerButton(player, "Delete Player");
             deleteButton.setMaxHeight(39);
             deleteButton.setPrefHeight(39);
 
@@ -150,9 +150,9 @@ public class CreateGameSceneController implements Initializable {
                 Object node = actionEvent.getSource();
                 System.out.println(node instanceof Button);
 
-                assert node instanceof playerButton;
+                assert node instanceof PlayerButton;
 
-                String playerName = ((playerButton) node ).getPlayer().getName();
+                String playerName = ((PlayerButton) node ).getPlayer().getName();
 
                 PlayerHBoxCell cell;
                 for (PlayerHBoxCell playerHBoxCell : playerList) {

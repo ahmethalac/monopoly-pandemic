@@ -4,11 +4,11 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import models.Player;
 
-public class playerComboBox extends ComboBox<String> {
+public class PlayerComboBox extends ComboBox<String> {
 
     private final Player player;
 
-    public playerComboBox(ObservableList<String> observableList, Player player) {
+    public PlayerComboBox(ObservableList<String> observableList, Player player) {
         super(observableList);
         this.player = player;
     }

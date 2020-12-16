@@ -97,7 +97,7 @@ public class GameSceneController implements Initializable {
 
     public void handleCityPopup(City city) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/cityPopup.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/CityPopup.fxml"));
             Parent parent = fxmlLoader.load();
             CityPopupController popupController = fxmlLoader.getController();
             popupController.setCity(city);
@@ -110,20 +110,20 @@ public class GameSceneController implements Initializable {
     }
 
     public void handleAgreementPopup() throws IOException {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/agreementPopup.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/AgreementPopup.fxml"));
             Parent parent = fxmlLoader.load();
             handlePopup(parent);
     }
 
     public void handleBuyBuildingPopup() throws IOException{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/buyBuildingPopup.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/BuyBuildingPopup.fxml"));
             Parent parent = fxmlLoader.load();
             BuyBuildingPopupController buyBuildingController = fxmlLoader.getController();
             handlePopup(parent);
     }
 
     public void handleSellBuildingPopup() throws IOException{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/sellBuildingPopup.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/SellBuildingPopup.fxml"));
             Parent parent = fxmlLoader.load();
             SellBuildingPopupController sbpc = fxmlLoader.getController();
             handlePopup(parent);

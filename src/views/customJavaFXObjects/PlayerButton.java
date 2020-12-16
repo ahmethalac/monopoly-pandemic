@@ -3,11 +3,11 @@ package views.customJavaFXObjects;
 import javafx.scene.control.Button;
 import models.Player;
 
-public class playerButton extends Button {
+public class PlayerButton extends Button {
 
     private final Player player;
 
-    public playerButton(Player p, String s) {
+    public PlayerButton(Player p, String s) {
         super(s);
         this.player = p;
     }
