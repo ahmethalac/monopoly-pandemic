@@ -191,6 +191,7 @@ public class GameManager {
         for ( Player player : this.game.getPlayers()){
             new PlayerObserver(player, controller);
         }
+        Game.getInstance().getCurrentPlayer().notifyAllObservers();
     }
 
     private void pirateAction(Player currentPlayer){
