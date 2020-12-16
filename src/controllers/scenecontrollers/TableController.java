@@ -22,6 +22,8 @@ public class TableController extends SubScene {
     private GameSceneController gameSceneController;
     private final Group sceneItems;
     private ArrayList<RegionList> regionsList = new ArrayList<>();
+    List<int[]> coordinates = SettingImporter.getRegionCoordinates();
+    private final MeshView[] pawn; //Experimental
 
     public TableController(GameSceneController gameSceneController) {
         super(new Group(),
@@ -47,24 +49,36 @@ public class TableController extends SubScene {
             node.translateYProperty().set(-800);
         }
         sceneItems.getChildren().addAll(astronaut);
+
+        pawn = MeshImporter.getPawn("Blue");
+        for ( MeshView part : pawn){
+            part.setTranslateX(coordinates.get(0)[0]);
+            part.setTranslateY(coordinates.get(0)[1]);
+        }
+        sceneItems.getChildren().addAll(pawn);
     }
 
     public void rotateTable(){
         rotateAroundCenter(this.getCamera(), 90);
         //Experimental
-        ((City)GameManager.getInstance().getRegions().get(1)).setOwner(new Player("ahmet","red","a",2));
-        ((City)GameManager.getInstance().getRegions().get(2)).setOwner(new Player("ahmet","blue","a",2));
-        ((City)GameManager.getInstance().getRegions().get(3)).setOwner(new Player("ahmet","pink","a",2));
-        ((City)GameManager.getInstance().getRegions().get(4)).setOwner(new Player("ahmet","green","a",2));
-        ((City)GameManager.getInstance().getRegions().get(5)).setOwner(new Player("ahmet","yellow","a",2));
-        ((City)GameManager.getInstance().getRegions().get(6)).setOwner(new Player("ahmet","orange","a",2));
-        ((City)GameManager.getInstance().getRegions().get(7)).setOwner(new Player("ahmet","purple","a",2));
-        ((City)GameManager.getInstance().getRegions().get(8)).setOwner(new Player("ahmet","cyan","a",2));
+        for ( MeshView part : pawn){
+            RotateTransition transition = new RotateTransition(Duration.seconds(1.5), part);
+            transition.setByAngle(90);
+            transition.play();
+        }
+
+        ((City)GameManager.getInstance().getRegions().get(1)).setOwner(new Player("ahmet","Red","a",2));
+        ((City)GameManager.getInstance().getRegions().get(2)).setOwner(new Player("ahmet","Blue","a",2));
+        ((City)GameManager.getInstance().getRegions().get(3)).setOwner(new Player("ahmet","Pink","a",2));
+        ((City)GameManager.getInstance().getRegions().get(4)).setOwner(new Player("ahmet","Green","a",2));
+        ((City)GameManager.getInstance().getRegions().get(5)).setOwner(new Player("ahmet","Yellow","a",2));
+        ((City)GameManager.getInstance().getRegions().get(6)).setOwner(new Player("ahmet","Orange","a",2));
+        ((City)GameManager.getInstance().getRegions().get(7)).setOwner(new Player("ahmet","Purple","a",2));
+        ((City)GameManager.getInstance().getRegions().get(8)).setOwner(new Player("ahmet","Cyan","a",2));
     }
 
     private void initializeRegions() {
         ArrayList<Region> regions = GameManager.getInstance().getRegions();
-        List<int[]> coordinates = SettingImporter.getRegionCoordinates();
 
         for ( int i = 0; i < coordinates.size(); i++){
             MeshView region = MeshImporter.getRegion();

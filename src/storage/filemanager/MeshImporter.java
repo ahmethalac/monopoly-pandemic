@@ -36,4 +36,8 @@ public class MeshImporter {
     public static MeshView getQuestionMark(){
         return getNodeArray("QuestionMark.obj")[0];
     }
+
+    public static MeshView[] getPawn(String color){
+        return getNodeArray(color + "Pawn.obj");
+    }
 }
