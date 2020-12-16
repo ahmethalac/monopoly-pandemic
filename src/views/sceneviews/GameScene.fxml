@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.layout.VBox?>
 <StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.scenecontrollers.GameSceneController">
    <BorderPane pickOnBounds="false">
       <top>
@@ -28,7 +29,12 @@
          <Button text="left" />
       </left>
       <right>
-         <Button onAction="#rotateTable" text="right" />
+         <VBox style="-fx-spacing: 30; -fx-padding: 30" >
+            <Button text="Buy Building" onAction="#handleBuyBuildingPopup" style="-fx-border-color: Black"/>
+            <Button text="Sell Building" onAction="#handleSellBuildingPopup" style="-fx-border-color: Black"/>
+            <Button text="Mortgage" style="-fx-border-color: Black"/>
+            <Button text="Agreement" style="-fx-border-color: Black"/>
+         </VBox>
       </right>
    </BorderPane>
 </StackPane>
