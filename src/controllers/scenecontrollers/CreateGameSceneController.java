@@ -56,19 +56,18 @@ public class CreateGameSceneController implements Initializable {
      * A method to handle start game button
      */
     public void handleStartGameButton() {
-        if (playerList.size() < 1 ) {
+        if (playerList.size() < 1) {
             errorLabel.setVisible(true);
             PauseTransition delay = new PauseTransition(Duration.seconds(1));
             delay.setOnFinished(e -> errorLabel.setVisible(false));
             delay.play();
-        }
-        else {
-        ArrayList<Player> players = new ArrayList<>();
-        for (PlayerHBoxCell cell : playerList) {
-            players.add(cell.getPlayer());
-        }
-        GameManager.getInstance().initGame(players);
-        SceneManager.getInstance().showGameScene();
+        } else {
+            ArrayList<Player> players = new ArrayList<>();
+            for (PlayerHBoxCell cell : playerList) {
+                players.add(cell.getPlayer());
+            }
+            GameManager.getInstance().initGame(players);
+            SceneManager.getInstance().showGameScene();
         }
     }
 
@@ -84,18 +83,27 @@ public class CreateGameSceneController implements Initializable {
      */
     public void handleAddPlayerButton() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/AddPlayerPopup.fxml"));
-            Parent parent = fxmlLoader.load();
-            AddPlayerPopupController popupController = fxmlLoader.getController();
-            popupController.setObservableList(playerList);
+            if (playerList.size() == 8){
+                System.out.println("max player count reached");
+                errorLabel.setText("You can add maximum 8 players");
+                errorLabel.setVisible(true);
+                PauseTransition delay = new PauseTransition(Duration.seconds(1));
+                delay.setOnFinished(e -> errorLabel.setVisible(false));
+                delay.play();
+            }
+            else {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/AddPlayerPopup.fxml"));
+                Parent parent = fxmlLoader.load();
+                AddPlayerPopupController popupController = fxmlLoader.getController();
+                popupController.setObservableList(playerList);
 
-            Scene scene = new Scene(parent, 300, 200);
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setScene(scene);
-            stage.showAndWait();
-
+                Scene scene = new Scene(parent, 300, 200);
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.showAndWait();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -132,7 +140,7 @@ public class CreateGameSceneController implements Initializable {
             nameLabel.setMaxWidth(Double.MAX_VALUE);
             HBox.setHgrow(nameLabel, Priority.ALWAYS);
             nameLabel.setFont(new Font(32));
-            setMargin(nameLabel,new Insets(0, 0, 0, 20));
+            setMargin(nameLabel, new Insets(0, 0, 0, 20));
 
             //debug
             idLabel.setText(String.valueOf(player.getId()));
@@ -144,11 +152,20 @@ public class CreateGameSceneController implements Initializable {
             colorBox.getSelectionModel().select(player.getColor());
             colorBox.setOnAction(actionEvent -> {
                 String colorValue = colorBox.getValue();
-                colorBox.getPlayer().setColor(colorValue);
+                boolean alreadyExists = false;
 
-                Color color = getFXColor(colorValue);
+                for (PlayerHBoxCell cell : playerList) {
+                    if (cell.getPlayer().getColor().equals(colorValue)) {
+                        alreadyExists = true;
+                        break;
+                    }
+                }
 
-                this.setBackground(new Background(new BackgroundFill(color, new CornerRadii(25), Insets.EMPTY)));
+                if (!alreadyExists) {
+                    colorBox.getPlayer().setColor(colorValue);
+                    Color color = getFXColor(colorValue);
+                    this.setBackground(new Background(new BackgroundFill(color, new CornerRadii(25), Insets.EMPTY)));
+                }
             });
             colorBox.setMaxHeight(39);
             colorBox.setPrefHeight(39);
@@ -160,7 +177,7 @@ public class CreateGameSceneController implements Initializable {
             deleteButton = new PlayerButton(player, "Delete Player");
             deleteButton.setMaxHeight(39);
             deleteButton.setPrefHeight(39);
-            setMargin(deleteButton,new Insets(0, 20, 0, 0));
+            setMargin(deleteButton, new Insets(0, 20, 0, 0));
 
             deleteButton.setOnAction(actionEvent -> {
                 Object node = actionEvent.getSource();
@@ -168,7 +185,7 @@ public class CreateGameSceneController implements Initializable {
 
                 assert node instanceof PlayerButton;
 
-                String playerName = ((PlayerButton) node ).getPlayer().getName();
+                String playerName = ((PlayerButton) node).getPlayer().getName();
 
                 PlayerHBoxCell cell;
                 for (PlayerHBoxCell playerHBoxCell : playerList) {
