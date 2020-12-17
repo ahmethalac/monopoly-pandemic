@@ -12,6 +12,11 @@ public class AgreementPopupController extends PopupController {
         closeStage(event);
     }
 
+    @FXML
+    void submitButtonClicked(ActionEvent event) {
+        closeStage(event);
+    }
+
     public void setAgreement(Agreement agreement){
         this.agreement = agreement;
     }
