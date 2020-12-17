@@ -6,10 +6,11 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.popupControllers.AgreementPopupController">
+<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.popupControllers.AgreementOfferPopupController">
 
     <children>
-        <VBox alignment="CENTER" layoutX= "131.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0"
+        <VBox alignment="CENTER" layoutX="131.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0"
               AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
               AnchorPane.topAnchor="5.0">
             <children>

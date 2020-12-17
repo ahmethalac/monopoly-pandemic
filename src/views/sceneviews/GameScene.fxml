@@ -112,6 +112,12 @@
                              <Cursor fx:constant="HAND"/>
                           </cursor>
                         </Button>
+                        <Button text="offertest" onAction="#handleAgreementOfferPopup" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
+                                style="-fx-background-color: white;">
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                        </Button>
                     </children>
                 </VBox>
             </right>
