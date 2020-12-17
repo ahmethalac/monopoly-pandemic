@@ -4,7 +4,9 @@ import controllers.scenecontrollers.CreateGameSceneController;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import models.Player;
 import utils.ColorUtil;
 
@@ -12,8 +14,11 @@ import utils.ColorUtil;
  * Custom controller for add player popup dialog
  */
 public class AddPlayerPopupController extends PopupController {
+
     private ObservableList<CreateGameSceneController.PlayerHBoxCell> playerList;
 
+    @FXML
+    public VBox addPlayerVBox;
     @FXML
     private TextField nameField;
 
@@ -29,14 +34,26 @@ public class AddPlayerPopupController extends PopupController {
 
     @FXML
     void addButtonClicked(ActionEvent event) {
+        boolean playerAlreadyExists = false;
+
         String name = nameField.getText().trim();
 
-        System.out.println(getColor());
-        Player player = new Player(name, getColor(), "pawn", getId());
+        for (CreateGameSceneController.PlayerHBoxCell cell : playerList) {
+            if (cell.getPlayer().getName().equals(name)) {
+                playerAlreadyExists = true;
+                break;
+            }
+        }
 
-        playerList.add(new CreateGameSceneController.PlayerHBoxCell(player));
-
-        closeStage(event);
+        if (playerAlreadyExists) {
+            addPlayerVBox.getChildren().clear();
+            addPlayerVBox.getChildren().addAll(new Label("Player already exists"));
+        }
+        else{
+            Player player = new Player(name, getColor(), "pawn", getId());
+            playerList.add(new CreateGameSceneController.PlayerHBoxCell(player));
+            closeStage(event);
+        }
     }
 
 

@@ -46,6 +46,13 @@ public class CreateGameSceneController implements Initializable {
 
     private static final ObservableList<PlayerHBoxCell> playerList = FXCollections.observableArrayList();
 
+    public void displayErrorMessage(String msg){
+        errorLabel.setText(msg);
+        errorLabel.setVisible(true);
+        PauseTransition delay = new PauseTransition(Duration.seconds(1));
+        delay.setOnFinished(e -> errorLabel.setVisible(false));
+        delay.play();
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         listView.setStyle("-fx-control-inner-background: #000a15; -fx-background-insets: 0 ; -fx-background-radius: 20;");
@@ -57,10 +64,7 @@ public class CreateGameSceneController implements Initializable {
      */
     public void handleStartGameButton() {
         if (playerList.size() < 1) {
-            errorLabel.setVisible(true);
-            PauseTransition delay = new PauseTransition(Duration.seconds(1));
-            delay.setOnFinished(e -> errorLabel.setVisible(false));
-            delay.play();
+            displayErrorMessage("Please add at least 2 players");
         } else {
             ArrayList<Player> players = new ArrayList<>();
             for (PlayerHBoxCell cell : playerList) {
@@ -84,12 +88,7 @@ public class CreateGameSceneController implements Initializable {
     public void handleAddPlayerButton() {
         try {
             if (playerList.size() == 8){
-                System.out.println("max player count reached");
-                errorLabel.setText("You can add maximum 8 players");
-                errorLabel.setVisible(true);
-                PauseTransition delay = new PauseTransition(Duration.seconds(1));
-                delay.setOnFinished(e -> errorLabel.setVisible(false));
-                delay.play();
+                displayErrorMessage("You can add maximum 8 players");
             }
             else {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/AddPlayerPopup.fxml"));
