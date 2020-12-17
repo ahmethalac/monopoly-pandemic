@@ -60,7 +60,7 @@ public class GameSceneController implements Initializable {
     //Update the game scene according to the current player
     public void renderPlayer(Player player){
         playerName.setText(player.getName());
-        money.setText(Double.toString(player.getMoney()));
+        money.setText(Double.toString(player.getMoney()) + "$");
         cardsBar.setStyle("-fx-spacing: 10;");
         cardsBar.getChildren().clear();
         for(int i = 0; i < player.getCities().size(); i++){
