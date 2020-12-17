@@ -32,7 +32,7 @@ public class LocationObserver extends Observer {
                 TranslateTransition verticalMove = new TranslateTransition(Duration.seconds(0.5), part);
                 verticalMove.setAutoReverse(true);
                 verticalMove.setCycleCount(2);
-                verticalMove.setByZ(-30);
+                verticalMove.setByZ(-50);
                 verticalMove.play();
             }
         }
