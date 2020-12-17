@@ -11,13 +11,14 @@ import models.City;
 
 public class CityPopupController extends PopupController {
 
-
     private City city;
 
     @FXML
     private Label cityNameLabel;
     @FXML
     private Label cityPriceLabel;
+    @FXML
+    private Label cityOwner;
     @FXML
     public ListView<BorderPane> rentView;
 
@@ -28,6 +29,9 @@ public class CityPopupController extends PopupController {
 
     public void setCity(City city) {
         this.city = city;
+
+        if (city.getOwner() != null) cityOwner.setText("Owned by: " + city.getOwner().getName());
+
         cityNameLabel.setText(city.getName());
         cityPriceLabel.setText("Price: " + city.getPrice());
         BorderPane[] rentBoxList = new BorderPane[6];

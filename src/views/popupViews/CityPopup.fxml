@@ -29,7 +29,15 @@
                   <Insets bottom="25.0" />
                </VBox.margin>
             </Label>
-            <ListView fx:id="rentView" prefHeight="200.0" prefWidth="200.0">
+            <Label fx:id="cityOwner" alignment="CENTER" contentDisplay="CENTER" minWidth="100.0" text="Not Owned">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <ListView fx:id="rentView" prefHeight="155.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets bottom="25.0" />
                </VBox.margin>

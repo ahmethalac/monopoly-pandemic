@@ -108,6 +108,9 @@ public class CreateGameSceneController implements Initializable {
         }
     }
 
+    /**
+     * Custom hbox cell for player listview
+     */
     public static class PlayerHBoxCell extends HBox {
         ImageView avatar = new ImageView();
         Label nameLabel = new Label();
