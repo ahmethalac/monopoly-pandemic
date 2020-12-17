@@ -7,12 +7,12 @@ public class City extends Region {
     private boolean isMortgaged;
     private boolean isInfected;
     private String name;
-    private final double MORGAGE_PENALTY = 0.8;
-    private final double MORGAGE_RATE = 0.7;
+    private final double MORGAGE_PENALTY = 0.55;
+    private final double MORGAGE_RATE = 0.5;
 
     public City(double price, double[] rents, String name, int id) {
         super(id);
-        buildings = new Buildings(rents);
+        buildings = new Buildings(rents, price);
         owner = null;
         this.price = price;
         isMortgaged = false;
@@ -68,7 +68,7 @@ public class City extends Region {
         return buildings.getNumberOfBuildings();
     }
 
-    public int getBuildingPrice(int count) {
+    public double getBuildingPrice(int count) {
         return buildings.getBuildingPrice(count);
     }
 
