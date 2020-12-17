@@ -206,6 +206,10 @@ public class GameManager {
         return this.game.getCurrentPlayer();
     }
 
+    public ArrayList<Player> getPlayers(){
+        return this.game.getPlayers();
+    }
+
     public Region getCurrentRegion(){
         return this.game.getRegion(this.game.getCurrentPlayer().getLocation());
     }

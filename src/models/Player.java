@@ -79,6 +79,7 @@ public class Player extends Observable {
     public void setLocation(int regionID)
     {
         location = regionID;
+        this.notifyAllObservers();
     }
 
     public int getLocation()
