@@ -81,9 +81,6 @@ public class BuyCityPopupController extends PopupController implements Initializ
             buyLabel.setText("Your money is not enough to buy this city");
         }
 
-        // wait for 1 sec
-        Sleeper.sleep(1);
-
         closeButtonClicked(event);
     }
 

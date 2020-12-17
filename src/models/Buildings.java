@@ -43,7 +43,7 @@ public class Buildings {
         if (numberOfBuildings + count <= MAX_NUMBER_OF_BUILDINGS) {
             int price = 0;
             for (int i = numberOfBuildings; i < numberOfBuildings + count; i++) {
-                price += prices[i - 1];
+                price += prices[i];
             }
             return price;
         }
@@ -51,7 +51,7 @@ public class Buildings {
     }
 
     public double getRent() {
-        return rents[numberOfBuildings - 1];
+        return rents[numberOfBuildings];
     }
 
     public double[] getRents() {

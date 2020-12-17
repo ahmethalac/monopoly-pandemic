@@ -6,8 +6,6 @@ import models.*;
 import storage.filemanager.SettingImporter;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class GameManager {
 
@@ -16,7 +14,8 @@ public class GameManager {
     private Game game;
     private int turnCounter = 0;
     private int tourCounter = 0;
-
+    private static final int NUMBER_OF_REGIONS = 40;
+    private boolean diceRolled = false;
 
 
     public static GameManager getInstance(){
@@ -52,15 +51,18 @@ public class GameManager {
 
     // moves current player count number of steps
     public void moveForward(int count) {
+        int newLocation;
         // add money if player pass over starting point
-        if(this.game.getCurrentPlayer().getLocation() + count > 39){
-            if(this.game.getRegion(0) instanceof StartingRegion){
-                StartingRegion sr =  (StartingRegion) this.game.getRegion(0);
-                sr.performRegionAction();
-            }
+        if(this.game.getCurrentPlayer().getLocation() + count > NUMBER_OF_REGIONS - 1){
+            StartingRegion sr =  (StartingRegion) this.game.getRegion(0);
+            sr.performRegionAction();
+            newLocation = count % NUMBER_OF_REGIONS;
+        }
+        else{
+            newLocation = this.game.getCurrentPlayer().getLocation() + count;
         }
         // TODO if player pass through test region, performTestRegionAction
-        this.game.getCurrentPlayer().setLocation(this.game.getCurrentPlayer().getLocation() + count);
+        this.game.getCurrentPlayer().setLocation(newLocation);
     }
 
     // picks chance card from top and performs operation on currentPlayer
@@ -72,13 +74,6 @@ public class GameManager {
     public void newAgreement(Offer firstOffer, Offer secondOffer,
                              Player firstPlayer, Player secondPlayer, String agreementName){
         this.game.addAgreement(new Agreement(firstOffer, secondOffer, firstPlayer, secondPlayer, agreementName));
-
-        // wait for 1 sec
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-            System.out.println(e);
-        }
     }
 
     // delete an existing agreement
@@ -193,15 +188,22 @@ public class GameManager {
 
     // dice[2] contains total dice numbers
     public int[] rollDice(){
-        int[] dice = new int[3];
-        dice[0] = (int) (6*Math.random());
-        dice[1] = (int) (6*Math.random());
-        dice[2] = dice[0] + dice[1];
-        return dice;
+        if(!diceRolled){
+            diceRolled = true;
+            int[] dice = new int[3];
+            dice[0] = (int) (6*Math.random());
+            dice[1] = (int) (6*Math.random());
+            dice[2] = dice[0] + dice[1];
+            return dice;
+        }
+        else{
+            return null;
+        }
     }
 
     // operations to perform when a turn passes
     public void endTurn(){
+        diceRolled = false;
         this.game.nextPlayer();
         if(tourCounter == 0) {
             // TODO remove infected cities infection
@@ -231,5 +233,9 @@ public class GameManager {
 
     public Region getCurrentRegion(){
         return this.game.getRegion(this.game.getCurrentPlayer().getLocation());
+    }
+
+    public boolean isDiceRolled(){
+        return diceRolled;
     }
 }

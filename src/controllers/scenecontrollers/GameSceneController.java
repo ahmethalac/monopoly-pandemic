@@ -113,41 +113,52 @@ public class GameSceneController implements Initializable {
     }
 
     public void handleAgreementPopup() throws IOException {
+        if(!GameManager.getInstance().isDiceRolled()) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/AgreementPopup.fxml"));
             Parent parent = fxmlLoader.load();
 
             AgreementPopupController agreementPopupController = fxmlLoader.getController();
             handlePopup(parent);
+        }
     }
 
     public void handleAgreementOfferPopup() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/AgreementOfferPopup.fxml"));
-        Parent parent = fxmlLoader.load();
+        if(!GameManager.getInstance().isDiceRolled()) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/AgreementOfferPopup.fxml"));
+            Parent parent = fxmlLoader.load();
 
-        AgreementOfferPopupController agreementOfferPopupController = fxmlLoader.getController();
-        handlePopup(parent);
+            AgreementOfferPopupController agreementOfferPopupController = fxmlLoader.getController();
+            handlePopup(parent);
+        }
     }
 
     public void handleBuyBuildingPopup() throws IOException{
+        if(!GameManager.getInstance().isDiceRolled()) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/BuyBuildingPopup.fxml"));
             Parent parent = fxmlLoader.load();
             BuyBuildingPopupController buyBuildingController = fxmlLoader.getController();
             handlePopup(parent);
+        }
     }
 
     public void handleSellBuildingPopup() throws IOException{
+        if(!GameManager.getInstance().isDiceRolled()){
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/SellBuildingPopup.fxml"));
             Parent parent = fxmlLoader.load();
             SellBuildingPopupController sbpc = fxmlLoader.getController();
             handlePopup(parent);
+        }
     }
 
     public void handleRollDiceButton() throws IOException{
         int[] dice = GameManager.getInstance().rollDice();
+        if(dice == null) {
+            System.out.println("Your turn is end");
+            return;
+        }
         GameManager.getInstance().moveForward(dice[2]);
-        Sleeper.sleep(2);
         boolean performed = GameManager.getInstance().performRegionAction();
-        if(!performed) {
+        if (!performed) {
             handleBuyCityPopup();
         }
     }
