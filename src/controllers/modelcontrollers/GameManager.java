@@ -88,9 +88,8 @@ public class GameManager {
         return possible;
     }
 
-    public boolean buyBuilding(City city, int count){
+    public boolean buyBuilding(City city, int count, Player currentPlayer){
         boolean possible = false;
-        Player currentPlayer = this.game.getCurrentPlayer();
         if(currentPlayer.getMoney() >= city.getBuildingPrice(count)){
             currentPlayer.removeMoney(city.getBuildingPrice(count));
             city.addBuilding(count);
@@ -99,9 +98,8 @@ public class GameManager {
         return true;
     }
 
-    public boolean sellBuilding(City city, int count){
+    public boolean sellBuilding(City city, int count, Player currentPlayer){
         boolean possible;
-        Player currentPlayer = this.game.getCurrentPlayer();
         possible = city.removeBuilding(count);
         if(possible){
             currentPlayer.addMoney(city.getBuildingPrice(count));

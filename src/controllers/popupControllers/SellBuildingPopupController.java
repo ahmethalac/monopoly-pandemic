@@ -10,19 +10,19 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import models.City;
 import models.Player;
-
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import static java.lang.Character.isDigit;
 
 public class SellBuildingPopupController extends PopupController implements Initializable {
     private Player player;
+    private City city;
 
-    @FXML private ComboBox cityComboBox;
-    @FXML private TextField userInput;
+    @FXML private ComboBox comboBox;
+    @FXML private TextField textField;
     @FXML private Label buildingNumberLabel;
     @FXML private Label resultLabel;
+    @FXML private Button sellButton;
 
     public void setPlayer(){
         player = GameManager.getInstance().getCurrentPlayer();
@@ -33,28 +33,27 @@ public class SellBuildingPopupController extends PopupController implements Init
         setPlayer();
         int listLength = player.getCities().size();
         for(int i = 0; i < listLength; i++) {
-            cityComboBox.getItems().add(player.getCities().get(i).getName());
+            comboBox.getItems().add(player.getCities().get(i).getName());
         }
         buildingNumberLabel.setText("");
         resultLabel.setText("");
-        userInput = new TextField();
-        userInput.setText("");
+        textField.setText("");
     }
 
     public void comboBoxUpdated()
     {
-        String cityName = cityComboBox.getValue().toString();
-        buildingNumberLabel.setText("There are " + findCity(cityName).getNumberOfBuildings() + " buildings on " + findCity(cityName).getName());
+        String cityName = comboBox.getValue().toString();
+        city = findCity(cityName);
+        buildingNumberLabel.setText("There are " + city.getNumberOfBuildings() + " buildings on " + city.getName());
     }
 
     public void sellBuildings(){
         boolean isNumber = true;
-        //First check whether user input is an integer
-        if(!(userInput.getText().equals("")))
+        if(!(textField.getText().equals("")))
         {
-            for(int i = 0; i < userInput.getText().length(); i++)
+            for(int i = 0; i < textField.getText().length(); i++)
             {
-                if(!isDigit(userInput.getText().charAt(i)))
+                if(!isDigit(textField.getText().charAt(i)))
                 {
                     isNumber = false;
                 }
@@ -67,12 +66,16 @@ public class SellBuildingPopupController extends PopupController implements Init
 
         if(isNumber)
         {
-            int numberOfBuildingsWantedToSell = Integer.parseInt(userInput.getText());
+            int numberOfBuildingsWantedToSell = Integer.parseInt(textField.getText());
 
-            String cityName = cityComboBox.getValue().toString();
-            if(GameManager.getInstance().sellBuilding(findCity(cityName), numberOfBuildingsWantedToSell))
+            if(GameManager.getInstance().sellBuilding(city, numberOfBuildingsWantedToSell, player))
             {
-                resultLabel.setText(numberOfBuildingsWantedToSell + " buildings are sold from " + cityName);
+                resultLabel.setText(numberOfBuildingsWantedToSell + " buildings are sold from " + city.getName());
+                sellButton.setDisable(true);
+            }
+            else
+            {
+                resultLabel.setText("This operation cannot be done");
             }
         }
     }

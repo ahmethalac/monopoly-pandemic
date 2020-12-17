@@ -7,22 +7,24 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import models.City;
 import models.Player;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static java.lang.Character.isDigit;
+
 public class BuyBuildingPopupController extends PopupController implements Initializable {
     private Player player;
+    private City city;
 
     @FXML private ComboBox comboBox;
     @FXML private Label comboBoxLabel;
-    @FXML private Button oneHouseButton;
-    @FXML private Button twoHouseButton;
-    @FXML private Button threeHouseButton;
-    @FXML private Button fourHouseButton;
-    @FXML private Button hotelButton;
+    @FXML private Label resultLabel;
+    @FXML private Button buyButton;
+    @FXML private TextField textField;
 
     public void setPlayer(){
         player = GameManager.getInstance().getCurrentPlayer();
@@ -37,11 +39,11 @@ public class BuyBuildingPopupController extends PopupController implements Initi
             comboBox.getItems().add(player.getCities().get(i).getName());
         }
         comboBoxLabel.setText("");
+        resultLabel.setText("");
+        textField.setText("");
     }
 
-    /* Finds the city from player's city array list
-    * @param name of the city that is searched
-    */
+
     public City findCity(String cityName){
         int listLength = player.getCities().size();
         int index = 0;
@@ -56,93 +58,45 @@ public class BuyBuildingPopupController extends PopupController implements Initi
         return player.getCities().get(index);
     }
 
-    // onclick method for oneHouse button
-    public void oneHouse(){
+    public void comboBoxUpdated()
+    {
         String cityName = comboBox.getValue().toString();
-        City city = findCity(cityName);
-        double costOfOneHouse = (city.getPrice()) / 4;
-        if(player.getMoney() >= costOfOneHouse)
-        {
-            player.removeMoney(costOfOneHouse);
-            city.addBuilding(1);
-            comboBoxLabel.setText("One house is added to " + city.getName());
-            // if the action is succesful player cannot click any more buttons
-            disableButtons();
-        }
-        // else { not enough money }
-        //player can click and try another method as long as he cannot buy a building
+        city = findCity(cityName);
+        comboBoxLabel.setText("There are already " + city.getNumberOfBuildings() + " buildings on " + city.getName());
     }
 
-    public void twoHouses(){
-        String cityName = comboBox.getValue().toString();
-        City city = findCity(cityName);
-        double costOfTwoHouses = (city.getPrice()) / 2;
-        if(player.getMoney() >= costOfTwoHouses)
+    public void buyBuildings(){
+        boolean isNumber = true;
+        if(!(textField.getText().equals("")))
         {
-            player.removeMoney(costOfTwoHouses);
-            city.addBuilding(2);
-            comboBoxLabel.setText("Two house is added to " + city.getName());
-            // if the action is succesful player cannot click any more buttons
-            disableButtons();
+            for(int i = 0; i < textField.getText().length(); i++)
+            {
+                if(!isDigit(textField.getText().charAt(i)))
+                {
+                    isNumber = false;
+                }
+            }
         }
-        // else { not enough money }
-        //player can click and try another method as long as he cannot buy a building
-    }
-
-    public void threeHouses(){
-        String cityName = comboBox.getValue().toString();
-        City city = findCity(cityName);
-        double costOfThreeHouses = (city.getPrice()) / 4 * 3;
-        if(player.getMoney() >= costOfThreeHouses)
+        else
         {
-            player.removeMoney(costOfThreeHouses);
-            city.addBuilding(3);
-            comboBoxLabel.setText("Three house is added to " + city.getName());
-            // if the action is succesful player cannot click any more buttons
-            disableButtons();
+            isNumber = false;
         }
-        // else { not enough money }
-        //player can click and try another method as long as he cannot buy a building
-    }
 
-    public void fourHouses(){
-        String cityName = comboBox.getValue().toString();
-        City city = findCity(cityName);
-        double costOfFourHouses = city.getPrice();
-        if(player.getMoney() >= costOfFourHouses)
+        if(isNumber)
         {
-            player.removeMoney(costOfFourHouses);
-            city.addBuilding(4);
-            comboBoxLabel.setText("Four house is added to " + city.getName());
-            // if the action is succesful player cannot click any more buttons
-            disableButtons();
-        }
-        // else { not enough money }
-        //player can click and try another method as long as he cannot buy a building
-    }
+            int numberOfBuildingsWantedToBuy = Integer.parseInt(textField.getText());
 
-    public void hotel(){
-        String cityName = comboBox.getValue().toString();
-        City city = findCity(cityName);
-        double costOfHotel = (city.getPrice()) / 4 * 5;
-        if(player.getMoney() >= costOfHotel)
-        {
-            player.removeMoney(costOfHotel);
-            city.addBuilding(5);
-            comboBoxLabel.setText("Hotel is added to " + city.getName());
-            // if the action is succesful player cannot click any more buttons
-            disableButtons();
+            if((numberOfBuildingsWantedToBuy + city.getNumberOfBuildings() <= 5) &&
+                    GameManager.getInstance().buyBuilding(city, numberOfBuildingsWantedToBuy, player))
+            {
+                resultLabel.setText(numberOfBuildingsWantedToBuy + " buildings are bought " + city.getName());
+                buyButton.setDisable(true);
+            }
+            else
+            {
+                resultLabel.setText("Invalid number of cities or not enough money");
+            }
         }
-        // else { not enough money }
-        //player can click and try another method as long as he cannot buy a building
-    }
-
-    public void disableButtons(){
-        oneHouseButton.setDisable(true);
-        twoHouseButton.setDisable(true);
-        threeHouseButton.setDisable(true);
-        fourHouseButton.setDisable(true);
-        hotelButton.setDisable(true);
     }
 
     @FXML
