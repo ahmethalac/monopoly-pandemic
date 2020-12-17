@@ -261,9 +261,11 @@ public class GameManager {
     // will return true if city located at the (city + leftOrRight) is owned by the player
     private boolean isCityOwned(City city, Player currentPlayer, int leftOrRight){
         if(this.game.getRegion((city.getId() + leftOrRight) % NUMBER_OF_REGIONS ) instanceof City){
-            if(((City) this.game.getRegion((city.getId() + leftOrRight) % NUMBER_OF_REGIONS )).getOwner().getId()
-                    == currentPlayer.getId()){
-                return true;
+            if (((City) this.game.getRegion((city.getId() + leftOrRight) % NUMBER_OF_REGIONS )).getOwner() != null){
+                if(((City) this.game.getRegion((city.getId() + leftOrRight) % NUMBER_OF_REGIONS )).getOwner().getId()
+                        == currentPlayer.getId()){
+                    return true;
+                }
             }
         }
         return false;
