@@ -1,6 +1,8 @@
 package models;
 
-public interface Card {
+import java.io.Serializable;
+
+public interface Card extends Serializable {
 
     //public int getId();
 
@@ -8,5 +10,5 @@ public interface Card {
 
     //public Image getCardImg();
 
-    public void executeAction(Game game);
+    void executeAction(Game game);
 }

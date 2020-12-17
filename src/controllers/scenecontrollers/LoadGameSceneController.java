@@ -42,6 +42,7 @@ public class LoadGameSceneController implements Initializable {
             newButton.setMinWidth(buttonBox.getWidth());
             newButton.setPrefWidth(300);
             newButton.setPrefHeight(100);
+            newButton.setOnAction(this::handleLoadGameButton);
             buttonBox.getChildren().add(newButton);
         }
         ScrollPane scrollPane = new ScrollPane();
@@ -52,6 +53,11 @@ public class LoadGameSceneController implements Initializable {
         scrollPane.setContent(buttonBox);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         loadBox.getChildren().add(scrollPane);
+    }
+
+    public void handleLoadGameButton(ActionEvent actionEvent) {
+        DataManager.getInstance().loadGame(((Button)actionEvent.getSource()).getText());
+        SceneManager.getInstance().showGameScene();
     }
 
     public void handleBackButton(ActionEvent actionEvent){

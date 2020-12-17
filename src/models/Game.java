@@ -1,20 +1,19 @@
 package models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Game {
+public class Game implements Serializable {
 
     // properties
     private ArrayList<Player> players;
     private ArrayList<Region> regions;
     private ArrayList<Card> chanceCards;
     private ArrayList<Agreement> agreements;
-    private ArrayList<Player> quarantine;
     private int currentPlayer;
 
     // constructor
     public Game(ArrayList<Player> players, ArrayList<Region> regions){
-        quarantine = new ArrayList<>();
         agreements = new ArrayList<>();
         currentPlayer = 0;
         this.players = players;
@@ -26,7 +25,6 @@ public class Game {
         this.players = game.players;
         this.regions = game.regions;
         this.chanceCards = game.chanceCards;
-        this.quarantine = game.quarantine;
         this.agreements = game.agreements;
         this.currentPlayer = game.currentPlayer;
     }
@@ -90,7 +88,6 @@ public class Game {
 
     public void quarantinePlayer() {
         players.get(currentPlayer).quarantine(true);
-        quarantine.add(players.get(currentPlayer));
     }
 
     public void checkQuarantine() {

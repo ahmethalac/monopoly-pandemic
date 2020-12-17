@@ -20,6 +20,7 @@ import javafx.stage.StageStyle;
 import models.City;
 import models.Game;
 import models.Player;
+import storage.filemanager.DataManager;
 import utils.Sleeper;
 
 import java.io.IOException;
@@ -62,19 +63,14 @@ public class GameSceneController implements Initializable {
     //Update the game scene according to the current player
     public void renderPlayer(Player player){
         playerName.setText(player.getName());
-        money.setText(Double.toString(player.getMoney()) + "$");
+        money.setText(player.getMoney() + "$");
         cardsBar.setStyle("-fx-spacing: 10;");
         cardsBar.getChildren().clear();
         for(int i = 0; i < player.getCities().size(); i++){
             Button button = new Button(player.getCities().get(i).getName());
             int finalI = i;
             button.setStyle("-fx-border-color: black");
-            button.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    handleCityPopup(player.getCities().get(finalI));
-                }
-            });
+            button.setOnAction(actionEvent -> handleCityPopup(player.getCities().get(finalI)));
 
             cardsBar.setAlignment(Pos.CENTER);
             cardsBar.getChildren().add(button);
@@ -179,7 +175,7 @@ public class GameSceneController implements Initializable {
         handlePopup(parent);
     }
 
-    public void handleEndTurnButton() throws IOException{
+    public void handleEndTurnButton(){
         if(GameManager.getInstance().isDiceRolled()){
             GameManager.getInstance().endTurn();
             cameraScene.rotateTable();
@@ -187,5 +183,9 @@ public class GameSceneController implements Initializable {
         else{
             System.out.println("Cannot end turn without rolling a dice.");
         }
+    }
+
+    public void handleSaveGameButton(){
+        DataManager.getInstance().saveGame("testSave");
     }
 }

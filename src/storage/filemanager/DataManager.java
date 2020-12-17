@@ -1,6 +1,9 @@
 package storage.filemanager;
 
-import java.io.File;
+import controllers.modelcontrollers.GameManager;
+import models.Game;
+
+import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,7 +11,12 @@ public class DataManager {
     // properties
     private static DataManager dataManager = null;
     private String saveGameFolder;
-    private List<String> savedNames;
+
+    // constructor
+    public DataManager(){
+        String currentDir = System.getProperty("user.dir");
+        this.saveGameFolder = currentDir + "/saves/";
+    }
 
     // methods
     public static DataManager getInstance(){
@@ -18,12 +26,29 @@ public class DataManager {
         return dataManager;
     }
 
-    public void saveGame(){
-        //TODO
+    public void saveGame(String saveName){
+        try{
+            FileOutputStream fout = new FileOutputStream(saveGameFolder + saveName + ".ser");
+            ObjectOutputStream out = new ObjectOutputStream(fout);
+            // save game object
+            out.writeObject(GameManager.getInstance().getGame());
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     public void loadGame(String saveName){
-        //TODO
+        try{
+            FileInputStream fin = new FileInputStream(saveGameFolder + saveName + ".ser");
+            ObjectInputStream in = new ObjectInputStream(fin);
+            // save game object
+            Game game = (Game)in.readObject();
+            GameManager.getInstance().setGame(game);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     /*
@@ -32,8 +57,6 @@ public class DataManager {
      */
     public List<String> getSavedNames(){
         List<String> savedNames;
-        String currentDir = System.getProperty("user.dir");
-        this.saveGameFolder = currentDir + "/saves/";
         //Creating a File object for directory
         File directoryPath = new File(this.saveGameFolder);
 
@@ -43,7 +66,6 @@ public class DataManager {
                 return null;
             }
             savedNames = Arrays.asList(temp);
-            this.savedNames = savedNames;
             for ( int i=0; i<savedNames.size(); i++ ) {
                 savedNames.set(i, savedNames.get(i).substring(0, savedNames.get(i).lastIndexOf(".")));
             }

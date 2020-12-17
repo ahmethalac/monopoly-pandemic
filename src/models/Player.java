@@ -1,9 +1,10 @@
 package models;
 import controllers.modelcontrollers.GameManager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Player extends Observable {
+public class Player extends Observable implements Serializable {
     private boolean isInQuarantine;
     private ArrayList<City> cities;
     private String name;

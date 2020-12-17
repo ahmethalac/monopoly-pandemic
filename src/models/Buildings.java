@@ -1,6 +1,8 @@
 package models;
 
-public class Buildings {
+import java.io.Serializable;
+
+public class Buildings implements Serializable {
 
     // properties
     private int numberOfBuildings;
@@ -42,8 +44,7 @@ public class Buildings {
     // return prices for count number of buildings.
     public double getBuildingPrice(int count) {
         if (numberOfBuildings + count <= MAX_NUMBER_OF_BUILDINGS) {
-            double price = this.price*count;
-            return price;
+            return this.price*count;
         }
         return -1;
     }

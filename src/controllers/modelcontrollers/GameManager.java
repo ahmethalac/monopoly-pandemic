@@ -101,13 +101,27 @@ public class GameManager {
     }
 
     public boolean buyBuilding(City city, int count, Player currentPlayer){
-        boolean possible = false;
-        if(currentPlayer.getMoney() >= city.getBuildingPrice(count)){
-            currentPlayer.removeMoney(city.getBuildingPrice(count));
-            city.addBuilding(count);
-            return true;
+        boolean leftIsOwned;
+        boolean leftMostIsOwned;
+        boolean rightIsOwned;
+        boolean rightMostIsOwned;
+        boolean cityIsOwned;
+        leftIsOwned = isCityOwned(city, currentPlayer, -1);
+        leftMostIsOwned = isCityOwned(city, currentPlayer, -2);
+        rightIsOwned = isCityOwned(city, currentPlayer, 1);
+        rightMostIsOwned = isCityOwned(city, currentPlayer, 2);
+        cityIsOwned = (city.getOwner().getId() == currentPlayer.getId());
+
+        if((leftMostIsOwned && leftIsOwned && cityIsOwned)
+                || (leftIsOwned && cityIsOwned && rightIsOwned)
+                || (cityIsOwned && rightIsOwned && rightMostIsOwned) ) {
+            if(currentPlayer.getMoney() >= city.getBuildingPrice(count)){
+                currentPlayer.removeMoney(city.getBuildingPrice(count));
+                city.addBuilding(count);
+                return true;
+            }
         }
-        return true;
+        return false;
     }
 
     public boolean sellBuilding(City city, int count, Player currentPlayer){
@@ -121,40 +135,6 @@ public class GameManager {
 
     public void mortgageCity(City city, boolean bool) {
         city.mortgage(bool);
-    }
-
-    // returns true if operation performed for currentCity
-    private boolean checkAgreements(){
-        ArrayList<Agreement> agreements = this.game.getAgreements();
-        Player currentPlayer = this.game.getCurrentPlayer();
-        City currentCity = (City) (this.game.getRegion(currentPlayer.getLocation()));
-        boolean offerPerformed = false;
-
-        if(currentCity.getOwner() != null){
-            if(currentCity.getOwner() != currentPlayer){
-                for( Agreement agreement : agreements ) {
-                    if(agreement.checkOffers(currentCity)) {
-                        offerPerformed = true;
-                        agreement.performOffers(currentCity, currentPlayer);
-                    }
-                }
-                if(!offerPerformed) {
-                    currentPlayer.removeMoney(currentCity.getRent());
-                    currentCity.getOwner().addMoney(currentCity.getRent());
-                }
-            }
-            return true;
-        }
-        return false;
-    }
-
-    private boolean checkPandemic(){
-        for(int i = 0; i<this.game.getPlayerNumber(); i++){
-            if(!this.game.getPlayer(i).isInfected()){
-                return false;
-            }
-        }
-        return true;
     }
 
     public boolean performRegionAction(){
@@ -238,5 +218,54 @@ public class GameManager {
 
     public int getTour(){
         return tourCounter;
+    }
+
+    public Game getGame() { return this.game; }
+
+    // Private methods
+
+    private boolean checkPandemic(){
+        for(int i = 0; i<this.game.getPlayerNumber(); i++){
+            if(!this.game.getPlayer(i).isInfected()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // returns true if operation performed for currentCity
+    private boolean checkAgreements(){
+        ArrayList<Agreement> agreements = this.game.getAgreements();
+        Player currentPlayer = this.game.getCurrentPlayer();
+        City currentCity = (City) (this.game.getRegion(currentPlayer.getLocation()));
+        boolean offerPerformed = false;
+
+        if(currentCity.getOwner() != null){
+            if(currentCity.getOwner() != currentPlayer){
+                for( Agreement agreement : agreements ) {
+                    if(agreement.checkOffers(currentCity)) {
+                        offerPerformed = true;
+                        agreement.performOffers(currentCity, currentPlayer);
+                    }
+                }
+                if(!offerPerformed) {
+                    currentPlayer.removeMoney(currentCity.getRent());
+                    currentCity.getOwner().addMoney(currentCity.getRent());
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // will return true if city located at the (city + leftOrRight) is owned by the player
+    private boolean isCityOwned(City city, Player currentPlayer, int leftOrRight){
+        if(this.game.getRegion((city.getId() + leftOrRight) % NUMBER_OF_REGIONS ) instanceof City){
+            if(((City) this.game.getRegion((city.getId() + leftOrRight) % NUMBER_OF_REGIONS )).getOwner().getId()
+                    == currentPlayer.getId()){
+                return true;
+            }
+        }
+        return false;
     }
 }

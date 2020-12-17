@@ -123,6 +123,12 @@
                                 <Cursor fx:constant="HAND"/>
                             </cursor>
                         </Button>
+                        <Button text="SAVE GAME" onAction="#handleSaveGameButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
+                                style="-fx-background-color: white;">
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                        </Button>
                     </children>
                 </VBox>
             </right>

@@ -1,6 +1,8 @@
 package models;
 
-public class Agreement {
+import java.io.Serializable;
+
+public class Agreement implements Serializable {
     private Player firstPlayer;
     private Player secondPlayer;
     private Offer firstOffer;

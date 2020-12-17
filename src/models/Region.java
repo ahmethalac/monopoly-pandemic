@@ -1,6 +1,8 @@
 package models;
 
-public abstract class Region extends Observable {
+import java.io.Serializable;
+
+public abstract class Region extends Observable implements Serializable {
     private int id;
 
     public Region(int id){
