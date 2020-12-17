@@ -180,7 +180,12 @@ public class GameSceneController implements Initializable {
     }
 
     public void handleEndTurnButton() throws IOException{
-        GameManager.getInstance().endTurn();
-        cameraScene.rotateTable();
+        if(GameManager.getInstance().isDiceRolled()){
+            GameManager.getInstance().endTurn();
+            cameraScene.rotateTable();
+        }
+        else{
+            System.out.println("Cannot end turn without rolling a dice.");
+        }
     }
 }

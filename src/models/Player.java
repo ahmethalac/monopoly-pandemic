@@ -1,4 +1,6 @@
 package models;
+import controllers.modelcontrollers.GameManager;
+
 import java.util.ArrayList;
 
 public class Player extends Observable {
@@ -12,6 +14,7 @@ public class Player extends Observable {
     private boolean isBankrupted;
     private int location;
     private boolean isInfected;
+    private int quarantineTourCounter = -1;
 
     public Player(String name, String color, String pawn, int id)
     {
@@ -31,7 +34,22 @@ public class Player extends Observable {
 
     public void quarantine(boolean bool)
     {
+        if(bool){
+            // TODO SET LOCATION TO QUARANTINE REGION ID this.location();
+            if(!isInQuarantine){
+                quarantineTourCounter = GameManager.getInstance().getTour();
+            }
+        }
         isInQuarantine = bool;
+    }
+
+    public boolean checkQuarantine(){
+        if(GameManager.getInstance().getTour() - quarantineTourCounter >= 3){
+            isInQuarantine = false;
+            quarantineTourCounter = -1;
+            return true;
+        }
+        return false;
     }
 
     public void addMoney(double money)

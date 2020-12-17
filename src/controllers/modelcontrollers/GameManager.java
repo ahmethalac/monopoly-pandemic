@@ -163,9 +163,6 @@ public class GameManager {
         Region currentRegion = (this.game.getRegion(currentPlayer.getLocation()));
         if(currentRegion instanceof City) {
             performed = checkAgreements();
-            if(!performed){
-                // get buy city popup
-            }
         }
         else if(currentRegion instanceof ChanceRegion) {
             ((ChanceRegion) currentRegion).performRegionAction();
@@ -191,8 +188,8 @@ public class GameManager {
         if(!diceRolled){
             diceRolled = true;
             int[] dice = new int[3];
-            dice[0] = (int) (6*Math.random());
-            dice[1] = (int) (6*Math.random());
+            dice[0] = (int) (6*Math.random()) + 1;
+            dice[1] = (int) (6*Math.random()) + 1;
             dice[2] = dice[0] + dice[1];
             return dice;
         }
@@ -237,5 +234,9 @@ public class GameManager {
 
     public boolean isDiceRolled(){
         return diceRolled;
+    }
+
+    public int getTour(){
+        return tourCounter;
     }
 }
