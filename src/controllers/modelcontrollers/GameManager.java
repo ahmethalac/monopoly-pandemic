@@ -14,7 +14,7 @@ public class GameManager {
     private Game game;
     private int turnCounter = 0;
     private int tourCounter = 0;
-    private static final int NUMBER_OF_REGIONS = 40;
+    private static int NUMBER_OF_REGIONS;
     private boolean diceRolled = false;
 
 
@@ -33,6 +33,7 @@ public class GameManager {
     // setup a game
     public void initGame(ArrayList<Player> players) {
         ArrayList<Region> regions = SettingImporter.getRegions();
+        NUMBER_OF_REGIONS = regions.size();
         game = new Game(players,regions);
     }
 
@@ -260,9 +261,12 @@ public class GameManager {
 
     // will return true if city located at the (city + leftOrRight) is owned by the player
     private boolean isCityOwned(City city, Player currentPlayer, int leftOrRight){
-        if(this.game.getRegion((city.getId() + leftOrRight) % NUMBER_OF_REGIONS ) instanceof City){
-            if (((City) this.game.getRegion((city.getId() + leftOrRight) % NUMBER_OF_REGIONS )).getOwner() != null){
-                if(((City) this.game.getRegion((city.getId() + leftOrRight) % NUMBER_OF_REGIONS )).getOwner().getId()
+        int regionID = city.getId() + leftOrRight < 0 ?
+                city.getId() + leftOrRight + NUMBER_OF_REGIONS :
+                city.getId() + leftOrRight % NUMBER_OF_REGIONS;
+        if(this.game.getRegion(regionID ) instanceof City){
+            if (((City) this.game.getRegion(regionID )).getOwner() != null){
+                if(((City) this.game.getRegion(regionID )).getOwner().getId()
                         == currentPlayer.getId()){
                     return true;
                 }
