@@ -63,7 +63,9 @@ public class MortgageCityPopupController extends PopupController implements Init
                 comboBox.getItems().add(player.getCities().get(i).getName());
             }
         }
+        comboBoxLabel.setText("");
         performButton.setText("Mortgage");
+        resultLabel.setText("");
     }
 
     public void updateComboBoxMortgaged(){
@@ -75,7 +77,9 @@ public class MortgageCityPopupController extends PopupController implements Init
                 comboBox.getItems().add(player.getCities().get(i).getName());
             }
         }
+        comboBoxLabel.setText("");
         performButton.setText("Lift Mortgage");
+        resultLabel.setText("");
     }
 
     public void comboBoxUpdated()
@@ -83,23 +87,27 @@ public class MortgageCityPopupController extends PopupController implements Init
         if(comboBox.getValue() != null) {
             String cityName = comboBox.getValue().toString();
             city = findCity(cityName);
+            resultLabel.setText("");
             if (mortgageRadioButton.isSelected()) {
                 comboBoxLabel.setText("The money you receive : " + city.getPrice() * 0.7);
             } else if (liftMortgageRadioButton.isSelected()) {
-                comboBoxLabel.setText("The money you must pay to lift \nthe mortgage : " + city.getPrice() * 0.8);
+                comboBoxLabel.setText("The money you must pay to lift the mortgage :\n" + city.getPrice() * 0.8);
             }
         }
     }
 
     public void performSelectedAction(){
-        if(mortgageRadioButton.isSelected()) {
-            GameManager.getInstance().mortgageCity(city, true);
-            resultLabel.setText(city.getName() + " is mortgaged");
+        if(comboBox.getValue() != null) {
+            if (mortgageRadioButton.isSelected()) {
+                GameManager.getInstance().mortgageCity(city, true);
+                resultLabel.setText(city.getName() + " is mortgaged");
+            } else {
+                GameManager.getInstance().mortgageCity(city, false);
+                resultLabel.setText("Mortgage is lifted from " + city.getName());
+            }
         }
-        else
-        {
-            GameManager.getInstance().mortgageCity(city, false);
-            resultLabel.setText("Mortgage is lifted from " + city.getName());
+        else{
+            resultLabel.setText("Please choose a city before action");
         }
     }
 

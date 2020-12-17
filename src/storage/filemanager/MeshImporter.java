@@ -17,8 +17,8 @@ public class MeshImporter {
         return getNodeArray("Table.obj");
     }
 
-    public static MeshView[] getPlayer(){
-        return getNodeArray("astronaut.obj");
+    public static MeshView[] getPlayer(String color){
+        return getNodeArray("astronauts/" + color + "Astronaut.obj");
     }
 
     public static MeshView getRegion() {
@@ -38,6 +38,6 @@ public class MeshImporter {
     }
 
     public static MeshView[] getPawn(String color){
-        return getNodeArray(color + "Pawn.obj");
+        return getNodeArray("pawns/" + color + "Pawn.obj");
     }
 }

@@ -68,36 +68,32 @@ public class BuyBuildingPopupController extends PopupController implements Initi
     }
 
     public void buyBuildings(){
-        boolean isNumber = true;
-        if(!(textField.getText().equals("")))
-        {
-            for(int i = 0; i < textField.getText().length(); i++)
-            {
-                if(!isDigit(textField.getText().charAt(i)))
-                {
-                    isNumber = false;
+        if(comboBox.getValue() != null) {
+            boolean isNumber = true;
+            if (!(textField.getText().equals(""))) {
+                for (int i = 0; i < textField.getText().length(); i++) {
+                    if (!isDigit(textField.getText().charAt(i))) {
+                        isNumber = false;
+                    }
+                }
+            } else {
+                isNumber = false;
+            }
+
+            if (isNumber) {
+                int numberOfBuildingsWantedToBuy = Integer.parseInt(textField.getText());
+
+                if (numberOfBuildingsWantedToBuy + city.getNumberOfBuildings() <= 5 &&
+                        GameManager.getInstance().buyBuilding(city, numberOfBuildingsWantedToBuy, player)) {
+                    resultLabel.setText(numberOfBuildingsWantedToBuy + " buildings are bought to " + city.getName());
+                    buyButton.setDisable(true);
+                } else {
+                    resultLabel.setText("Invalid number of cities or not enough money");
                 }
             }
         }
-        else
-        {
-            isNumber = false;
-        }
-
-        if(isNumber)
-        {
-            int numberOfBuildingsWantedToBuy = Integer.parseInt(textField.getText());
-
-            if((numberOfBuildingsWantedToBuy + city.getNumberOfBuildings() <= 5) &&
-                    GameManager.getInstance().buyBuilding(city, numberOfBuildingsWantedToBuy, player))
-            {
-                resultLabel.setText(numberOfBuildingsWantedToBuy + " buildings are bought " + city.getName());
-                buyButton.setDisable(true);
-            }
-            else
-            {
-                resultLabel.setText("Invalid number of cities or not enough money");
-            }
+        else{
+            resultLabel.setText("Please choose a city");
         }
     }
 

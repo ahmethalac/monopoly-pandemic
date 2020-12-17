@@ -15,6 +15,7 @@ import models.*;
 import storage.filemanager.MeshImporter;
 import storage.filemanager.SettingImporter;
 import utils.RegionList;
+import utils.RotationUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,31 +43,40 @@ public class TableController extends SubScene {
         sceneItems.getChildren().addAll(MeshImporter.getTable());
 
         initializeRegions();
-        initializePawns();
 
-        //Experimental
-        MeshView[] astronaut = MeshImporter.getPlayer();
-        for ( MeshView node : astronaut){
-            node.translateZProperty().set(-100);
-            node.translateYProperty().set(-800);
-        }
-        sceneItems.getChildren().addAll(astronaut);
-
+        ArrayList<Player> players = GameManager.getInstance().getPlayers();
+        initializePawns(players);
+        initializeAstronauts(players);
     }
 
     public void rotateTable(){
-        rotateAroundCenter(this.getCamera(), (double)360 / GameManager.getInstance().getPlayers().size());
+        double angle = (double)360 / GameManager.getInstance().getPlayers().size();
+        RotationUtil.rotateAroundCenter(this.getCamera(), angle);
         for ( MeshView[] pawn : pawns ){
             for ( MeshView part : pawn){
-                RotateTransition transition = new RotateTransition(Duration.seconds(1.5), part);
-                transition.setByAngle(90);
+                RotateTransition transition = new RotateTransition(Duration.seconds(angle / 60), part);
+                transition.setByAngle(angle);
                 transition.play();
             }
         }
     }
 
-    private void initializePawns() {
-        ArrayList<Player> players = GameManager.getInstance().getPlayers();
+    private void initializeAstronauts(ArrayList<Player> players) {
+        double angle = 0;
+        for ( Player player : players ){
+            MeshView[] astronaut = MeshImporter.getPlayer(player.getColor());
+            for ( MeshView node : astronaut){
+                node.setTranslateZ(-100);
+                node.setTranslateX(-750 * Math.sin(angle * Math.PI / 180));
+                node.setTranslateY(750 * Math.cos(angle * Math.PI / 180));
+                node.setRotate(angle - 180);
+            }
+            sceneItems.getChildren().addAll(astronaut);
+            angle += (double)360 / players.size();
+        }
+    }
+
+    private void initializePawns(ArrayList<Player> players) {
         int i = 0;
         for ( Player player : players ){
             MeshView[] pawn = MeshImporter.getPawn(player.getColor());
@@ -128,34 +138,15 @@ public class TableController extends SubScene {
 
     private void addCamera() {
         PerspectiveCamera camera = new PerspectiveCamera(true);
-        camera.translateZProperty().set(-900);
-        camera.translateYProperty().set(1300);
-        camera.getTransforms().add(new Rotate(50, Rotate.X_AXIS));
+        camera.translateZProperty().set(-1000);
+        camera.translateYProperty().set(1400);
+        camera.getTransforms().add(new Rotate(52, Rotate.X_AXIS));
         camera.setNearClip(1);
         camera.setFarClip(3000);
         this.setCamera(camera);
     }
 
-    private void rotateAroundCenter(Node node, double angle){
-        double x = node.getTranslateX();
-        double y = node.getTranslateY();
-        double rotate = node.getRotate();
-        System.out.println(x);
-        System.out.println(y);
-        Timeline timeline2 = new Timeline(
-                new KeyFrame(Duration.seconds(angle / 60), new KeyValue(node.translateYProperty(), x * Math.sin(angle * Math.PI / 180) + y * Math.cos(angle * Math.PI / 180)))
-        );
-        timeline2.play();
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(angle / 60), new KeyValue(node.translateXProperty(), x * Math.cos(angle * Math.PI / 180) - y * Math.sin(angle * Math.PI / 180)))
-        );
-        timeline.play();
 
-        Timeline timeline3 = new Timeline(
-                new KeyFrame(Duration.seconds(angle / 60), new KeyValue(node.rotateProperty(), rotate + angle))
-        );
-        timeline3.play();
-    }
 
     private MeshView getPirate(int x, int y){
         MeshView pirate = MeshImporter.getPirate();

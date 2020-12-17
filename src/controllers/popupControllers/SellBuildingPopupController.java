@@ -50,35 +50,31 @@ public class SellBuildingPopupController extends PopupController implements Init
     }
 
     public void sellBuildings(){
-        boolean isNumber = true;
-        if(!(textField.getText().equals("")))
-        {
-            for(int i = 0; i < textField.getText().length(); i++)
-            {
-                if(!isDigit(textField.getText().charAt(i)))
-                {
-                    isNumber = false;
+        if(comboBox.getValue() != null) {
+            boolean isNumber = true;
+            if (!(textField.getText().equals(""))) {
+                for (int i = 0; i < textField.getText().length(); i++) {
+                    if (!isDigit(textField.getText().charAt(i))) {
+                        isNumber = false;
+                    }
+                }
+            } else {
+                isNumber = false;
+            }
+
+            if (isNumber) {
+                int numberOfBuildingsWantedToSell = Integer.parseInt(textField.getText());
+
+                if (GameManager.getInstance().sellBuilding(city, numberOfBuildingsWantedToSell, player)) {
+                    resultLabel.setText(numberOfBuildingsWantedToSell + " buildings are sold from " + city.getName());
+                    sellButton.setDisable(true);
+                } else {
+                    resultLabel.setText("This operation cannot be done");
                 }
             }
         }
-        else
-        {
-            isNumber = false;
-        }
-
-        if(isNumber)
-        {
-            int numberOfBuildingsWantedToSell = Integer.parseInt(textField.getText());
-
-            if(GameManager.getInstance().sellBuilding(city, numberOfBuildingsWantedToSell, player))
-            {
-                resultLabel.setText(numberOfBuildingsWantedToSell + " buildings are sold from " + city.getName());
-                sellButton.setDisable(true);
-            }
-            else
-            {
-                resultLabel.setText("This operation cannot be done");
-            }
+        else{
+            resultLabel.setText("Please choose a city");
         }
     }
 
