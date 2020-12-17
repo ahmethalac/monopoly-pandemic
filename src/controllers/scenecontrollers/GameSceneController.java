@@ -181,5 +181,6 @@ public class GameSceneController implements Initializable {
 
     public void handleEndTurnButton() throws IOException{
         GameManager.getInstance().endTurn();
+        cameraScene.rotateTable();
     }
 }

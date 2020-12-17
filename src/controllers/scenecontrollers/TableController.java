@@ -55,16 +55,14 @@ public class TableController extends SubScene {
     }
 
     public void rotateTable(){
-//        rotateAroundCenter(this.getCamera(), 90);
-        GameManager.getInstance().getCurrentPlayer().setLocation(5);
-        //Experimental
-//        for ( MeshView[] pawn : pawns ){
-//            for ( MeshView part : pawn){
-//                RotateTransition transition = new RotateTransition(Duration.seconds(1.5), part);
-//                transition.setByAngle(90);
-//                transition.play();
-//            }
-//        }
+        rotateAroundCenter(this.getCamera(), (double)360 / GameManager.getInstance().getPlayers().size());
+        for ( MeshView[] pawn : pawns ){
+            for ( MeshView part : pawn){
+                RotateTransition transition = new RotateTransition(Duration.seconds(1.5), part);
+                transition.setByAngle(90);
+                transition.play();
+            }
+        }
     }
 
     private void initializePawns() {
@@ -178,6 +176,7 @@ public class TableController extends SubScene {
 
         return questionMark;
     }
+
     private void setAnimation(Node node){
         Timeline rotation = new Timeline(
                 new KeyFrame(Duration.seconds(3), new KeyValue(node.rotateProperty(), 360))
