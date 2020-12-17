@@ -1,5 +1,6 @@
 package controllers.observers;
 
+import controllers.modelcontrollers.GameManager;
 import controllers.scenecontrollers.GameSceneController;
 import models.Player;
 
@@ -14,6 +15,8 @@ public class PlayerObserver extends Observer{
     }
     @Override
     public void update() {
-        controller.renderPlayer((Player) subject);
+        if (GameManager.getInstance().getCurrentPlayer() == subject){
+            controller.renderPlayer((Player) subject);
+        }
     }
 }
