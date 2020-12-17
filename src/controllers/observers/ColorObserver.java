@@ -22,13 +22,15 @@ public class ColorObserver extends Observer {
     @Override
     public void update() {
         for ( int i = 0; i < region.size(); i++){
-            String color = ((City)subject).getOwner().getColor();
-            if ( i == 0 ){
-                region.get(i).setMaterial(new PhongMaterial(getLightColor(color)));
-            } else {
-                PhongMaterial material = new PhongMaterial();
-                material.setDiffuseMap(Texture.getTexture(color));
-                region.get(i).setMaterial(material);
+            if (((City)subject).getOwner() != null){
+                String color = ((City)subject).getOwner().getColor();
+                if ( i == 0 ){
+                    region.get(i).setMaterial(new PhongMaterial(getLightColor(color)));
+                } else {
+                    PhongMaterial material = new PhongMaterial();
+                    material.setDiffuseMap(Texture.getTexture(color));
+                    region.get(i).setMaterial(material);
+                }
             }
         }
     }

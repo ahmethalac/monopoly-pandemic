@@ -27,8 +27,6 @@ public class RotationUtil {
         double x = node.getTranslateX();
         double y = node.getTranslateY();
         double rotate = node.getRotate();
-        System.out.println(x);
-        System.out.println(y);
         Timeline timeline2 = new Timeline(
                 new KeyFrame(Duration.seconds(angle / 60), new KeyValue(node.translateYProperty(), x * Math.sin(angle * Math.PI / 180) + y * Math.cos(angle * Math.PI / 180)))
         );

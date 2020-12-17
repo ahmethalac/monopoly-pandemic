@@ -47,6 +47,30 @@ public class TableController extends SubScene {
         ArrayList<Player> players = GameManager.getInstance().getPlayers();
         initializePawns(players);
         initializeAstronauts(players);
+
+//        testGame();
+    }
+
+    private void testGame() {
+        ArrayList<Region> regions = GameManager.getInstance().getRegions();
+        ArrayList<Player> players = GameManager.getInstance().getPlayers();
+        players.get(0).addCity((City) regions.get(1));
+        ((City) regions.get(1)).setOwner(players.get(0));
+        players.get(0).addCity((City) regions.get(2));
+        ((City) regions.get(2)).setOwner(players.get(0));
+        players.get(0).addCity((City) regions.get(3));
+        ((City) regions.get(3)).setOwner(players.get(0));
+        players.get(0).addCity((City) regions.get(4));
+        ((City) regions.get(4)).setOwner(players.get(0));
+
+        players.get(1).addCity((City) regions.get(5));
+        ((City) regions.get(5)).setOwner(players.get(1));
+        players.get(1).addCity((City) regions.get(6));
+        ((City) regions.get(6)).setOwner(players.get(1));
+        players.get(1).addCity((City) regions.get(7));
+        ((City) regions.get(7)).setOwner(players.get(1));
+        players.get(1).addCity((City) regions.get(8));
+        ((City) regions.get(8)).setOwner(players.get(1));
     }
 
     public void rotateTable(){
@@ -82,8 +106,12 @@ public class TableController extends SubScene {
             MeshView[] pawn = MeshImporter.getPawn(player.getColor());
             double[] offsets = LocationObserver.getOffset(i);
             for ( MeshView part : pawn){
-                part.setTranslateX(coordinates.get(0)[0] + offsets[0]);
-                part.setTranslateY(coordinates.get(0)[1] + offsets[1]);
+                part.setTranslateX(coordinates.get(player.getLocation())[0] + offsets[0]);
+                part.setTranslateY(coordinates.get(player.getLocation())[1] + offsets[1]);
+
+                //If game is loaded, make them turn to the current player
+                double angle = ((double)360 / GameManager.getInstance().getPlayers().size()) * GameManager.getInstance().getCurrentPlayer().getId();
+                part.setRotate(part.getRotate() + angle);
             }
             sceneItems.getChildren().addAll(pawn);
             pawns.add(pawn);
@@ -127,6 +155,8 @@ public class TableController extends SubScene {
                 region.setMaterial(new PhongMaterial(Color.WHITE));
             }
 
+            //If game is loaded, colorize all regions
+            regions.get(i).notifyAllObservers();
         }
     }
 
@@ -144,6 +174,11 @@ public class TableController extends SubScene {
         camera.setNearClip(1);
         camera.setFarClip(3000);
         this.setCamera(camera);
+
+        //If game is loaded, initialize camera from the current player
+        double angle = ((double)360 / GameManager.getInstance().getPlayers().size()) * GameManager.getInstance().getCurrentPlayer().getId();
+        RotationUtil.rotateAroundPoint(0,0,camera,angle);
+        camera.setRotate(camera.getRotate() + angle);
     }
 
 
