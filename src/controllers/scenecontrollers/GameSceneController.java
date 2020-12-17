@@ -114,6 +114,8 @@ public class GameSceneController implements Initializable {
     public void handleAgreementPopup() throws IOException {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/AgreementPopup.fxml"));
             Parent parent = fxmlLoader.load();
+
+            AgreementPopupController agreementPopupController = fxmlLoader.getController();
             handlePopup(parent);
     }
 
