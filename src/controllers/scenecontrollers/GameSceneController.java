@@ -152,7 +152,7 @@ public class GameSceneController implements Initializable {
 
     public void handleMortgageCityPopup() throws IOException{
         if(!GameManager.getInstance().isDiceRolled()) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/BuyBuildingPopup.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/MortgageCityPopup.fxml"));
             Parent parent = fxmlLoader.load();
             MortgageCityPopupController mcpc = fxmlLoader.getController();
             handlePopup(parent);

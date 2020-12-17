@@ -42,9 +42,11 @@ public class SellBuildingPopupController extends PopupController implements Init
 
     public void comboBoxUpdated()
     {
-        String cityName = comboBox.getValue().toString();
-        city = findCity(cityName);
-        buildingNumberLabel.setText("There are " + city.getNumberOfBuildings() + " buildings on " + city.getName());
+        if(comboBox.getValue() != null) {
+            String cityName = comboBox.getValue().toString();
+            city = findCity(cityName);
+            buildingNumberLabel.setText("There are " + city.getNumberOfBuildings() + " buildings on " + city.getName());
+        }
     }
 
     public void sellBuildings(){

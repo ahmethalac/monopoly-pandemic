@@ -60,9 +60,11 @@ public class BuyBuildingPopupController extends PopupController implements Initi
 
     public void comboBoxUpdated()
     {
-        String cityName = comboBox.getValue().toString();
-        city = findCity(cityName);
-        comboBoxLabel.setText("There are already " + city.getNumberOfBuildings() + " buildings on " + city.getName());
+        if(comboBox.getValue() != null) {
+            String cityName = comboBox.getValue().toString();
+            city = findCity(cityName);
+            comboBoxLabel.setText("There are already " + city.getNumberOfBuildings() + " buildings on " + city.getName());
+        }
     }
 
     public void buyBuildings(){
