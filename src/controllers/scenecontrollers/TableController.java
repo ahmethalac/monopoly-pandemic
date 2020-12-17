@@ -69,15 +69,18 @@ public class TableController extends SubScene {
 
     private void initializePawns() {
         ArrayList<Player> players = GameManager.getInstance().getPlayers();
+        int i = 0;
         for ( Player player : players ){
             MeshView[] pawn = MeshImporter.getPawn(player.getColor());
+            double[] offsets = LocationObserver.getOffset(i);
             for ( MeshView part : pawn){
-                part.setTranslateX(coordinates.get(0)[0]);
-                part.setTranslateY(coordinates.get(0)[1]);
+                part.setTranslateX(coordinates.get(0)[0] + offsets[0]);
+                part.setTranslateY(coordinates.get(0)[1] + offsets[1]);
             }
             sceneItems.getChildren().addAll(pawn);
             pawns.add(pawn);
             new LocationObserver(player, pawn);
+            i += 8 / players.size();
         }
     }
 
