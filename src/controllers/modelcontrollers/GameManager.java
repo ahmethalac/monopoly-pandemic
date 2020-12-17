@@ -14,7 +14,7 @@ public class GameManager {
     private Game game;
     private int turnCounter = 0;
     private int tourCounter = 0;
-    private static int NUMBER_OF_REGIONS;
+    private static int NUMBER_OF_REGIONS = 40;
     private boolean diceRolled = false;
 
 
@@ -33,7 +33,6 @@ public class GameManager {
     // setup a game
     public void initGame(ArrayList<Player> players) {
         ArrayList<Region> regions = SettingImporter.getRegions();
-        NUMBER_OF_REGIONS = regions.size();
         game = new Game(players,regions);
     }
 
