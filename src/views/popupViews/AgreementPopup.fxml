@@ -20,10 +20,23 @@
                <font>
                   <Font size="24.0" />
                </font>
-            </Label>
-            <ComboBox prefWidth="150.0" promptText="Choose Player">
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </Label>
+            <ComboBox prefWidth="200.0" promptText="Choose Player">
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </ComboBox>
+            <ComboBox prefWidth="200.0" promptText="Choose Your Offer">
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </ComboBox>
+            <ComboBox prefWidth="200.0" promptText="Choose Opposite Offer">
+               <VBox.margin>
+                  <Insets top="25.0" />
                </VBox.margin>
             </ComboBox>
                 <Label fx:id="cityPriceLabel" alignment="CENTER" contentDisplay="CENTER" minWidth="100.0" text="City Price">
@@ -44,6 +57,9 @@
                <right>
                       <Button mnemonicParsing="false" onAction="#submitButtonClicked" text="Submit" BorderPane.alignment="CENTER" />
                </right>
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
             </BorderPane>
             </children>
         </VBox>
