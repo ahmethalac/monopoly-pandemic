@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import models.*;
 import utils.ColorUtil;
@@ -68,22 +69,22 @@ public class AgreementPopupController extends PopupController implements Initial
         chooseOfferBox.setItems(FXCollections.observableArrayList(OfferUtil.offers));
         chooseOppositeOfferBox.setItems(FXCollections.observableArrayList(OfferUtil.offers));
 
-        chooseOfferBox.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                String offer = chooseOfferBox.getValue();
-                if (offer.equals("Sell Region") || offer.equals("Pay Rent or Not")) {
-                    chooseOfferVBox.getChildren().clear();
-                    chooseOfferVBox.getChildren().addAll(chooseOfferBox, new Button("test"));
-                }
-                else if (offer.equals("Give Money")) {
-                    chooseOfferVBox.getChildren().clear();
-                    chooseOfferVBox.getChildren().addAll(chooseOfferBox);
-                }
-                else if (offer.equals("Take Percentage")) {
-                    chooseOfferVBox.getChildren().clear();
-                    chooseOfferVBox.getChildren().addAll(chooseOfferBox);
-                }
+        assignExtraFeatures(chooseOfferBox, chooseOfferVBox);
+        assignExtraFeatures(chooseOppositeOfferBox, chooseOppositeOfferVBox);
+    }
+
+    private void assignExtraFeatures(ComboBox<String> combobox, VBox vbox) {
+        combobox.setOnAction(actionEvent -> {
+            String offer = combobox.getValue();
+            if (offer.equals("Sell Region") || offer.equals("Pay Rent or Not")) {
+                vbox.getChildren().clear();
+                vbox.getChildren().addAll(combobox, new ComboBox<String>());
+            } else if (offer.equals("Give Money")) {
+                vbox.getChildren().clear();
+                vbox.getChildren().addAll(combobox, new TextField("money"));
+            } else if (offer.equals("Take Percentage")) {
+                vbox.getChildren().clear();
+                vbox.getChildren().addAll(combobox, new ComboBox<String>(), new TextField("percentage"));
             }
         });
     }
