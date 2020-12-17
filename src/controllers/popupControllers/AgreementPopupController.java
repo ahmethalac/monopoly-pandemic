@@ -80,11 +80,15 @@ public class AgreementPopupController extends PopupController implements Initial
                 vbox.getChildren().clear();
                 vbox.getChildren().addAll(combobox, new ComboBox<String>());
             } else if (offer.equals("Give Money")) {
+                TextField tf = new TextField();
+                tf.setPromptText("Enter money...");
                 vbox.getChildren().clear();
-                vbox.getChildren().addAll(combobox, new TextField("money"));
+                vbox.getChildren().addAll(combobox, tf);
             } else if (offer.equals("Take Percentage")) {
+                TextField tf = new TextField();
+                tf.setPromptText("Enter percentage...");
                 vbox.getChildren().clear();
-                vbox.getChildren().addAll(combobox, new ComboBox<String>(), new TextField("percentage"));
+                vbox.getChildren().addAll(combobox, new ComboBox<String>(), tf);
             }
         });
     }
