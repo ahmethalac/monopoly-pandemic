@@ -7,6 +7,7 @@ import storage.filemanager.SettingImporter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class GameManager {
 
@@ -15,8 +16,8 @@ public class GameManager {
     private Game game;
     private int turnCounter = 0;
     private int tourCounter = 0;
-    private final int PIRATE_FEE = 10000;
-    private final int STARTING_REGION_BONUS = 20000;
+
+
 
     public static GameManager getInstance(){
         if (instance == null){
@@ -51,6 +52,14 @@ public class GameManager {
 
     // moves current player count number of steps
     public void moveForward(int count) {
+        // add money if player pass over starting point
+        if(this.game.getCurrentPlayer().getLocation() + count > 39){
+            if(this.game.getRegion(0) instanceof StartingRegion){
+                StartingRegion sr =  (StartingRegion) this.game.getRegion(0);
+                sr.performRegionAction();
+            }
+        }
+        // TODO if player pass through test region, performTestRegionAction
         this.game.getCurrentPlayer().setLocation(this.game.getCurrentPlayer().getLocation() + count);
     }
 
@@ -63,6 +72,13 @@ public class GameManager {
     public void newAgreement(Offer firstOffer, Offer secondOffer,
                              Player firstPlayer, Player secondPlayer, String agreementName){
         this.game.addAgreement(new Agreement(firstOffer, secondOffer, firstPlayer, secondPlayer, agreementName));
+
+        // wait for 1 sec
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
     }
 
     // delete an existing agreement
@@ -82,7 +98,8 @@ public class GameManager {
         City currentCity = (City) (this.game.getRegion(currentPlayer.getLocation()));
         if(currentPlayer.getMoney() >= currentCity.getPrice()){
             currentPlayer.removeMoney(currentCity.getPrice());
-            currentPlayer.addCity((City) this.game.getRegion(currentPlayer.getLocation()));
+            currentPlayer.addCity(currentCity);
+            currentCity.setOwner(currentPlayer);
             possible = true;
         }
         return possible;
@@ -111,7 +128,8 @@ public class GameManager {
         city.mortgage(bool);
     }
 
-    private void checkAgreements(){
+    // returns true if operation performed for currentCity
+    private boolean checkAgreements(){
         ArrayList<Agreement> agreements = this.game.getAgreements();
         Player currentPlayer = this.game.getCurrentPlayer();
         City currentCity = (City) (this.game.getRegion(currentPlayer.getLocation()));
@@ -130,7 +148,9 @@ public class GameManager {
                     currentCity.getOwner().addMoney(currentCity.getRent());
                 }
             }
+            return true;
         }
+        return false;
     }
 
     private boolean checkPandemic(){
@@ -142,25 +162,33 @@ public class GameManager {
         return true;
     }
 
-    public void performRegionAction(){
+    public boolean performRegionAction(){
+        boolean performed = false;
         Player currentPlayer = this.game.getCurrentPlayer();
         Region currentRegion = (this.game.getRegion(currentPlayer.getLocation()));
         if(currentRegion instanceof City) {
-            checkAgreements();
+            performed = checkAgreements();
+            if(!performed){
+                // get buy city popup
+            }
         }
         else if(currentRegion instanceof ChanceRegion) {
-            pickChanceCard();
+            ((ChanceRegion) currentRegion).performRegionAction();
+            performed = true;
         }
         else if(currentRegion instanceof PirateRegion) {
-            pirateAction(currentPlayer);
+            ((PirateRegion) currentRegion).performRegionAction();
+            performed = true;
         }
-
-        // add money if player pass over starting point
-        if(currentPlayer.getLocation() <= currentRegion.getId()){
-            startingRegionAction(currentPlayer);
+        else if(currentRegion instanceof StartingRegion) {
+            performed = true;
         }
-        currentPlayer.setLocation(currentRegion.getId());
+        else if(currentRegion instanceof QuarantineRegion) {
+            ((QuarantineRegion) currentRegion).performRegionAction();
+            performed = true;
+        }
         checkPandemic();
+        return performed;
     }
 
     // dice[2] contains total dice numbers
@@ -174,6 +202,7 @@ public class GameManager {
 
     // operations to perform when a turn passes
     public void endTurn(){
+        this.game.nextPlayer();
         if(tourCounter == 0) {
             // TODO remove infected cities infection
             infectRandomCity();
@@ -190,14 +219,6 @@ public class GameManager {
             new PlayerObserver(player, controller);
         }
         this.game.getCurrentPlayer().notifyAllObservers();
-    }
-
-    private void pirateAction(Player currentPlayer){
-        currentPlayer.removeMoney(PIRATE_FEE);
-    }
-
-    private void startingRegionAction(Player currentPlayer){
-        currentPlayer.addMoney(STARTING_REGION_BONUS);
     }
 
     public Player getCurrentPlayer(){

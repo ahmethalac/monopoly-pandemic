@@ -52,9 +52,9 @@ public class Player extends Observable {
         this.notifyAllObservers();
     }
 
-    public void infect()
+    public void infect(boolean bool)
     {
-        isInfected = true;
+        isInfected = bool;
     }
 
     public boolean removeCity(City city){

@@ -20,6 +20,7 @@ import javafx.stage.StageStyle;
 import models.City;
 import models.Game;
 import models.Player;
+import utils.Sleeper;
 
 import java.io.IOException;
 import java.net.URL;
@@ -134,14 +135,21 @@ public class GameSceneController implements Initializable {
     public void handleRollDiceButton() throws IOException{
         int[] dice = GameManager.getInstance().rollDice();
         GameManager.getInstance().moveForward(dice[2]);
-        // open buy city popup
+        Sleeper.sleep(2);
+        boolean performed = GameManager.getInstance().performRegionAction();
+        if(!performed) {
+            handleBuyCityPopup();
+        }
     }
 
     public void handleBuyCityPopup() throws IOException{
-        GameManager.getInstance().moveForward(1);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/BuyCityPopup.fxml"));
         Parent parent = fxmlLoader.load();
         BuyCityPopupController buyCityPopupController = fxmlLoader.getController();
         handlePopup(parent);
+    }
+
+    public void handleEndTurnButton() throws IOException{
+        GameManager.getInstance().endTurn();
     }
 }

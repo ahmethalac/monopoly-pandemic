@@ -40,7 +40,7 @@ public class SettingImporter {
             return new ArrayList<>();
         }
         ArrayList<Region> regions = new ArrayList<>();
-        int id = 1;
+        int id = 0;
         while ( scanner.hasNext()){
             String[] stringRegions = scanner.nextLine().split(",");
             Region newRegion;

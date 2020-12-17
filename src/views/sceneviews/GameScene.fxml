@@ -29,7 +29,6 @@
             </bottom>
             <left>
                 <Button onAction="#rotateTable" text="Rotate"/>
-                <Button onAction="#handleBuyCityPopup"/>
             </left>
             <right>
                 <VBox style="-fx-spacing: 30; -fx-padding: 30">
@@ -111,6 +110,12 @@
                           <cursor>
                              <Cursor fx:constant="HAND"/>
                           </cursor>
+                        </Button>
+                        <Button text="END TURN" onAction="#handleEndTurnButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
+                                style="-fx-background-color: white;">
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
                         </Button>
                     </children>
                 </VBox>

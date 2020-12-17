@@ -17,9 +17,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import models.Player;
+import utils.Sleeper;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 public class BuyCityPopupController extends PopupController implements Initializable {
     private City city;
@@ -70,13 +72,19 @@ public class BuyCityPopupController extends PopupController implements Initializ
         rentView.setFocusTraversable(false);
     }
 
-    public void buyCityButton(){
+    public void buyCityButton(ActionEvent event){
+        // TODO write to Game Console
         if(GameManager.getInstance().buyCurrentLocation()){
             buyLabel.setText("City is bought");
         }
         else{
             buyLabel.setText("Your money is not enough to buy this city");
         }
+
+        // wait for 1 sec
+        Sleeper.sleep(1);
+
+        closeButtonClicked(event);
     }
 
     @FXML
