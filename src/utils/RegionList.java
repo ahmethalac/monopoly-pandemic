@@ -13,12 +13,15 @@ import models.Region;
 import storage.filemanager.MeshImporter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 
 public class RegionList extends ArrayList<Shape3D> {
 
     private final EventHandler<MouseEvent> eventHandler;
     private final Region region;
     private Group sceneItems;
+    private boolean hotelBuilt;
 
     public RegionList(MeshView regionBase, Group sceneItems, Region region, EventHandler<MouseEvent> eventHandler) {
         super();
@@ -26,6 +29,7 @@ public class RegionList extends ArrayList<Shape3D> {
         this.region = region;
         this.sceneItems = sceneItems;
         this.add(regionBase);
+        hotelBuilt = false;
     }
 
     @Override
@@ -39,6 +43,16 @@ public class RegionList extends ArrayList<Shape3D> {
     }
 
     @Override
+    public boolean addAll(Collection<? extends Shape3D> c) {
+        for (Shape3D shape : c){
+            if (!this.add(shape)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
     public boolean remove(Object shape3D) {
         if ( super.remove(shape3D)){
             ((Shape3D)shape3D).removeEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
@@ -49,7 +63,7 @@ public class RegionList extends ArrayList<Shape3D> {
     }
 
     public boolean setBuilding(int number){
-        int difference = number - (this.size() - 1); //-1 for base region item
+        int difference = number - (hotelBuilt ? 5 : (this.size() - 1)); //-1 for base region item
         if ( difference > 0 ){
             return addBuilding(difference);
         } else if ( difference < 0 ){
@@ -59,7 +73,7 @@ public class RegionList extends ArrayList<Shape3D> {
     }
 
     private boolean addBuilding(int number){
-        if ( this.size() + number > 6){
+        if ( hotelBuilt ){
             return false;
         }
         for ( int i = 0; i < number; i++){
@@ -78,7 +92,16 @@ public class RegionList extends ArrayList<Shape3D> {
             material.setDiffuseMap(Texture.getTexture(color));
             house.setMaterial(material);
             this.add(house);
-        }else{
+        } else if ( this.size() == 5){
+            removeBuilding(4);
+            MeshView[] hotel = MeshImporter.getHotel();
+            for ( MeshView part : hotel){
+                part.setTranslateX(this.get(0).getTranslateX());
+                part.setTranslateY(this.get(0).getTranslateY());
+            }
+            this.addAll(Arrays.asList(hotel));
+            hotelBuilt = true;
+        } else{
             for ( int j = 1; j < this.size(); j++){
                 this.get(j).setTranslateZ(this.get(j).getTranslateZ() - 12);
             }
@@ -96,6 +119,15 @@ public class RegionList extends ArrayList<Shape3D> {
     private boolean removeBuilding(int number){
         if ( this.size() - number < 1){
             return false;
+        }
+        if ( hotelBuilt ){
+            for ( int i = 0; i < 3; i++){
+                this.remove(this.get(1));
+            }
+            hotelBuilt = false;
+            addBuilding(4);
+            removeBuilding(number - 1);
+            return true;
         }
         for ( int i = 0; i < number; i++){
             this.remove(this.get(this.size() - 1));

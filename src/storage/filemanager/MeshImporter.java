@@ -17,7 +17,7 @@ public class MeshImporter {
         return getNodeArray("Table.obj");
     }
 
-    public static MeshView[] getPlayer(String color){
+    public static MeshView[] getPlayer(String color) {
         return getNodeArray("astronauts/" + color + "Astronaut.obj");
     }
 
@@ -39,5 +39,9 @@ public class MeshImporter {
 
     public static MeshView[] getPawn(String color){
         return getNodeArray("pawns/" + color + "Pawn.obj");
+    }
+
+    public static MeshView[] getHotel() {
+        return getNodeArray("Hotel.obj");
     }
 }
