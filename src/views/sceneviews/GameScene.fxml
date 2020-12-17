@@ -29,6 +29,7 @@
             </bottom>
             <left>
                 <Button onAction="#rotateTable" text="Rotate"/>
+                <Button onAction="#handleBuyCityPopup"/>
             </left>
             <right>
                 <VBox style="-fx-spacing: 30; -fx-padding: 30">

@@ -18,6 +18,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.City;
+import models.Game;
 import models.Player;
 
 import java.io.IOException;
@@ -137,8 +138,10 @@ public class GameSceneController implements Initializable {
     }
 
     public void handleBuyCityPopup() throws IOException{
-        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/SellBuildingPopup.fxml"));
-        //Parent parent = fxmlLoader.load();
-        //handlePopup(parent);
+        GameManager.getInstance().moveForward(1);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/BuyCityPopup.fxml"));
+        Parent parent = fxmlLoader.load();
+        BuyCityPopupController buyCityPopupController = fxmlLoader.getController();
+        handlePopup(parent);
     }
 }
