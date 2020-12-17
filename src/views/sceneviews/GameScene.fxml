@@ -87,7 +87,7 @@
                                 <Font size="18.0"/>
                             </font>
                         </Label>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
+                        <Button onAction="#handleAgreementPopup" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
                                 style="-fx-background-color: transparent;">
                             <graphic>
                                 <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
@@ -112,6 +112,12 @@
                           </cursor>
                         </Button>
                         <Button text="END TURN" onAction="#handleEndTurnButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
+                                style="-fx-background-color: white;">
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                        </Button>
+                        <Button text="offertest" onAction="#handleAgreementOfferPopup" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
                                 style="-fx-background-color: white;">
                             <cursor>
                                 <Cursor fx:constant="HAND"/>
