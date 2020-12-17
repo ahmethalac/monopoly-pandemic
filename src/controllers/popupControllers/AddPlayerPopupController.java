@@ -88,7 +88,7 @@ public class AddPlayerPopupController extends PopupController {
 
         for (int i = 0; i < playerList.size() + 1; i++) {
             for (int j = 0; j < playerList.size(); j++) {
-                if (i == playerList.get(j).getPlayer().getId()) break;
+                if (ColorUtil.colors[i].equals(playerList.get(j).getPlayer().getColor())) break;
                 else if (j == playerList.size() - 1 ) return ColorUtil.colors[i];
             }
         }
