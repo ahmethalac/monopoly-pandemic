@@ -150,6 +150,15 @@ public class GameSceneController implements Initializable {
         }
     }
 
+    public void handleMortgageCityPopup() throws IOException{
+        if(!GameManager.getInstance().isDiceRolled()) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/BuyBuildingPopup.fxml"));
+            Parent parent = fxmlLoader.load();
+            MortgageCityPopupController mcpc = fxmlLoader.getController();
+            handlePopup(parent);
+        }
+    }
+
     public void handleRollDiceButton() throws IOException{
         int[] dice = GameManager.getInstance().rollDice();
         if(dice == null) {
