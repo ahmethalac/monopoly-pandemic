@@ -21,16 +21,11 @@
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cityComboBox" prefHeight="26.0" prefWidth="152.0">
+            <ComboBox fx:id="cityComboBox" onAction="#comboBoxUpdated" prefHeight="26.0" prefWidth="152.0">
                <VBox.margin>
                   <Insets bottom="20.0" left="78.0" right="20.0" top="20.0" />
                </VBox.margin>
             </ComboBox>
-            <Button mnemonicParsing="false" onAction="#showBuildingNumber" prefHeight="25.0" prefWidth="148.0" text="Show Building Number">
-               <VBox.margin>
-                  <Insets bottom="20.0" left="80.0" />
-               </VBox.margin>
-            </Button>
             <Label fx:id="buildingNumberLabel" alignment="TOP_LEFT" prefHeight="39.0" prefWidth="282.0" text="Label">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" />
@@ -39,9 +34,9 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label prefHeight="20.0" prefWidth="134.0" text="Write Number to Sell">
+            <Label prefHeight="20.0" prefWidth="208.0" text="Enter number of buildings to  sell">
                <VBox.margin>
-                  <Insets left="85.0" right="25.0" />
+                  <Insets left="50.0" right="25.0" />
                </VBox.margin>
                <font>
                   <Font size="14.0" />
@@ -67,7 +62,7 @@
             </Label>
             <Button mnemonicParsing="false" onAction="#closeButtonClicked" text="Close">
                <VBox.margin>
-                  <Insets bottom="10.0" left="130.0" right="20.0" />
+                  <Insets bottom="10.0" left="129.0" right="20.0" />
                </VBox.margin>
             </Button>
          </children>

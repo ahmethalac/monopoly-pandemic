@@ -21,7 +21,6 @@ public class SellBuildingPopupController extends PopupController implements Init
 
     @FXML private ComboBox cityComboBox;
     @FXML private TextField userInput;
-    @FXML private Button sellButton;
     @FXML private Label buildingNumberLabel;
     @FXML private Label resultLabel;
 
@@ -42,8 +41,7 @@ public class SellBuildingPopupController extends PopupController implements Init
         userInput.setText("");
     }
 
-    // This method prints the information, on popup, about number of buildings on the selected city
-    public void showBuildingNumber()
+    public void comboBoxUpdated()
     {
         String cityName = cityComboBox.getValue().toString();
         buildingNumberLabel.setText("There are " + findCity(cityName).getNumberOfBuildings() + " buildings on " + findCity(cityName).getName());
@@ -52,11 +50,7 @@ public class SellBuildingPopupController extends PopupController implements Init
     public void sellBuildings(){
         boolean isNumber = true;
         //First check whether user input is an integer
-        if(userInput.getText().equals(""))
-        {
-            // no input is written, no operation
-        }
-        else
+        if(!(userInput.getText().equals("")))
         {
             for(int i = 0; i < userInput.getText().length(); i++)
             {
@@ -66,28 +60,23 @@ public class SellBuildingPopupController extends PopupController implements Init
                 }
             }
         }
-        // now we know that input is integer
+        else
+        {
+            isNumber = false;
+        }
+
         if(isNumber)
         {
-            // convert string to integer
             int numberOfBuildingsWantedToSell = Integer.parseInt(userInput.getText());
 
             String cityName = cityComboBox.getValue().toString();
-            if(numberOfBuildingsWantedToSell > findCity(cityName).getNumberOfBuildings()) {
-                // incorrect entry more buildings are tried to be sold
-                resultLabel.setText("Your value is higher than total number of houses");
-            }
-            else {
-                findCity(cityName).removeBuilding(numberOfBuildingsWantedToSell);
-                player.addMoney(findCity(cityName).getPrice() / 4 * numberOfBuildingsWantedToSell);
-                resultLabel.setText(numberOfBuildingsWantedToSell + " houses are removed from " + cityName);
-                sellButton.setDisable(true);
+            if(GameManager.getInstance().sellBuilding(findCity(cityName), numberOfBuildingsWantedToSell))
+            {
+                resultLabel.setText(numberOfBuildingsWantedToSell + " buildings are sold from " + cityName);
             }
         }
     }
-    /* Finds the city from player's city array list
-     * @param name of the city that is searched
-     */
+
     public City findCity(String cityName){
         int listLength = player.getCities().size();
         int index = 0;

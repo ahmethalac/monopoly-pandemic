@@ -13,12 +13,12 @@
    <children>
       <VBox prefHeight="400.0" prefWidth="300.0">
          <children>
-            <Label text="Select City and Building">
+            <Label prefHeight="20.0" prefWidth="218.0" text="Select City and Building Number">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
                <VBox.margin>
-                  <Insets left="75.0" right="20.0" top="20.0" />
+                  <Insets left="42.0" right="20.0" top="20.0" />
                </VBox.margin>
             </Label>
             <ComboBox fx:id="comboBox" prefHeight="26.0" prefWidth="198.0">
