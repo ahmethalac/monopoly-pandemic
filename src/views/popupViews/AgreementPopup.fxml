@@ -24,21 +24,29 @@
                   <Insets top="25.0" />
                </VBox.margin>
             </Label>
-            <ComboBox fx:id="choosePlayerBox" prefWidth="200.0" promptText="Choose Player">
+            <ComboBox fx:id="choosePlayerBox" prefWidth="300.0" promptText="Choose Player">
                <VBox.margin>
                   <Insets top="25.0" />
                </VBox.margin>
             </ComboBox>
-            <ComboBox fx:id="chooseOfferBox" prefWidth="200.0" promptText="Choose Your Offer">
-               <VBox.margin>
-                  <Insets top="25.0" />
-               </VBox.margin>
-            </ComboBox>
-            <ComboBox fx:id="chooseOppositeOfferBox" prefWidth="200.0" promptText="Choose Opposite Offer">
-               <VBox.margin>
-                  <Insets top="25.0" />
-               </VBox.margin>
-            </ComboBox>
+            <VBox fx:id="chooseOfferVBox" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ComboBox fx:id="chooseOfferBox" prefWidth="300.0" promptText="Choose Your Offer">
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin>
+                  </ComboBox>
+               </children>
+            </VBox>
+            <VBox fx:id="chooseOppositeOfferVBox" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ComboBox fx:id="chooseOppositeOfferBox" prefWidth="300.0" promptText="Choose Opposite Offer">
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin>
+                  </ComboBox>
+               </children>
+            </VBox>
                 <Label fx:id="cityPriceLabel" alignment="CENTER" contentDisplay="CENTER" minWidth="100.0" text="City Price">
                     <font>
                         <Font size="24.0" />
