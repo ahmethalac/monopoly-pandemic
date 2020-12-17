@@ -87,4 +87,6 @@ public class City extends Region {
     public Buildings getBuildings() {
         return buildings;
     }
+
+    public double getMORGAGE_RATE(){return MORGAGE_RATE;}
 }
