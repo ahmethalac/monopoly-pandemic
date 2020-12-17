@@ -1,11 +1,10 @@
 package controllers.popupControllers;
 
+import controllers.modelcontrollers.GameManager;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -29,6 +28,7 @@ public class AgreementPopupController extends PopupController implements Initial
     public VBox chooseOfferVBox;
 
     private Agreement agreement;
+    private Player player;
 
     @FXML
     void closeButtonClicked(ActionEvent event) {
@@ -40,25 +40,22 @@ public class AgreementPopupController extends PopupController implements Initial
         String offerType = chooseOfferBox.getSelectionModel().getSelectedItem();
         System.out.println(offerType);
 
-        City city = new City(123, new double[]{1, 2, 3, 4, 5}, "asd",3);
+        City city = new City(123, new double[]{1, 2, 3, 4, 5}, "asd", 3);
         Offer offer;
 
         if (offerType.equals("Sell Region")) {
             offer = new SellRegion(city);
-        }
-        else if (offerType.equals("Give Money")) {
+        } else if (offerType.equals("Give Money")) {
             offer = new GiveMoney(123);
-        }
-        else if (offerType.equals("Pay Rent or Not")) {
+        } else if (offerType.equals("Pay Rent or Not")) {
             offer = new PayRentOrNot(city);
-        }
-        else if (offerType.equals("Take Percentage")) {
+        } else if (offerType.equals("Take Percentage")) {
             offer = new TakePercentage(city, 12);
         }
         closeStage(event);
     }
 
-    public void setAgreement(Agreement agreement){
+    public void setAgreement(Agreement agreement) {
         this.agreement = agreement;
     }
 
@@ -77,6 +74,9 @@ public class AgreementPopupController extends PopupController implements Initial
         combobox.setOnAction(actionEvent -> {
             String offer = combobox.getValue();
             if (offer.equals("Sell Region") || offer.equals("Pay Rent or Not")) {
+                player = GameManager.getInstance().getCurrentPlayer();
+                ComboBox<City> cb = new ComboBox<>();
+                cb.setItems(FXCollections.observableArrayList(player.getCities()));
                 vbox.getChildren().clear();
                 vbox.getChildren().addAll(combobox, new ComboBox<String>());
             } else if (offer.equals("Give Money")) {
