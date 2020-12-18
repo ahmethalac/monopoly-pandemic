@@ -87,4 +87,9 @@ public class City extends Region {
     public Buildings getBuildings() {
         return buildings;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

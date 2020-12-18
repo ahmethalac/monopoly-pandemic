@@ -13,7 +13,11 @@ import utils.ColorUtil;
 import utils.OfferUtil;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class AgreementPopupController extends PopupController implements Initializable {
     @FXML
@@ -74,11 +78,20 @@ public class AgreementPopupController extends PopupController implements Initial
         combobox.setOnAction(actionEvent -> {
             String offer = combobox.getValue();
             if (offer.equals("Sell Region") || offer.equals("Pay Rent or Not")) {
+
                 player = GameManager.getInstance().getCurrentPlayer();
-                ComboBox<City> cb = new ComboBox<>();
-                cb.setItems(FXCollections.observableArrayList(player.getCities()));
+
+                // convert from city to string list
+                List<String> cities = player.getCities().stream()
+                        .map(object -> Objects.toString(object, null))
+                        .collect(Collectors.toList());
+
+                ComboBox<String> cityBox = new ComboBox<>();
+                cityBox.setItems(FXCollections.observableArrayList(cities));
+
+
                 vbox.getChildren().clear();
-                vbox.getChildren().addAll(combobox, new ComboBox<String>());
+                vbox.getChildren().addAll(combobox, cityBox);
             } else if (offer.equals("Give Money")) {
                 TextField tf = new TextField();
                 tf.setPromptText("Enter money...");
