@@ -13,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -67,15 +69,21 @@ public class GameSceneController implements Initializable {
         cardsBar.setStyle("-fx-spacing: 10;");
         cardsBar.getChildren().clear();
         for(int i = 0; i < player.getCities().size(); i++){
-            Button button = new Button(player.getCities().get(i).getName());
             int finalI = i;
-            button.setStyle("-fx-border-color: black");
-            button.setOnAction(actionEvent -> handleCityPopup(player.getCities().get(finalI)));
+            Button button = new Button(player.getCities().get(i).getName());
+            if(player.getCities().get(finalI).isMortgaged()){
+                button.setStyle("-fx-text-fill: white; -fx-pref-height: 200; -fx-pref-width: 150 ;-fx-border-color: black; -fx-background-color: grey; -fx-border-width: 3 3 0 3");
+            }
+            else{
+                String color1 = player.getColor();
+                button.setStyle("-fx-background-color:" + color1 + ";" + "-fx-text-fill: white; -fx-pref-height: 200; -fx-pref-width: 150 ;-fx-border-color: black; -fx-border-width: 3 3 0 3");
 
+            }
+            button.setOnAction(actionEvent -> handleCityPopup(player.getCities().get(finalI)));
             cardsBar.setAlignment(Pos.CENTER);
             cardsBar.getChildren().add(button);
-        }
 
+        }
 
     }
 
