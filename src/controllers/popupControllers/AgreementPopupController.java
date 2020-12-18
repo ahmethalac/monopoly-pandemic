@@ -66,9 +66,18 @@ public class AgreementPopupController extends PopupController implements Initial
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("aggrement popup initialized");
-        choosePlayerBox.setItems(FXCollections.observableArrayList(ColorUtil.colors));
+
+        // convert from player to string list
+        List<String> players = GameManager.getInstance().getPlayers()
+                .stream().map(object -> Objects.toString(object, null))
+                .collect(Collectors.toList());
+
+
+        choosePlayerBox.setItems(FXCollections.observableArrayList(players));
         chooseOfferBox.setItems(FXCollections.observableArrayList(OfferUtil.offers));
         chooseOppositeOfferBox.setItems(FXCollections.observableArrayList(OfferUtil.offers));
+
+
 
         assignExtraFeatures(chooseOfferBox, chooseOfferVBox);
         assignExtraFeatures(chooseOppositeOfferBox, chooseOppositeOfferVBox);
@@ -86,10 +95,12 @@ public class AgreementPopupController extends PopupController implements Initial
                         .map(object -> Objects.toString(object, null))
                         .collect(Collectors.toList());
 
+                // create citybox
                 ComboBox<String> cityBox = new ComboBox<>();
+                cityBox.setPromptText("Select city");
                 cityBox.setItems(FXCollections.observableArrayList(cities));
 
-
+                // add ui elements
                 vbox.getChildren().clear();
                 vbox.getChildren().addAll(combobox, cityBox);
             } else if (offer.equals("Give Money")) {
