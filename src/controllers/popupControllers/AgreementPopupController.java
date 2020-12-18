@@ -109,10 +109,25 @@ public class AgreementPopupController extends PopupController implements Initial
                 vbox.getChildren().clear();
                 vbox.getChildren().addAll(combobox, tf);
             } else if (offer.equals("Take Percentage")) {
-                TextField tf = new TextField();
-                tf.setPromptText("Enter percentage...");
+
+                player = GameManager.getInstance().getCurrentPlayer();
+
+                // convert from city to string list
+                List<String> cities = player.getCities().stream()
+                        .map(object -> Objects.toString(object, null))
+                        .collect(Collectors.toList());
+
+                // create citybox
+                ComboBox<String> cityBox = new ComboBox<>();
+                cityBox.setPromptText("Select city");
+                cityBox.setItems(FXCollections.observableArrayList(cities));
+
+
+                TextField percentageField = new TextField();
+                percentageField.setPromptText("Enter percentage...");
+
                 vbox.getChildren().clear();
-                vbox.getChildren().addAll(combobox, new ComboBox<String>(), tf);
+                vbox.getChildren().addAll(combobox, cityBox, percentageField);
             }
         });
     }
