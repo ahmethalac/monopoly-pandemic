@@ -154,6 +154,11 @@ public class TableController extends SubScene {
                 group.add(getPirate(coordinates.get(i)[0], coordinates.get(i)[1]));
             } else if ( regions.get(i) instanceof StartingRegion){
                 region.setMaterial(new PhongMaterial(Color.WHITE));
+            } else if ( regions.get(i) instanceof TestRegion){
+                region.setMaterial(new PhongMaterial(Color.WHITE));
+                for ( MeshView part : getTest(coordinates.get(i)[0], coordinates.get(i)[1])){
+                    group.add(part);
+                }
             }
 
             //If game is loaded, colorize all regions
@@ -202,6 +207,17 @@ public class TableController extends SubScene {
         setAnimation(questionMark);
 
         return questionMark;
+    }
+
+    private MeshView[] getTest(int x, int y){
+        MeshView[] test = MeshImporter.getTest();
+        for ( MeshView part : test){
+            part.setTranslateX(x);
+            part.setTranslateY(y);
+
+            setAnimation(part);
+        }
+        return test;
     }
 
     private void setAnimation(Node node){

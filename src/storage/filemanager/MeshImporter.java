@@ -44,4 +44,8 @@ public class MeshImporter {
     public static MeshView[] getHotel() {
         return getNodeArray("Hotel.obj");
     }
+
+    public static MeshView[] getTest() {
+        return getNodeArray("Test.obj");
+    }
 }
