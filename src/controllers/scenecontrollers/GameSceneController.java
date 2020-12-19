@@ -72,11 +72,11 @@ public class GameSceneController implements Initializable {
             int finalI = i;
             Button button = new Button(player.getCities().get(i).getName());
             if(player.getCities().get(finalI).isMortgaged()){
-                button.setStyle("-fx-text-fill: white; -fx-pref-height: 200; -fx-pref-width: 150 ;-fx-border-color: black; -fx-background-color: grey; -fx-border-width: 3 3 0 3");
+                button.setStyle("-fx-text-fill: white; -fx-pref-height: 80; -fx-pref-width: 150 ;-fx-border-color: black; -fx-background-color: grey; -fx-border-width: 3 3 0 3");
             }
             else{
                 String color1 = player.getColor();
-                button.setStyle("-fx-background-color:" + color1 + ";" + "-fx-text-fill: white; -fx-pref-height: 200; -fx-pref-width: 150 ;-fx-border-color: black; -fx-border-width: 3 3 0 3");
+                button.setStyle("-fx-background-color:" + color1 + ";" + "-fx-text-fill: white; -fx-pref-height: 80; -fx-pref-width: 150 ;-fx-border-color: black; -fx-border-width: 3 3 0 3");
 
             }
             button.setOnAction(actionEvent -> handleCityPopup(player.getCities().get(finalI)));
@@ -96,7 +96,7 @@ public class GameSceneController implements Initializable {
         Scene scene = new Scene(parent, 300, 400);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.UTILITY);
         stage.setResizable(false);
         stage.setScene(scene);
         stage.showAndWait();

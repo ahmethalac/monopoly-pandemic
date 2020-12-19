@@ -22,7 +22,7 @@
                 </ToolBar>
             </top>
             <bottom>
-                <HBox fx:id="cardsBar" prefHeight="40.0" prefWidth="318.0" style="-fx-background-color: Transparent"
+                <HBox fx:id="cardsBar" prefHeight="80.0" prefWidth="318.0" style="-fx-background-color: Transparent"
                       xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 
                 </HBox>
@@ -126,11 +126,23 @@
                                 <Font size="18.0"/>
                             </font>
                         </Label>
-                        <Button text="ROLL A DICE" onAction="#handleRollDiceButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: white">
+                        <Button text="ROLL A DICE" onAction="#handleRollDiceButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent">
+                            <graphic>
+                                <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../assets/icons/rollDiceIcon.png"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
                             <cursor>
                              <Cursor fx:constant="HAND"/>
                           </cursor>
                         </Button>
+                        <Label text="Roll Dice">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
                         <Button text="offertest" onAction="#handleAgreementOfferPopup" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
                                 style="-fx-background-color: white;">
                             <cursor>
