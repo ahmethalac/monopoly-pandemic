@@ -1,10 +1,7 @@
 package controllers.scenecontrollers;
 
 import controllers.modelcontrollers.GameManager;
-import controllers.observers.BuildingObserver;
-import controllers.observers.ColorObserver;
-import controllers.observers.InfectedPlayerObserver;
-import controllers.observers.LocationObserver;
+import controllers.observers.*;
 import javafx.animation.*;
 import javafx.scene.*;
 import javafx.scene.paint.Color;
@@ -87,6 +84,8 @@ public class TableController extends SubScene {
         //DEBUG
         Player player = GameManager.getInstance().getPlayers().get(0);
         player.infect(!player.isInfected());
+        City city = (City) GameManager.getInstance().getRegions().get(1);
+        city.infect(!city.isInfected());
     }
 
     private void initializeAstronauts(ArrayList<Player> players) {
@@ -151,6 +150,7 @@ public class TableController extends SubScene {
                 region.setMaterial(new PhongMaterial(Color.GREY));
                 new ColorObserver(regions.get(i), group);
                 new BuildingObserver(regions.get(i), group);
+                new InfectedCityObserver((City) regions.get(i), coordinates.get(i), sceneItems);
             } else if ( regions.get(i) instanceof ChanceRegion){
                 region.setMaterial(new PhongMaterial(Color.BLACK));
                 group.add(getQuestionMark(coordinates.get(i)[0], coordinates.get(i)[1]));

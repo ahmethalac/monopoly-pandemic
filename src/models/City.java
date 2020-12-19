@@ -50,6 +50,7 @@ public class City extends Region {
 
     public void infect(boolean bool) {
         isInfected = bool;
+        this.notifyAllObservers();
     }
 
     public boolean isInfected() {
