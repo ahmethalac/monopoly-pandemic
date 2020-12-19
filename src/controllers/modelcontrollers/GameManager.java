@@ -198,6 +198,7 @@ public class GameManager {
     public void endTurn(){
         diceRolled = false;
         this.game.nextPlayer();
+        this.offerAgreement();
         if(tourCounter == 0) {
             // TODO remove infected cities infection
             infectRandomCity();
@@ -214,14 +215,6 @@ public class GameManager {
             new PlayerObserver(player, controller);
         }
         this.game.getCurrentPlayer().notifyAllObservers();
-    }
-
-    // will return if agreement need to be offered
-    private void offerAgreement() {
-        Agreement agreement = game.offerAgreement();
-        if(agreement != null){
-            GameSceneController.handleAgreementOfferPopup(agreement);
-        }
     }
 
     public Player getCurrentPlayer(){
@@ -296,5 +289,13 @@ public class GameManager {
             }
         }
         return false;
+    }
+
+    // will return if agreement need to be offered
+    private void offerAgreement() {
+        Agreement agreement = game.offerAgreement();
+        if(agreement != null){
+            GameSceneController.handleAgreementOfferPopup(agreement);
+        }
     }
 }
