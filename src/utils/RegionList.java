@@ -95,9 +95,12 @@ public class RegionList extends ArrayList<Shape3D> {
         } else if ( this.size() == 5){
             removeBuilding(4);
             MeshView[] hotel = MeshImporter.getHotel();
+            PhongMaterial material = new PhongMaterial();
+            material.setDiffuseMap(Texture.getTexture(color));
             for ( MeshView part : hotel){
                 part.setTranslateX(this.get(0).getTranslateX());
                 part.setTranslateY(this.get(0).getTranslateY());
+                part.setMaterial(material);
             }
             this.addAll(Arrays.asList(hotel));
             hotelBuilt = true;
