@@ -28,9 +28,6 @@
                 </HBox>
             </bottom>
             <left>
-                <Button onAction="#rotateTable" text="Rotate"/>
-            </left>
-            <right>
                 <VBox style="-fx-spacing: 30; -fx-padding: 30">
                     <children>
                         <Button mnemonicParsing="false" onAction="#handleBuyBuildingPopup" prefHeight="70.0"
@@ -69,6 +66,12 @@
                                 <Font size="18.0"/>
                             </font>
                         </Label>
+                    </children>
+                </VBox>
+            </left>
+            <right>
+                <VBox style="-fx-spacing: 30; -fx-padding: 30">
+                    <children>
                         <Button onAction="#handleMortgageCityPopup" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
                                 style="-fx-background-color: transparent;">
                             <graphic>
@@ -105,17 +108,28 @@
                                 <Font size="18.0"/>
                             </font>
                         </Label>
-                        <Button text="ROLL A DICE" onAction="#handleRollDiceButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
-                               style="-fx-background-color: white;">
-                          <cursor>
-                             <Cursor fx:constant="HAND"/>
-                          </cursor>
-                        </Button>
                         <Button text="END TURN" onAction="#handleEndTurnButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
-                                style="-fx-background-color: white;">
+                                style="-fx-background-color: transparent;">
+                            <graphic>
+                                <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../assets/icons/endTurnIcon.png"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
                             <cursor>
                                 <Cursor fx:constant="HAND"/>
                             </cursor>
+                        </Button>
+                        <Label text="End Turn">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Button text="ROLL A DICE" onAction="#handleRollDiceButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: white">
+                            <cursor>
+                             <Cursor fx:constant="HAND"/>
+                          </cursor>
                         </Button>
                         <Button text="offertest" onAction="#handleAgreementOfferPopup" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
                                 style="-fx-background-color: white;">
