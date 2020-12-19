@@ -2,6 +2,8 @@ package controllers.observers;
 
 import controllers.modelcontrollers.GameManager;
 import javafx.animation.TranslateTransition;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.MeshView;
 import javafx.util.Duration;
 import models.Player;
@@ -50,6 +52,8 @@ public class LocationObserver extends Observer {
                 verticalMove.setByZ(-50);
                 verticalMove.play();
             }
+
+            pawn[0].setMaterial(new PhongMaterial(Color.YELLOW));
             prevLocation = new int[]{location, emptySlot};
         }
     }
