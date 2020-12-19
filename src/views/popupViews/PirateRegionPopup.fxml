@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.popupControllers.PirateRegionPopupController">
+    <children>
+        <VBox fx:id="pirateBox" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0">
+            <Button mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: transparent;">
+                <graphic>
+                    <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="150.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../../assets/icons/pirateRegionIcon.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            <VBox.margin>
+               <Insets bottom="10.0" top="30.0" />
+            </VBox.margin>
+            </Button>
+        <Text layoutX="13.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You have been hijacked by pirates and lost 2000$" textAlignment="CENTER" wrappingWidth="274.13671875">
+            <font>
+               <Font size="20.0" />
+            </font>
+            <VBox.margin>
+               <Insets bottom="30.0" />
+            </VBox.margin></Text>
+            <Button layoutX="128.0" layoutY="231.0" mnemonicParsing="false" onAction="#closeButtonClicked" text="Close" />
+        </VBox>
+    </children>
+</AnchorPane>

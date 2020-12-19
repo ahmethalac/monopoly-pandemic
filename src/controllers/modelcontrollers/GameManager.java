@@ -171,6 +171,7 @@ public class GameManager {
         }
         else if(currentRegion instanceof PirateRegion) {
             ((PirateRegion) currentRegion).performRegionAction();
+            GameSceneController.handlePirateRegionPopup();
             performed = true;
         }
         else if(currentRegion instanceof StartingRegion) {

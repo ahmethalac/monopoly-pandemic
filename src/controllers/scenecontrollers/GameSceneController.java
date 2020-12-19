@@ -217,4 +217,15 @@ public class GameSceneController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    public static void handlePirateRegionPopup(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(GameSceneController.class.getResource("../../views/popupViews/PirateRegionPopup.fxml"));
+            Parent parent = fxmlLoader.load();
+            handlePopup(parent);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
