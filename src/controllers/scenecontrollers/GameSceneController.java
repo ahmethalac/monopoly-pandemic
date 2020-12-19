@@ -196,4 +196,16 @@ public class GameSceneController implements Initializable {
     public void handleSaveGameButton(){
         DataManager.getInstance().saveGame("testSave");
     }
+/*
+    public void handleChanceRegionPopup(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/ChanceRegionPopup.fxml"));
+            Parent parent = fxmlLoader.load();
+            ChanceRegionPopupController crpc = fxmlLoader.getController();
+            handlePopup(parent);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
 }

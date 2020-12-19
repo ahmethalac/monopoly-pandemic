@@ -1,16 +1,20 @@
 package controllers.popupControllers;
 
 import controllers.modelcontrollers.GameManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import models.Card;
 
-public class ChanceRegionPopupController {
-    private Card chanceCard;
+public class ChanceRegionPopupController extends PopupController{
 
     @FXML private Label label;
 
     public void setLabel(){
-        // card ın getCardString metodu çağrılacak
+        label.setText(GameManager.getInstance().getCurrentChanceCard().getCardString());
+    }
+
+    @FXML
+    void closeButtonClicked(ActionEvent event) {
+        closeStage(event);
     }
 }

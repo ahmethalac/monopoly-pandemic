@@ -134,7 +134,11 @@ public class TableController extends SubScene {
             RegionList group = new RegionList(region, sceneItems, regions.get(i), mouseEvent -> {
                 if ( regions.get(finalI) instanceof City){
                     gameSceneController.handleCityPopup((City) regions.get(finalI));
-                } else{
+                }/*
+                else if(regions.get(finalI) instanceof ChanceRegion){
+                    gameSceneController.handleChanceRegionPopup();
+                }*/
+                else{
                     //Debug Purposes
                     System.out.println(regions.get(finalI).getClass().getName());
                 }
