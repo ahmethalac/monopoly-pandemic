@@ -54,18 +54,20 @@ public class GameManager {
 
     // moves current player count number of steps
     public void moveForward(int count) {
-        int newLocation;
-        // add money if player pass over starting point
-        if(this.game.getCurrentPlayer().getLocation() + count > NUMBER_OF_REGIONS - 1){
-            StartingRegion sr =  (StartingRegion) this.game.getRegion(0);
-            sr.performRegionAction();
-            newLocation = count % NUMBER_OF_REGIONS;
+        if(!getCurrentPlayer().isInQuarantine()){
+            int newLocation;
+            // add money if player pass over starting point
+            if(this.game.getCurrentPlayer().getLocation() + count > NUMBER_OF_REGIONS - 1){
+                StartingRegion sr =  (StartingRegion) this.game.getRegion(0);
+                sr.performRegionAction();
+                newLocation = count % NUMBER_OF_REGIONS;
+            }
+            else{
+                newLocation = this.game.getCurrentPlayer().getLocation() + count;
+            }
+            // TODO if player pass through test region, performTestRegionAction
+            this.game.getCurrentPlayer().setLocation(newLocation);
         }
-        else{
-            newLocation = this.game.getCurrentPlayer().getLocation() + count;
-        }
-        // TODO if player pass through test region, performTestRegionAction
-        this.game.getCurrentPlayer().setLocation(newLocation);
     }
 
     // picks chance card from top and performs operation on currentPlayer
@@ -202,7 +204,7 @@ public class GameManager {
         }
         turnCounter++;
         turnCounter = turnCounter % this.game.getPlayerNumber();
-        if(turnCounter == 0){
+        if(turnCounter == 0) {
             tourCounter++;
         }
     }
@@ -212,6 +214,14 @@ public class GameManager {
             new PlayerObserver(player, controller);
         }
         this.game.getCurrentPlayer().notifyAllObservers();
+    }
+
+    // will return if agreement need to be offered
+    private void offerAgreement() {
+        Agreement agreement = game.offerAgreement();
+        if(agreement != null){
+            GameSceneController.handleAgreementOfferPopup(agreement);
+        }
     }
 
     public Player getCurrentPlayer(){

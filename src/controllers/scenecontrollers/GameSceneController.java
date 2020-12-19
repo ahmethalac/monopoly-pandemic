@@ -19,6 +19,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import models.Agreement;
 import models.City;
 import models.Game;
 import models.Player;
@@ -126,16 +127,6 @@ public class GameSceneController implements Initializable {
         }
     }
 
-    public void handleAgreementOfferPopup() throws IOException {
-        if(!GameManager.getInstance().isDiceRolled()) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/AgreementOfferPopup.fxml"));
-            Parent parent = fxmlLoader.load();
-
-            AgreementOfferPopupController agreementOfferPopupController = fxmlLoader.getController();
-            handlePopup(parent);
-        }
-    }
-
     public void handleBuyBuildingPopup() throws IOException{
         if(!GameManager.getInstance().isDiceRolled()) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/BuyBuildingPopup.fxml"));
@@ -169,8 +160,9 @@ public class GameSceneController implements Initializable {
             System.out.println("Your turn is end");
             return;
         }
+        //GameManager.getInstance().getCurrentPlayer().quarantine(true); // DEBUG
         GameManager.getInstance().moveForward(dice[2]);
-        //GameManager.getInstance().moveForward(9); // DEBUG
+        //GameManager.getInstance().moveForward(1); // DEBUG
         GameManager.getInstance().performRegionAction();
     }
 
@@ -208,6 +200,20 @@ public class GameSceneController implements Initializable {
             handlePopup(parent);
         }
         catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void handleAgreementOfferPopup(Agreement agreement){
+        try {
+            if (!GameManager.getInstance().isDiceRolled()) {
+                FXMLLoader fxmlLoader = new FXMLLoader(GameSceneController.class.getResource("../../views/popupViews/AgreementOfferPopup.fxml"));
+                Parent parent = fxmlLoader.load();
+                AgreementOfferPopupController agreementOfferPopupController = fxmlLoader.getController();
+                handlePopup(parent);
+            }
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }

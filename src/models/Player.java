@@ -16,6 +16,7 @@ public class Player extends Observable implements Serializable {
     private int location;
     private boolean isInfected;
     private int quarantineTourCounter = -1;
+    private int infectTourCounter = -1;
 
     public Player(String name, String color, String pawn, int id)
     {
@@ -45,7 +46,7 @@ public class Player extends Observable implements Serializable {
     }
 
     public boolean checkQuarantine(){
-        if(GameManager.getInstance().getTour() - quarantineTourCounter >= 3){
+        if(GameManager.getInstance().getTour() - quarantineTourCounter >= 2){
             isInQuarantine = false;
             quarantineTourCounter = -1;
             return true;
@@ -73,7 +74,21 @@ public class Player extends Observable implements Serializable {
 
     public void infect(boolean bool)
     {
+        if(bool){
+            if(!isInfected){
+                infectTourCounter = GameManager.getInstance().getTour();
+            }
+        }
         isInfected = bool;
+    }
+
+    public boolean checkInfection(){
+        if(GameManager.getInstance().getTour() - infectTourCounter >= 3){
+            isInfected = false;
+            infectTourCounter = -1;
+            return true;
+        }
+        return false;
     }
 
     public boolean removeCity(City city){

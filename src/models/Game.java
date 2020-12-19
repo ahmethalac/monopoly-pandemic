@@ -99,10 +99,11 @@ public class Game implements Serializable {
         players.get(currentPlayer).quarantine(true);
     }
 
-    public void checkQuarantine() {
+    public void checkVirus() {
         for( Player player : players ){
             if(player.isInQuarantine()){
                 player.checkQuarantine();
+                player.checkInfection();
             }
         }
     }
@@ -113,6 +114,15 @@ public class Game implements Serializable {
 
     public int getPlayerNumber(){
         return players.size();
+    }
+
+    public Agreement offerAgreement(){
+        for(Agreement agreement: agreements){
+            if(!agreement.isOffered()){
+                return agreement;
+            }
+        }
+        return null;
     }
 
 }
