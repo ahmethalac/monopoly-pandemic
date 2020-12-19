@@ -163,14 +163,14 @@ public class GameSceneController implements Initializable {
         }
     }
 
-    public void handleRollDiceButton() throws IOException{
+    public void handleRollDiceButton(){
         int[] dice = GameManager.getInstance().rollDice();
         if(dice == null) {
             System.out.println("Your turn is end");
             return;
         }
-        //GameManager.getInstance().moveForward(dice[2]);
-        GameManager.getInstance().moveForward(9); // DEBUG
+        GameManager.getInstance().moveForward(dice[2]);
+        //GameManager.getInstance().moveForward(9); // DEBUG
         GameManager.getInstance().performRegionAction();
     }
 
