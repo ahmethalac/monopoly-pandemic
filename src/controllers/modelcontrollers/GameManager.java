@@ -55,8 +55,9 @@ public class GameManager {
     // moves current player count number of steps
     public void moveForward(int count) {
         if(!getCurrentPlayer().isInQuarantine()){
-            if(this.game.getCurrentPlayer().getLocation() < 39 && this.game.getCurrentPlayer().getLocation() + count >= 39
+            if(this.game.getCurrentPlayer().getLocation() + count >= (NUMBER_OF_REGIONS - 1)
                     && this.game.getCurrentPlayer().isInfected()){
+                this.game.getCurrentPlayer().setLocation(NUMBER_OF_REGIONS);
                 TestRegion tr = (TestRegion) this.game.getRegion(39);
                 tr.performRegionAction();
             }

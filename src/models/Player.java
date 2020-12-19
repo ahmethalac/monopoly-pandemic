@@ -37,7 +37,7 @@ public class Player extends Observable implements Serializable {
     public void quarantine(boolean bool)
     {
         if(bool){
-            this.setLocation(21);
+            this.setLocation(14);
             if(!isInQuarantine){
                 quarantineTourCounter = GameManager.getInstance().getTour();
             }
