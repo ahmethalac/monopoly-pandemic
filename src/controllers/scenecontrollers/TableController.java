@@ -12,6 +12,7 @@ import javafx.util.Duration;
 import models.*;
 import storage.filemanager.MeshImporter;
 import storage.filemanager.SettingImporter;
+import utils.ColorUtil;
 import utils.RegionList;
 import utils.RotationUtil;
 
@@ -147,7 +148,12 @@ public class TableController extends SubScene {
             regionsList.add(group);
 
             if ( regions.get(i) instanceof City){
-                region.setMaterial(new PhongMaterial(Color.GREY));
+                if ( ((City) regions.get(i)).getOwner() != null){
+                    Color color = ColorUtil.getLightColor(((City) regions.get(i)).getOwner().getColor());
+                    region.setMaterial(new PhongMaterial(color));
+                }else {
+                    region.setMaterial(new PhongMaterial(Color.GREY));
+                }
                 new ColorObserver(regions.get(i), group);
                 new BuildingObserver(regions.get(i), group);
                 new InfectedCityObserver((City) regions.get(i), coordinates.get(i), sceneItems);
@@ -168,9 +174,6 @@ public class TableController extends SubScene {
                     group.add(part);
                 }
             }
-
-            //If game is loaded, colorize all regions
-            regions.get(i).notifyAllObservers();
         }
     }
 
