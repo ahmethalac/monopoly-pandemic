@@ -53,7 +53,6 @@ public class LocationObserver extends Observer {
                 verticalMove.play();
             }
 
-            pawn[0].setMaterial(new PhongMaterial(Color.YELLOW));
             prevLocation = new int[]{location, emptySlot};
         }
     }

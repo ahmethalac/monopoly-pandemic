@@ -80,6 +80,7 @@ public class Player extends Observable implements Serializable {
             }
         }
         isInfected = bool;
+        this.notifyAllObservers();
     }
 
     public boolean checkInfection(){

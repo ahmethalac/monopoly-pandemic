@@ -3,6 +3,7 @@ package controllers.scenecontrollers;
 import controllers.modelcontrollers.GameManager;
 import controllers.observers.BuildingObserver;
 import controllers.observers.ColorObserver;
+import controllers.observers.InfectedPlayerObserver;
 import controllers.observers.LocationObserver;
 import javafx.animation.*;
 import javafx.scene.*;
@@ -83,6 +84,9 @@ public class TableController extends SubScene {
                 transition.play();
             }
         }
+        //DEBUG
+        Player player = GameManager.getInstance().getPlayers().get(0);
+        player.infect(player.isInfected());
     }
 
     private void initializeAstronauts(ArrayList<Player> players) {
@@ -116,6 +120,7 @@ public class TableController extends SubScene {
             sceneItems.getChildren().addAll(pawn);
             pawns.add(pawn);
             new LocationObserver(player, pawn);
+            new InfectedPlayerObserver(player, pawn[0]);
             i += 8 / players.size();
         }
     }
