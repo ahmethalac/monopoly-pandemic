@@ -135,6 +135,7 @@ public class GameManager {
 
     public void mortgageCity(City city, boolean bool) {
         city.mortgage(bool);
+        game.getCurrentPlayer().notifyAllObservers();
     }
 
     public boolean performRegionAction(){
