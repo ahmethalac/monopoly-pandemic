@@ -41,6 +41,8 @@ public class GameSceneController implements Initializable {
     private Text money;
     @FXML
     private Text playerName;
+    @FXML
+    private Button rollDiceButton;
 
 
     @Override
@@ -84,6 +86,14 @@ public class GameSceneController implements Initializable {
             cardsBar.setAlignment(Pos.CENTER);
             cardsBar.getChildren().add(button);
 
+        }
+        if(GameManager.getInstance().getCurrentPlayer().isInQuarantine()){
+            rollDiceButton.setDisable(true);
+            rollDiceButton.setVisible(false);
+        }
+        else{
+            rollDiceButton.setDisable(false);
+            rollDiceButton.setVisible(true);
         }
 
     }
