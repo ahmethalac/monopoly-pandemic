@@ -108,7 +108,7 @@
                                 <Font size="18.0"/>
                             </font>
                         </Label>
-                        <Button text="END TURN" onAction="#handleEndTurnButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
+                        <Button onAction="#handleEndTurnButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
                                 style="-fx-background-color: transparent;">
                             <graphic>
                                 <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
@@ -126,7 +126,7 @@
                                 <Font size="18.0"/>
                             </font>
                         </Label>
-                        <Button text="ROLL A DICE" onAction="#handleRollDiceButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent">
+                        <Button onAction="#handleRollDiceButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent">
                             <graphic>
                                 <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
