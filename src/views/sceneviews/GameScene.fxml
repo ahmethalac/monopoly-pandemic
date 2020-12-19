@@ -43,7 +43,7 @@
                                 <Cursor fx:constant="HAND"/>
                             </cursor>
                         </Button>
-                        <Label text="Buy Building">
+                        <Label text="Buy Building" textFill="white">
                             <font>
                                 <Font size="18.0"/>
                             </font>
@@ -61,17 +61,11 @@
                                 <Cursor fx:constant="HAND"/>
                             </cursor>
                         </Button>
-                        <Label text="Sell Building">
+                        <Label text="Sell Building" textFill="white">
                             <font>
                                 <Font size="18.0"/>
                             </font>
                         </Label>
-                    </children>
-                </VBox>
-            </left>
-            <right>
-                <VBox style="-fx-spacing: 30; -fx-padding: 30">
-                    <children>
                         <Button onAction="#handleMortgageCityPopup" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
                                 style="-fx-background-color: transparent;">
                             <graphic>
@@ -85,7 +79,7 @@
                                 <Cursor fx:constant="HAND"/>
                             </cursor>
                         </Button>
-                        <Label text="Mortgage">
+                        <Label text="Mortgage" textFill="white">
                             <font>
                                 <Font size="18.0"/>
                             </font>
@@ -103,25 +97,7 @@
                                 <Cursor fx:constant="HAND"/>
                             </cursor>
                         </Button>
-                        <Label text="Agreement">
-                            <font>
-                                <Font size="18.0"/>
-                            </font>
-                        </Label>
-                        <Button onAction="#handleEndTurnButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
-                                style="-fx-background-color: transparent;">
-                            <graphic>
-                                <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../../assets/icons/endTurnIcon.png"/>
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                            <cursor>
-                                <Cursor fx:constant="HAND"/>
-                            </cursor>
-                        </Button>
-                        <Label text="End Turn">
+                        <Label text="Agreement" textFill="white">
                             <font>
                                 <Font size="18.0"/>
                             </font>
@@ -135,21 +111,57 @@
                                 </ImageView>
                             </graphic>
                             <cursor>
-                             <Cursor fx:constant="HAND"/>
-                          </cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
                         </Button>
-                        <Label text="Roll Dice">
+                        <Label text="Roll Dice" textFill="white">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Button onAction="#handleSaveGameButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
+                                style="-fx-background-color: transparent;">
+                            <graphic>
+                                <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../assets/icons/saveFileIcon.png"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                        </Button>
+                        <Label text="Save Game" textFill="white">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+            </left>
+            <right>
+                <VBox style="-fx-spacing: 30; -fx-padding: 30">
+                    <children>
+                        <Button onAction="#handleEndTurnButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
+                                style="-fx-background-color: transparent;">
+                            <graphic>
+                                <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../assets/icons/endTurnIcon.png"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                        </Button>
+                        <Label text="End Turn" textFill="white">
                             <font>
                                 <Font size="18.0"/>
                             </font>
                         </Label>
                         <Button text="offertest" onAction="#handleAgreementOfferPopup" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
-                                style="-fx-background-color: white;">
-                            <cursor>
-                                <Cursor fx:constant="HAND"/>
-                            </cursor>
-                        </Button>
-                        <Button text="SAVE GAME" onAction="#handleSaveGameButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
                                 style="-fx-background-color: white;">
                             <cursor>
                                 <Cursor fx:constant="HAND"/>
