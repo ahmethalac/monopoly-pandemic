@@ -7,9 +7,6 @@ public class TestRegion extends Region {
         super(id);
     }
     public void performRegionAction() {
-        if(GameManager.getInstance().getCurrentPlayer().isInfected()){
-            // get him/her in quarantine
-            GameManager.getInstance().getCurrentPlayer().quarantine(true);
-        }
+        GameManager.getInstance().getCurrentPlayer().quarantine(true);
     }
 }

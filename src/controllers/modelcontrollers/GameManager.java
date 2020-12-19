@@ -55,18 +55,23 @@ public class GameManager {
     // moves current player count number of steps
     public void moveForward(int count) {
         if(!getCurrentPlayer().isInQuarantine()){
-            int newLocation;
-            // add money if player pass over starting point
-            if(this.game.getCurrentPlayer().getLocation() + count > NUMBER_OF_REGIONS - 1){
-                StartingRegion sr =  (StartingRegion) this.game.getRegion(0);
-                sr.performRegionAction();
-                newLocation = count % NUMBER_OF_REGIONS;
+            if(this.game.getCurrentPlayer().getLocation() < 39 && this.game.getCurrentPlayer().getLocation() + count >= 39
+                    && this.game.getCurrentPlayer().isInfected()){
+                TestRegion tr = (TestRegion) this.game.getRegion(39);
+                tr.performRegionAction();
             }
-            else{
-                newLocation = this.game.getCurrentPlayer().getLocation() + count;
+            else {
+                int newLocation;
+                // add money if player pass over starting point
+                if (this.game.getCurrentPlayer().getLocation() + count > NUMBER_OF_REGIONS - 1) {
+                    StartingRegion sr = (StartingRegion) this.game.getRegion(0);
+                    sr.performRegionAction();
+                    newLocation = count % NUMBER_OF_REGIONS;
+                } else {
+                    newLocation = this.game.getCurrentPlayer().getLocation() + count;
+                }
+                this.game.getCurrentPlayer().setLocation(newLocation);
             }
-            // TODO if player pass through test region, performTestRegionAction
-            this.game.getCurrentPlayer().setLocation(newLocation);
         }
     }
 
