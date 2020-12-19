@@ -4,7 +4,11 @@ import models.Card;
 import models.Game;
 
 public class BirthdayPresent implements Card {
-    // take $1000 from each player fro your birthday
+    @Override
+    public String getCardString() {
+        return "Take $1000 from each player for your birthday";
+    }
+
     @Override
     public void executeAction(Game game) {
         int numberOfPlayers = game.getPlayerNumber();

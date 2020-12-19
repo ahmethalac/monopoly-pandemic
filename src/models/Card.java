@@ -6,7 +6,7 @@ public interface Card extends Serializable {
 
     //public int getId();
 
-    //public String getCardName();
+    public String getCardString();
 
     //public Image getCardImg();
 
