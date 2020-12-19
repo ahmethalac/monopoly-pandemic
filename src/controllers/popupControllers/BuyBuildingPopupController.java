@@ -23,7 +23,6 @@ public class BuyBuildingPopupController extends PopupController implements Initi
     @FXML private ComboBox comboBox;
     @FXML private Label comboBoxLabel;
     @FXML private Label resultLabel;
-    @FXML private Button buyButton;
     @FXML private TextField textField;
 
     public void setPlayer(){
@@ -86,9 +85,8 @@ public class BuyBuildingPopupController extends PopupController implements Initi
                 if (numberOfBuildingsWantedToBuy + city.getNumberOfBuildings() <= 5 &&
                         GameManager.getInstance().buyBuilding(city, numberOfBuildingsWantedToBuy, player)) {
                     resultLabel.setText(numberOfBuildingsWantedToBuy + " buildings are bought to " + city.getName());
-                    buyButton.setDisable(true);
                 } else {
-                    resultLabel.setText("Invalid number of cities or not enough money");
+                    resultLabel.setText("This operation cannot be done");
                 }
             }
         }

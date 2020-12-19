@@ -47,7 +47,7 @@
                   <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                </VBox.margin>
             </TextField>
-            <Button fx:id="sellButton" mnemonicParsing="false" onAction="#sellBuildings" text="Sell">
+            <Button mnemonicParsing="false" onAction="#sellBuildings" text="Sell">
                <VBox.margin>
                   <Insets bottom="10.0" left="135.0" right="65.0" />
                </VBox.margin>

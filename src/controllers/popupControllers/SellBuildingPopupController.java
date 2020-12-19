@@ -22,7 +22,6 @@ public class SellBuildingPopupController extends PopupController implements Init
     @FXML private TextField textField;
     @FXML private Label buildingNumberLabel;
     @FXML private Label resultLabel;
-    @FXML private Button sellButton;
 
     public void setPlayer(){
         player = GameManager.getInstance().getCurrentPlayer();
@@ -67,7 +66,6 @@ public class SellBuildingPopupController extends PopupController implements Init
 
                 if (GameManager.getInstance().sellBuilding(city, numberOfBuildingsWantedToSell, player)) {
                     resultLabel.setText(numberOfBuildingsWantedToSell + " buildings are sold from " + city.getName());
-                    sellButton.setDisable(true);
                 } else {
                     resultLabel.setText("This operation cannot be done");
                 }
