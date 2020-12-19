@@ -61,8 +61,11 @@ public class SettingImporter {
             else if(stringRegions[0].equals("2")){
                 newRegion = new PirateRegion(id);
             }
-            else{
+            else if(stringRegions[0].equals("3")){
                 newRegion = new StartingRegion(id);
+            }
+            else{
+                newRegion = new QuarantineRegion(id);
             }
             regions.add(newRegion);
             id++;
