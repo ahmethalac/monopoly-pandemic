@@ -16,6 +16,7 @@ public class GameManager {
     private int tourCounter = 0;
     private static int NUMBER_OF_REGIONS = 40;
     private boolean diceRolled = false;
+    private Card currentChanceCard = null;
 
 
     public static GameManager getInstance(){
@@ -67,7 +68,13 @@ public class GameManager {
 
     // picks chance card from top and performs operation on currentPlayer
     public void pickChanceCard(){
-        this.game.getCurrentChanceCard().executeAction(this.game);
+        currentChanceCard = this.game.getCurrentChanceCard();
+        currentChanceCard.executeAction(this.game);
+    }
+
+    // picks chance card from top and performs operation on currentPlayer
+    public Card getCurrentChanceCard(){
+        return currentChanceCard;
     }
 
     // set a new agreement

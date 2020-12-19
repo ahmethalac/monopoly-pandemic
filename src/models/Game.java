@@ -74,7 +74,6 @@ public class Game implements Serializable {
         Card currentChanceCard = chanceCards.get(0);
         chanceCards.remove(0);
         chanceCards.add(currentChanceCard);
-        // TODO OBSERVE
         return currentChanceCard;
     }
 
