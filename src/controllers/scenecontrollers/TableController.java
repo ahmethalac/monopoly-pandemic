@@ -155,7 +155,7 @@ public class TableController extends SubScene {
             } else if ( regions.get(i) instanceof StartingRegion){
                 region.setMaterial(new PhongMaterial(Color.WHITE));
             } else if ( regions.get(i) instanceof TestRegion){
-                region.setMaterial(new PhongMaterial(Color.WHITE));
+                region.setMaterial(new PhongMaterial(Color.rgb(69,172,139)));
                 for ( MeshView part : getTest(coordinates.get(i)[0], coordinates.get(i)[1])){
                     group.add(part);
                 }
