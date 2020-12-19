@@ -198,7 +198,11 @@ public class GameManager {
     public void endTurn(){
         diceRolled = false;
         this.game.nextPlayer();
+
+        // check update functions
         this.offerAgreement();
+        this.game.checkVirus();
+
         if(tourCounter == 0) {
             // TODO remove infected cities infection
             infectRandomCity();
