@@ -86,7 +86,7 @@ public class TableController extends SubScene {
         }
         //DEBUG
         Player player = GameManager.getInstance().getPlayers().get(0);
-        player.infect(player.isInfected());
+        player.infect(!player.isInfected());
     }
 
     private void initializeAstronauts(ArrayList<Player> players) {
