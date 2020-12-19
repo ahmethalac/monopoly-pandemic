@@ -4,6 +4,7 @@ import controllers.modelcontrollers.GameManager;
 import models.Game;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -55,26 +56,57 @@ public class DataManager {
      * gets filenames of saves in a List
      * @return the List of saved game file names, null if directory path is wrong or caught an exception
      */
-    public List<String> getSavedNames(){
-        List<String> savedNames;
+    public ArrayList<String> getSavedNames(){
+        ArrayList<String> savedNames = new ArrayList<>();
         //Creating a File object for directory
         File directoryPath = new File(this.saveGameFolder);
+
+        try{
+            String[] temp = directoryPath.list();
+            if(temp == null) {
+                return null;
+            }
+            for ( String content : temp ) {
+                savedNames.add(content);
+            }
+            for ( int i=0; i<savedNames.size(); i++ ) {
+                savedNames.set(i, savedNames.get(i).substring(0, savedNames.get(i).lastIndexOf(".")));
+            }
+            return savedNames;
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /*
+     * gets classNames of chance card classes in a List
+     * @return the List of chance card classes file names, null if directory path is wrong or caught an exception
+     */
+    public ArrayList<String> getChanceCardNames(){
+        ArrayList<String> names = new ArrayList<>();
+        String currentDir = System.getProperty("user.dir");
+        String folder = currentDir + "/src/models/chanceCards/";
+        //Creating a File object for directory
+        File directoryPath = new File(folder);
 
         try{
             String[] temp = directoryPath.list();
             if(temp == null){
                 return null;
             }
-            savedNames = Arrays.asList(temp);
-            for ( int i=0; i<savedNames.size(); i++ ) {
-                savedNames.set(i, savedNames.get(i).substring(0, savedNames.get(i).lastIndexOf(".")));
+            for ( String content : temp ) {
+                names.add(content);
             }
-            return savedNames;
+            for ( int i=0; i<names.size(); i++ ) {
+                names.set(i, names.get(i).substring(0, names.get(i).lastIndexOf(".")));
+            }
+            return names;
         }
         catch(Exception e){
-            System.err.println(e.toString());
+            e.printStackTrace();
             return null;
         }
     }
-
 }

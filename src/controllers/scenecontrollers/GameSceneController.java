@@ -92,7 +92,7 @@ public class GameSceneController implements Initializable {
         cameraScene.rotateTable();
     }
 
-    private void handlePopup(Parent parent) {
+    private static void handlePopup(Parent parent) {
         Scene scene = new Scene(parent, 300, 400);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -169,18 +169,9 @@ public class GameSceneController implements Initializable {
             System.out.println("Your turn is end");
             return;
         }
-        GameManager.getInstance().moveForward(dice[2]);
-        boolean performed = GameManager.getInstance().performRegionAction();
-        if (!performed) {
-            handleBuyCityPopup();
-        }
-    }
-
-    public void handleBuyCityPopup() throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/BuyCityPopup.fxml"));
-        Parent parent = fxmlLoader.load();
-        BuyCityPopupController buyCityPopupController = fxmlLoader.getController();
-        handlePopup(parent);
+        //GameManager.getInstance().moveForward(dice[2]);
+        GameManager.getInstance().moveForward(9); // DEBUG
+        GameManager.getInstance().performRegionAction();
     }
 
     public void handleEndTurnButton(){
@@ -196,16 +187,28 @@ public class GameSceneController implements Initializable {
     public void handleSaveGameButton(){
         DataManager.getInstance().saveGame("testSave");
     }
-/*
-    public void handleChanceRegionPopup(){
+
+    public static void handleChanceRegionPopup(){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/ChanceRegionPopup.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    GameSceneController.class.getResource("../../views/popupViews/ChanceRegionPopup.fxml"));
             Parent parent = fxmlLoader.load();
-            ChanceRegionPopupController crpc = fxmlLoader.getController();
             handlePopup(parent);
         }
         catch (IOException e) {
             e.printStackTrace();
         }
-    }*/
+    }
+
+    public static void handleBuyCityPopup(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    GameSceneController.class.getResource("../../views/popupViews/BuyCityPopup.fxml"));
+            Parent parent = fxmlLoader.load();
+            handlePopup(parent);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -13,11 +13,21 @@ public class Game implements Serializable {
     private int currentPlayer;
 
     // constructor
-    public Game(ArrayList<Player> players, ArrayList<Region> regions){
+    public Game(ArrayList<Player> players, ArrayList<Region> regions, ArrayList<String> chanceCardNames){
         agreements = new ArrayList<>();
         currentPlayer = 0;
         this.players = players;
         this.regions = regions;
+        this.chanceCards = new ArrayList<>();
+        try {
+            for(String name: chanceCardNames) {
+                Class chanceCard = Class.forName("models.chanceCards." + name);
+                Object o = chanceCard.getDeclaredConstructor().newInstance();
+                chanceCards.add((Card) o);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // copy constructor to load game

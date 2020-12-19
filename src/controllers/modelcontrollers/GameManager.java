@@ -3,6 +3,7 @@ package controllers.modelcontrollers;
 import controllers.observers.PlayerObserver;
 import controllers.scenecontrollers.GameSceneController;
 import models.*;
+import storage.filemanager.DataManager;
 import storage.filemanager.SettingImporter;
 
 import java.util.ArrayList;
@@ -34,7 +35,8 @@ public class GameManager {
     // setup a game
     public void initGame(ArrayList<Player> players) {
         ArrayList<Region> regions = SettingImporter.getRegions();
-        game = new Game(players,regions);
+        ArrayList<String> chanceCardNames = DataManager.getInstance().getChanceCardNames();
+        game = new Game(players,regions,chanceCardNames);
     }
 
     public ArrayList<Region> getRegions(){
@@ -151,9 +153,13 @@ public class GameManager {
         Region currentRegion = (this.game.getRegion(currentPlayer.getLocation()));
         if(currentRegion instanceof City) {
             performed = checkAgreements();
+            if(!performed){
+                GameSceneController.handleBuyCityPopup();
+            }
         }
         else if(currentRegion instanceof ChanceRegion) {
             ((ChanceRegion) currentRegion).performRegionAction();
+            GameSceneController.handleChanceRegionPopup();
             performed = true;
         }
         else if(currentRegion instanceof PirateRegion) {
