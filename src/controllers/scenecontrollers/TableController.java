@@ -156,7 +156,10 @@ public class TableController extends SubScene {
                 region.setMaterial(new PhongMaterial(Color.WHITE));
             } else if ( regions.get(i) instanceof TestRegion){
                 region.setMaterial(new PhongMaterial(Color.rgb(69,172,139)));
-                for ( MeshView part : getTest(coordinates.get(i)[0], coordinates.get(i)[1])){
+                MeshView[] test = MeshImporter.getTest();
+                for ( MeshView part : test) {
+                    part.setTranslateX(coordinates.get(i)[0]);
+                    part.setTranslateY(coordinates.get(i)[1]);
                     group.add(part);
                 }
             }
@@ -207,17 +210,6 @@ public class TableController extends SubScene {
         setAnimation(questionMark);
 
         return questionMark;
-    }
-
-    private MeshView[] getTest(int x, int y){
-        MeshView[] test = MeshImporter.getTest();
-        for ( MeshView part : test){
-            part.setTranslateX(x);
-            part.setTranslateY(y);
-
-            setAnimation(part);
-        }
-        return test;
     }
 
     private void setAnimation(Node node){
