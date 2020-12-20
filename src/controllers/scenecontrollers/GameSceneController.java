@@ -31,6 +31,9 @@ import utils.Sleeper;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class GameSceneController implements Initializable {
     private TableController cameraScene;
@@ -180,7 +183,8 @@ public class GameSceneController implements Initializable {
         //GameManager.getInstance().getCurrentPlayer().quarantine(true); // DEBUG
         GameManager.getInstance().moveForward(dice[2]);
         //GameManager.getInstance().moveForward(1); // DEBUG
-        GameManager.getInstance().performRegionAction();
+        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+        executorService.schedule(GameManager.getInstance()::runPerformRegionAction, (dice[2] + 1) * 3 / 10, TimeUnit.SECONDS);
         rollDiceButton.setVisible(false);
         rollDiceLabel.setVisible(false);
     }

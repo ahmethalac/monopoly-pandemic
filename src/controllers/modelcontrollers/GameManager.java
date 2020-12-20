@@ -3,6 +3,7 @@ package controllers.modelcontrollers;
 import controllers.observers.GameLogObserver;
 import controllers.observers.PlayerObserver;
 import controllers.scenecontrollers.GameSceneController;
+import javafx.application.Platform;
 import javafx.scene.layout.VBox;
 import models.*;
 import storage.filemanager.DataManager;
@@ -157,7 +158,11 @@ public class GameManager {
         game.getCurrentPlayer().notifyAllObservers();
     }
 
-    public boolean performRegionAction(){
+    public void runPerformRegionAction(){
+        Platform.runLater(GameManager.getInstance()::performRegionAction);
+    }
+
+    private boolean performRegionAction(){
         boolean performed = false;
         Player currentPlayer = this.game.getCurrentPlayer();
         Region currentRegion = (this.game.getRegion(currentPlayer.getLocation()));
@@ -280,7 +285,11 @@ public class GameManager {
                     }
                 }
                 if(!offerPerformed) {
-                    currentPlayer.removeMoney(currentCity.getRent());
+                    try {
+                        currentPlayer.removeMoney(currentCity.getRent());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     currentCity.getOwner().addMoney(currentCity.getRent());
                 }
             }
