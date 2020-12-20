@@ -184,15 +184,6 @@ public class Player extends Observable implements Serializable {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "  name='" + name + '\'' +
-                ", id=" + id +
-                ", color='" + color + '\'' +
-                ", pawn='" + pawn + '\'' +
-                ", money=" + money +
-                ", isBankrupted=" + isBankrupted +
-                ", location=" + location +
-                ", isInfected=" + isInfected +
-                "}\n";
+        return name;
     }
 }
