@@ -33,8 +33,7 @@ public class LoadGameSceneController implements Initializable {
         buttonBox.setPrefHeight(700);
         buttonBox.setAlignment(Pos.TOP_CENTER);
         buttonBox.setSpacing(15.0);
-        DataManager dataManager = DataManager.getInstance();
-        List<String> savedNames = dataManager.getSavedNames();
+        List<String> savedNames = DataManager.getSavedNames();
         for ( String saveName: savedNames ) {
             Button newButton = new Button(saveName);
             newButton.setStyle("-fx-background-color: #5b4b4b; -fx-text-fill: #ffffff; -fx-font-size: 2em");
@@ -56,7 +55,7 @@ public class LoadGameSceneController implements Initializable {
     }
 
     public void handleLoadGameButton(ActionEvent actionEvent) {
-        DataManager.getInstance().loadGame(((Button)actionEvent.getSource()).getText());
+        DataManager.loadGame(((Button)actionEvent.getSource()).getText());
         SceneManager.getInstance().showGameScene();
     }
 

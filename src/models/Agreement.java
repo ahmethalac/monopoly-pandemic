@@ -124,4 +124,11 @@ public class Agreement implements Serializable {
     // get id
     public String getName() { return name; }
 
+    @Override
+    public String toString() {
+        return "Agreement between " + firstPlayer +
+                " and " + secondPlayer +
+                "\n First offer: " + firstOffer +
+                "\n Second offer: " + secondOffer;
+    }
 }

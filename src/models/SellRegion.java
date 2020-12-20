@@ -19,4 +19,9 @@ public class SellRegion extends OneTimeOffer {
         }
         System.out.println("Second player does not own city: " + city.getName());
     }
+
+    @Override
+    public String toString() {
+        return "SellRegion: " + city;
+    }
 }

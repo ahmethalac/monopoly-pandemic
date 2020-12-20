@@ -14,4 +14,9 @@ public class GiveMoney extends OneTimeOffer {
         //second player takes specified amount of money from the first player
         secondPlayer.addMoney(money);
     }
+
+    @Override
+    public String toString() {
+        return "Give" + money;
+    }
 }

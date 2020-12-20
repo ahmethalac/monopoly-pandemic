@@ -23,4 +23,9 @@ public class TakePercentage extends ContiuousOffer {
     public City getCity(){
         return city;
     }
+
+    @Override
+    public String toString() {
+        return "TakePercentage: " + city + " Percentage: " + percentage;
+    }
 }

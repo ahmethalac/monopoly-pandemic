@@ -259,7 +259,7 @@ public class GameSceneController implements Initializable {
     }
 
     public void handleSaveGameButton() {
-        DataManager.getInstance().saveGame("SaveGame1");
+        DataManager.saveGame("SaveGame1");
 
     }
 
