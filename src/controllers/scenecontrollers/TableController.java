@@ -83,10 +83,11 @@ public class TableController extends SubScene {
             }
         }
         //DEBUG
-        Player player = GameManager.getInstance().getPlayers().get(0);
+        Player player = GameManager.getInstance().getPlayers().get(1);
         player.infect(!player.isInfected());
         City city = (City) GameManager.getInstance().getRegions().get(1);
         city.infect(!city.isInfected());
+        player.setLocation(14);
     }
 
     private void initializeAstronauts(ArrayList<Player> players) {
