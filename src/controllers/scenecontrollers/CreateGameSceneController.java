@@ -116,7 +116,6 @@ public class CreateGameSceneController implements Initializable {
         Label nameLabel = new Label();
 
         PlayerComboBox colorBox;
-        Button avatarButton = new Button();
         PlayerButton deleteButton;
 
         Player player;
@@ -163,10 +162,6 @@ public class CreateGameSceneController implements Initializable {
             colorBox.setMaxHeight(39);
             colorBox.setPrefHeight(39);
 
-            avatarButton.setText("Choose avatar");
-            avatarButton.setMaxHeight(39);
-            avatarButton.setPrefHeight(39);
-
             deleteButton = new PlayerButton(player, "Delete Player");
             deleteButton.setMaxHeight(39);
             deleteButton.setPrefHeight(39);
@@ -190,7 +185,7 @@ public class CreateGameSceneController implements Initializable {
                 }
             });
 
-            this.getChildren().addAll(avatar, nameLabel, avatarButton, colorBox, deleteButton);
+            this.getChildren().addAll(avatar, nameLabel, colorBox, deleteButton);
         }
 
         public Player getPlayer() {
