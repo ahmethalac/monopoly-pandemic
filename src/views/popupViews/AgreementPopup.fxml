@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
@@ -47,17 +48,6 @@
                   <Insets />
                </VBox.margin>
             </VBox>
-                <Label fx:id="cityPriceLabel" alignment="CENTER" contentDisplay="CENTER" minWidth="100.0" text="City Price">
-                    <font>
-                        <Font size="24.0" />
-                    </font>
-                    <VBox.margin>
-                        <Insets bottom="25.0" />
-                    </VBox.margin>
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-                </Label>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <left>
                       <Button mnemonicParsing="false" onAction="#closeButtonClicked" text="Close" BorderPane.alignment="CENTER" />

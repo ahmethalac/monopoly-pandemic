@@ -3,6 +3,7 @@ package controllers.popupControllers;
 import controllers.modelcontrollers.GameManager;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -72,22 +73,24 @@ public class AgreementPopupController extends PopupController implements Initial
                 .stream().map(object -> Objects.toString(object, null))
                 .collect(Collectors.toList());
 
+        // remove current player from list
+        players.remove(GameManager.getInstance().getCurrentPlayer().getName());
 
         choosePlayerBox.setItems(FXCollections.observableArrayList(players));
         chooseOfferBox.setItems(FXCollections.observableArrayList(OfferUtil.offers));
         chooseOppositeOfferBox.setItems(FXCollections.observableArrayList(OfferUtil.offers));
 
+        chooseOfferBox.setDisable(true);
 
+        choosePlayerBox.setOnAction(actionEvent -> {
+            chooseOfferBox.setDisable(false);
+        });
 
-        assignExtraFeatures(chooseOfferBox, chooseOfferVBox);
-        assignExtraFeatures(chooseOppositeOfferBox, chooseOppositeOfferVBox);
-    }
-
-    private void assignExtraFeatures(ComboBox<String> combobox, VBox vbox) {
-        combobox.setOnAction(actionEvent -> {
-            String offer = combobox.getValue();
+        chooseOfferBox.setOnAction(actionEvent -> {
+            String offer = chooseOfferBox.getValue();
             if (offer.equals("Sell Region") || offer.equals("Pay Rent or Not")) {
 
+                //player = choosePlayerBox.getSelectionModel().getSelectedItem();
                 player = GameManager.getInstance().getCurrentPlayer();
 
                 // convert from city to string list
@@ -101,13 +104,13 @@ public class AgreementPopupController extends PopupController implements Initial
                 cityBox.setItems(FXCollections.observableArrayList(cities));
 
                 // add ui elements
-                vbox.getChildren().clear();
-                vbox.getChildren().addAll(combobox, cityBox);
+                chooseOfferVBox.getChildren().clear();
+                chooseOfferVBox.getChildren().addAll(chooseOfferBox, cityBox);
             } else if (offer.equals("Give Money")) {
                 TextField tf = new TextField();
                 tf.setPromptText("Enter money...");
-                vbox.getChildren().clear();
-                vbox.getChildren().addAll(combobox, tf);
+                chooseOfferVBox.getChildren().clear();
+                chooseOfferVBox.getChildren().addAll(chooseOfferBox, tf);
             } else if (offer.equals("Take Percentage")) {
 
                 player = GameManager.getInstance().getCurrentPlayer();
@@ -126,8 +129,56 @@ public class AgreementPopupController extends PopupController implements Initial
                 TextField percentageField = new TextField();
                 percentageField.setPromptText("Enter percentage...");
 
-                vbox.getChildren().clear();
-                vbox.getChildren().addAll(combobox, cityBox, percentageField);
+                chooseOfferVBox.getChildren().clear();
+                chooseOfferVBox.getChildren().addAll(chooseOfferBox, cityBox, percentageField);
+            }
+        });
+
+        chooseOppositeOfferBox.setOnAction(actionEvent -> {
+            String offer = chooseOppositeOfferBox.getValue();
+            if (offer.equals("Sell Region") || offer.equals("Pay Rent or Not")) {
+
+                // assign current player
+                player = GameManager.getInstance().getCurrentPlayer();
+
+                // convert from city to string list
+                List<String> cities = player.getCities().stream()
+                        .map(object -> Objects.toString(object, null))
+                        .collect(Collectors.toList());
+
+                // create citybox
+                ComboBox<String> cityBox = new ComboBox<>();
+                cityBox.setPromptText("Select city");
+                cityBox.setItems(FXCollections.observableArrayList(cities));
+
+                // add ui elements
+                chooseOppositeOfferVBox.getChildren().clear();
+                chooseOppositeOfferVBox.getChildren().addAll(chooseOppositeOfferBox, cityBox);
+            } else if (offer.equals("Give Money")) {
+                TextField tf = new TextField();
+                tf.setPromptText("Enter money...");
+                chooseOppositeOfferVBox.getChildren().clear();
+                chooseOppositeOfferVBox.getChildren().addAll(chooseOppositeOfferBox, tf);
+            } else if (offer.equals("Take Percentage")) {
+
+                player = GameManager.getInstance().getCurrentPlayer();
+
+                // convert from city to string list
+                List<String> cities = player.getCities().stream()
+                        .map(object -> Objects.toString(object, null))
+                        .collect(Collectors.toList());
+
+                // create citybox
+                ComboBox<String> cityBox = new ComboBox<>();
+                cityBox.setPromptText("Select city");
+                cityBox.setItems(FXCollections.observableArrayList(cities));
+
+
+                TextField percentageField = new TextField();
+                percentageField.setPromptText("Enter percentage...");
+
+                chooseOppositeOfferVBox.getChildren().clear();
+                chooseOppositeOfferVBox.getChildren().addAll(chooseOppositeOfferBox, cityBox, percentageField);
             }
         });
     }
