@@ -177,6 +177,13 @@ public class TableController extends SubScene {
                     part.setTranslateY(coordinates.get(i)[1]);
                     group.add(part);
                 }
+            } else if ( regions.get(i) instanceof QuarantineRegion){
+                region.setMaterial(new PhongMaterial(Color.WHITE));
+                for ( MeshView part : MeshImporter.getHospital()){
+                    part.setTranslateX(coordinates.get(i)[0]);
+                    part.setTranslateY(coordinates.get(i)[1]);
+                    group.add(part);
+                }
             }
         }
     }

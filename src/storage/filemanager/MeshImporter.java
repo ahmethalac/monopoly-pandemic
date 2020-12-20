@@ -52,4 +52,8 @@ public class MeshImporter {
     public static MeshView getVirus() {
         return getNodeArray("Virus.obj")[0];
     }
+
+    public static MeshView[] getHospital() {
+        return getNodeArray("Hospital.obj");
+    }
 }
