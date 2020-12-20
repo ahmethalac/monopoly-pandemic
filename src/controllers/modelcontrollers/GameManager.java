@@ -24,7 +24,6 @@ public class GameManager {
     private static int NUMBER_OF_REGIONS = 40;
     private boolean diceRolled = false;
     private Card currentChanceCard = null;
-    private City currentInfectedCity = null;
 
 
     public static GameManager getInstance(){
@@ -52,15 +51,11 @@ public class GameManager {
 
     // infects a random city in a game
     public void infectRandomCity() {
-        if(currentInfectedCity != null){
-            currentInfectedCity.infect(false);
-        }
         int random = (int) (this.game.getRegionNumber() * Math.random());
         while( !(this.game.getRegion(random) instanceof City) ){
             random = (int) (this.game.getRegionNumber() * Math.random());
         }
         ((City) this.game.getRegion(random)).infect(true);
-        currentInfectedCity = ((City) this.game.getRegion(random));
     }
 
     // moves current player count number of steps
@@ -180,6 +175,9 @@ public class GameManager {
             if(((City) currentRegion).isInfected()){
                 currentPlayer.infect(true);
             }
+            else if(currentPlayer.isInfected()) {
+                ((City) currentRegion).infect(true);
+            }
             performed = checkAgreements();
             if(!performed){
                 GameSceneController.handleBuyCityPopup();
@@ -236,10 +234,8 @@ public class GameManager {
         this.offerAgreement();
         this.game.checkVirus();
 
-        if(tourCounter == 0) {
-            // TODO remove infected cities infection
-            infectRandomCity();
-        }
+        infectRandomCity();
+
         turnCounter++;
         turnCounter = turnCounter % this.game.getPlayerNumber();
         if(turnCounter == 0) {
@@ -275,7 +271,16 @@ public class GameManager {
         return tourCounter;
     }
 
+    public int getTurn(){
+        return turnCounter;
+    }
+
     public Game getGame() { return this.game; }
+
+    public void setDiceRolled(boolean bool){
+        diceRolled = bool;
+    }
+
 
     // Private methods
 

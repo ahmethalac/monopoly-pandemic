@@ -15,8 +15,9 @@ public class Player extends Observable implements Serializable {
     private boolean isBankrupted;
     private int location;
     private boolean isInfected;
-    private int quarantineTourCounter = -1;
-    private int infectTourCounter = -1;
+    private int quarantineTourCounter = 99999;
+    private int infectTourCounter = 99999;
+    private final int MAX = 99999;
 
     public Player(String name, String color, String pawn, int id)
     {
@@ -46,7 +47,7 @@ public class Player extends Observable implements Serializable {
             }
         }
         else{
-            quarantineTourCounter = -1;
+            quarantineTourCounter = MAX;
         }
         isInQuarantine = bool;
         this.notifyGameLogObserver("quarantine", bool ? 1 : 0);
@@ -54,8 +55,32 @@ public class Player extends Observable implements Serializable {
 
     public boolean checkQuarantine(){
         if(GameManager.getInstance().getTour() - quarantineTourCounter >= 2){
-            isInQuarantine = false;
-            quarantineTourCounter = -1;
+            quarantine(false);
+            quarantineTourCounter = MAX;
+            return true;
+        }
+        return false;
+    }
+
+    public void infect(boolean bool)
+    {
+        if(bool){
+            if(!isInfected){
+                infectTourCounter = GameManager.getInstance().getTour();
+            }
+        }
+        else{
+            infectTourCounter = MAX;
+        }
+        isInfected = bool;
+        this.notifyAllObservers();
+        this.notifyGameLogObserver("infect", bool ? 1 : 0);
+    }
+
+    public boolean checkInfection(){
+        if(GameManager.getInstance().getTour() - infectTourCounter >= 2){
+            infect(false);
+            infectTourCounter = MAX;
             return true;
         }
         return false;
@@ -79,30 +104,6 @@ public class Player extends Observable implements Serializable {
         }
         this.notifyAllObservers();
         this.notifyGameLogObserver("money", -money);
-    }
-
-    public void infect(boolean bool)
-    {
-        if(bool){
-            if(!isInfected){
-                infectTourCounter = GameManager.getInstance().getTour();
-            }
-        }
-        else{
-            infectTourCounter = -1;
-        }
-        isInfected = bool;
-        this.notifyAllObservers();
-        this.notifyGameLogObserver("infect", bool ? 1 : 0);
-    }
-
-    public boolean checkInfection(){
-        if(GameManager.getInstance().getTour() - infectTourCounter >= 3){
-            isInfected = false;
-            infectTourCounter = -1;
-            return true;
-        }
-        return false;
     }
 
     public boolean removeCity(City city){

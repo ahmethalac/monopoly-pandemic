@@ -182,11 +182,15 @@ public class GameSceneController implements Initializable {
         }
         //GameManager.getInstance().getCurrentPlayer().quarantine(true); // DEBUG
         GameManager.getInstance().moveForward(dice[2]);
-//        GameManager.getInstance().moveForward(1); // DEBUG
+        //GameManager.getInstance().moveForward(14); // DEBUG
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
         executorService.schedule(GameManager.getInstance()::runPerformRegionAction, dice[2] * 300, TimeUnit.MILLISECONDS);
-        rollDiceButton.setVisible(false);
-        rollDiceLabel.setVisible(false);
+
+        // repeat turn
+        if(dice[0] != dice[1]){
+            rollDiceButton.setVisible(false);
+            rollDiceLabel.setVisible(false);
+        }
     }
 
     public void handleEndTurnButton(){
@@ -197,8 +201,16 @@ public class GameSceneController implements Initializable {
         else{
             System.out.println("Cannot end turn without rolling a dice.");
         }
-        rollDiceButton.setVisible(true);
-        rollDiceLabel.setVisible(true);
+        // if new player bankrupted, disable roll dice
+        if(GameManager.getInstance().getCurrentPlayer().isBankrupted()){
+            // set isDiceRolled true
+            GameManager.getInstance().setDiceRolled(true);
+        }
+        else{
+            rollDiceButton.setVisible(true);
+            rollDiceLabel.setVisible(true);
+        }
+
     }
 
     public void handleSaveGameButton(){

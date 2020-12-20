@@ -108,6 +108,11 @@ public class Game implements Serializable {
                 player.checkInfection();
             }
         }
+        for( Region region : regions){
+            if(region instanceof City){
+                ((City) region).checkInfection();
+            }
+        }
     }
 
     public ArrayList<Agreement> getAgreements(){
