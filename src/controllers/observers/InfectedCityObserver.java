@@ -57,6 +57,7 @@ public class InfectedCityObserver extends Observer {
                 }
             } else {
                 sceneItems.getChildren().removeAll(viruses);
+                viruses.clear();
             }
         }
     }
