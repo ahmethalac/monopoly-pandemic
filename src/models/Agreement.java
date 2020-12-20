@@ -86,8 +86,13 @@ public class Agreement implements Serializable {
 
     // check offers if city is involved
     public boolean checkOffers(City city) {
-        return city.getId() == ((ContiuousOffer) firstOffer).getCity().getId()
-                || city.getId() == ((ContiuousOffer) secondOffer).getCity().getId();
+        if(isOffered) {
+            return city.getId() == ((ContiuousOffer) firstOffer).getCity().getId()
+                    || city.getId() == ((ContiuousOffer) secondOffer).getCity().getId();
+        }
+        else {
+            return false;
+        }
     }
 
     // getter method for isEmpty prop
