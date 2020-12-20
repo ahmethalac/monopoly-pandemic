@@ -21,17 +21,28 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="cityPriceLabel" alignment="CENTER" contentDisplay="CENTER" minWidth="100.0" text="City Price">
-               <font>
-                  <Font size="24.0" />
-               </font>
+            <BorderPane prefHeight="50.0" prefWidth="200.0">
+               <left>
+                  <Label fx:id="cityPriceLabel" alignment="CENTER" contentDisplay="CENTER" minWidth="100.0" text="City Price" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </left>
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets />
                </VBox.margin>
-            </Label>
+               <right>
+                  <Label fx:id="buildingPriceLabel" alignment="CENTER" contentDisplay="CENTER" minWidth="100.0" text="Building Price" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </right>
+            </BorderPane>
             <Label fx:id="cityOwner" alignment="CENTER" contentDisplay="CENTER" minWidth="100.0" text="Not Owned">
                <font>
-                  <Font size="24.0" />
+                  <Font size="18.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="20.0" />
@@ -39,7 +50,7 @@
             </Label>
             <Label fx:id="currentRent" alignment="CENTER" contentDisplay="CENTER" minWidth="100.0" text="Current Rent: " visible="false">
                <font>
-                  <Font size="24.0" />
+                  <Font size="18.0" />
                </font>
                <VBox.margin>
                   <Insets />

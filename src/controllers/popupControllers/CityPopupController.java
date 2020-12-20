@@ -19,6 +19,8 @@ public class CityPopupController extends PopupController {
     @FXML
     private Label cityPriceLabel;
     @FXML
+    private Label buildingPriceLabel;
+    @FXML
     private Label cityOwner;
     @FXML
     private Label currentRent;
@@ -42,6 +44,7 @@ public class CityPopupController extends PopupController {
 
         cityNameLabel.setText(city.getName());
         cityPriceLabel.setText("Price: " + city.getPrice());
+        buildingPriceLabel.setText("Per Building: " + city.getBuildingPrice(1));
         BorderPane[] rentBoxList = new BorderPane[6];
         double[] rents = city.getBuildings().getRents();
         Label label0 = new Label("Site only ");
