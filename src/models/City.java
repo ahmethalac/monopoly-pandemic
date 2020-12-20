@@ -11,8 +11,8 @@ public class City extends Region {
     private String name;
     private final double MORGAGE_PENALTY = 0.55;
     private final double MORGAGE_RATE = 0.5;
-    private int infectTurnCounter = 99999;
-    private final int MAX = 99999;
+    private int infectTourCounter;
+    private final int INFECTION_TIME = 2;
 
     public City(double price, double[] rents, String name, int id) {
         super(id);
@@ -55,21 +55,20 @@ public class City extends Region {
     public void infect(boolean bool) {
         if(bool){
             if(!isInfected){
-                infectTurnCounter = GameManager.getInstance().getTour();
+                infectTourCounter = GameManager.getInstance().getTour();
             }
-        }
-        else{
-            infectTurnCounter = MAX;
         }
         isInfected = bool;
         this.notifyAllObservers();
     }
 
     public boolean checkInfection(){
-        if(Math.abs(GameManager.getInstance().getTurn() - infectTurnCounter) >= 1){
-            infect(false);
-            infectTurnCounter = MAX;
-            return true;
+        if(isInfected){
+            int tourToDisinfect = infectTourCounter + INFECTION_TIME;
+            if( tourToDisinfect == GameManager.getInstance().getTour()){
+                infect(false);
+                return true;
+            }
         }
         return false;
     }

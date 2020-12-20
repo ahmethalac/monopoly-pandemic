@@ -32,7 +32,6 @@ public class LoadGameSceneController implements Initializable {
         buttonBox.setPrefWidth(500);
         buttonBox.setPrefHeight(700);
         buttonBox.setAlignment(Pos.TOP_CENTER);
-        buttonBox.setStyle("-fx-padding: 50 50 50 220;");
         buttonBox.setSpacing(15.0);
         DataManager dataManager = DataManager.getInstance();
         List<String> savedNames = dataManager.getSavedNames();

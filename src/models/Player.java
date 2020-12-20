@@ -15,9 +15,10 @@ public class Player extends Observable implements Serializable {
     private boolean isBankrupted;
     private int location;
     private boolean isInfected;
-    private int quarantineTourCounter = 99999;
-    private int infectTourCounter = 99999;
-    private final int MAX = 99999;
+    private int quarantineTourCounter;
+    private int infectTourCounter;
+    private final int INFECTION_TIME = 2;
+    private final int QUARANTINE_TIME = 2;
 
     public Player(String name, String color, String pawn, int id)
     {
@@ -46,18 +47,17 @@ public class Player extends Observable implements Serializable {
                 quarantineTourCounter = GameManager.getInstance().getTour();
             }
         }
-        else{
-            quarantineTourCounter = MAX;
-        }
         isInQuarantine = bool;
         this.notifyGameLogObserver("quarantine", bool ? 1 : 0);
     }
 
     public boolean checkQuarantine(){
-        if(GameManager.getInstance().getTour() - quarantineTourCounter >= 2){
-            quarantine(false);
-            quarantineTourCounter = MAX;
-            return true;
+        if(isInQuarantine) {
+            int tourToLeaveQuarantine = quarantineTourCounter + QUARANTINE_TIME;
+            if (tourToLeaveQuarantine == GameManager.getInstance().getTour()) {
+                quarantine(false);
+                return true;
+            }
         }
         return false;
     }
@@ -69,19 +69,18 @@ public class Player extends Observable implements Serializable {
                 infectTourCounter = GameManager.getInstance().getTour();
             }
         }
-        else{
-            infectTourCounter = MAX;
-        }
         isInfected = bool;
         this.notifyAllObservers();
         this.notifyGameLogObserver("infect", bool ? 1 : 0);
     }
 
     public boolean checkInfection(){
-        if(GameManager.getInstance().getTour() - infectTourCounter >= 2){
-            infect(false);
-            infectTourCounter = MAX;
-            return true;
+        if(isInfected){
+            int tourToDisinfect = infectTourCounter + INFECTION_TIME;
+            if(tourToDisinfect == GameManager.getInstance().getTour()){
+                infect(false);
+                return true;
+            }
         }
         return false;
     }

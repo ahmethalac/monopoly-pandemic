@@ -45,6 +45,10 @@ public class GameManager {
         game = new Game(players,regions,chanceCardNames);
     }
 
+    public void initGameScene(){
+        infectRandomCity();
+    }
+
     public ArrayList<Region> getRegions(){
         return this.game.getRegions();
     }
@@ -230,16 +234,17 @@ public class GameManager {
         diceRolled = false;
         this.game.nextPlayer();
 
-        // check update functions
+        // check for each turn
         this.offerAgreement();
-        this.game.checkVirus();
-
-        infectRandomCity();
 
         turnCounter++;
         turnCounter = turnCounter % this.game.getPlayerNumber();
+
         if(turnCounter == 0) {
+            // check for each tour
             tourCounter++;
+            this.game.checkVirus();
+            infectRandomCity();
         }
     }
 
@@ -279,6 +284,10 @@ public class GameManager {
 
     public void setDiceRolled(boolean bool){
         diceRolled = bool;
+    }
+
+    public int getPlayerNumber(){
+        return game.getPlayerNumber();
     }
 
 

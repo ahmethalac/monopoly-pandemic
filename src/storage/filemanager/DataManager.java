@@ -70,7 +70,11 @@ public class DataManager {
                 savedNames.add(content);
             }
             for ( int i=0; i<savedNames.size(); i++ ) {
-                savedNames.set(i, savedNames.get(i).substring(0, savedNames.get(i).lastIndexOf(".")));
+                try{
+                    savedNames.set(i, savedNames.get(i).substring(0, savedNames.get(i).lastIndexOf(".")));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
             return savedNames;
         }

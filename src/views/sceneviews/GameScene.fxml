@@ -44,7 +44,7 @@
             <left>
                 <VBox style="-fx-spacing: 30; -fx-padding: 30">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#handleBuyBuildingPopup" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
+                        <Button fx:id="buyBuildingButton" mnemonicParsing="false" onAction="#handleBuyBuildingPopup" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
                             <graphic>
                                 <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -56,7 +56,7 @@
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                         </Button>
-                        <Label text="Buy Building" textFill="white">
+                        <Label fx:id="buyBuildingLabel" text="Buy Building" textFill="white">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -64,7 +64,7 @@
                         <Insets />
                      </VBox.margin>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#handleSellBuildingPopup" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
+                        <Button fx:id="sellBuildingButton" mnemonicParsing="false" onAction="#handleSellBuildingPopup" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
                             <graphic>
                                 <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -79,12 +79,12 @@
                         <Insets top="25.0" />
                      </VBox.margin>
                         </Button>
-                        <Label text="Sell Building" textFill="white">
+                        <Label fx:id="sellBuildingLabel" text="Sell Building" textFill="white">
                             <font>
                                 <Font size="18.0" />
                             </font>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#handleMortgageCityPopup" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
+                        <Button fx:id="mortgageButton" mnemonicParsing="false" onAction="#handleMortgageCityPopup" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
                             <graphic>
                                 <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -99,12 +99,12 @@
                         <Insets top="25.0" />
                      </VBox.margin>
                         </Button>
-                        <Label text="Mortgage" textFill="white">
+                        <Label fx:id="mortgageLabel" text="Mortgage" textFill="white">
                             <font>
                                 <Font size="18.0" />
                             </font>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#handleAgreementPopup" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
+                        <Button fx:id="agreementButton" mnemonicParsing="false" onAction="#handleAgreementPopup" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
                             <graphic>
                                 <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -119,7 +119,7 @@
                         <Insets top="25.0" />
                      </VBox.margin>
                         </Button>
-                        <Label text="Agreement" textFill="white">
+                        <Label fx:id="agreementLabel" text="Agreement" textFill="white">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -167,7 +167,7 @@
                                 <Font size="18.0" />
                             </font>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#handleEndTurnButton" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
+                        <Button fx:id="endTurnButton" mnemonicParsing="false" onAction="#handleEndTurnButton" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
                             <graphic>
                                 <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -182,7 +182,7 @@
                         <Insets top="25.0" />
                      </VBox.margin>
                         </Button>
-                        <Label text="End Turn" textFill="white">
+                        <Label fx:id="endTurnLabel" text="End Turn" textFill="white">
                             <font>
                                 <Font size="18.0" />
                             </font>

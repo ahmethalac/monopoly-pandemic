@@ -42,7 +42,7 @@ public class Agreement implements Serializable {
     // check offers if they are continuous
     public boolean performOffers(City city, Player player){
         if(isAccepted){
-            // if firstOffer instanceof ContiuousOffer
+            // if firstOffer instanceof ContinuousOffer
             if(firstOffer != null){
                 if(city.getId() == ((ContiuousOffer) firstOffer).getCity().getId()){
                     if(firstOffer instanceof TakePercentage) {
@@ -61,7 +61,7 @@ public class Agreement implements Serializable {
                     firstOffer.performOffer(firstPlayer, secondPlayer);
                 }
             }
-            // if secondOffer instanceof ContiuousOffer
+            // if secondOffer instanceof ContinuousOffer
             if(secondOffer != null){
                 if(city.getId() == ((ContiuousOffer) secondOffer).getCity().getId()){
                     if(secondOffer instanceof TakePercentage) {

@@ -42,11 +42,32 @@ public class GameSceneController implements Initializable {
     @FXML
     private Text playerName;
     @FXML
-    private Button rollDiceButton;
-    @FXML
     private VBox gameLog;
     @FXML
+    private Button rollDiceButton;
+    @FXML
     private Label rollDiceLabel;
+    @FXML
+    private Button endTurnButton;
+    @FXML
+    private Label endTurnLabel;
+    @FXML
+    private Button agreementButton;
+    @FXML
+    private Label agreementLabel;
+    @FXML
+    private Button mortgageButton;
+    @FXML
+    private Label mortgageLabel;
+    @FXML
+    private Button buyBuildingButton;
+    @FXML
+    private Label buyBuildingLabel;
+    @FXML
+    private Button sellBuildingButton;
+    @FXML
+    private Label sellBuildingLabel;
+
 
 
     @Override
@@ -55,6 +76,19 @@ public class GameSceneController implements Initializable {
         stackPane.getChildren().add(cameraScene);
         cameraScene.toBack();
         GameManager.getInstance().setPlayerObservers(this, gameLog);
+        GameManager.getInstance().initGameScene();
+        rollDiceButton.setVisible(true);
+        rollDiceLabel.setVisible(true);
+        sellBuildingButton.setVisible(true);
+        sellBuildingLabel.setVisible(true);
+        buyBuildingButton.setVisible(true);
+        buyBuildingLabel.setVisible(true);
+        mortgageButton.setVisible(true);
+        mortgageLabel.setVisible(true);
+        agreementButton.setVisible(true);
+        agreementLabel.setVisible(true);
+        endTurnButton.setVisible(false);
+        endTurnLabel.setVisible(false);
 
         //test purpose
         //double[] rents = {1,2,3,4,5,6};
@@ -180,10 +214,20 @@ public class GameSceneController implements Initializable {
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
         executorService.schedule(GameManager.getInstance()::runPerformRegionAction, dice[2] * 300, TimeUnit.MILLISECONDS);
 
-        // repeat turn
+        // turn is end
         if (dice[0] != dice[1]) {
             rollDiceButton.setVisible(false);
             rollDiceLabel.setVisible(false);
+            sellBuildingButton.setVisible(false);
+            sellBuildingLabel.setVisible(false);
+            buyBuildingButton.setVisible(false);
+            buyBuildingLabel.setVisible(false);
+            mortgageButton.setVisible(false);
+            mortgageLabel.setVisible(false);
+            agreementButton.setVisible(false);
+            agreementLabel.setVisible(false);
+            endTurnButton.setVisible(true);
+            endTurnLabel.setVisible(true);
         }
     }
 
@@ -202,11 +246,21 @@ public class GameSceneController implements Initializable {
             rollDiceButton.setVisible(true);
             rollDiceLabel.setVisible(true);
         }
-
+        sellBuildingButton.setVisible(true);
+        sellBuildingLabel.setVisible(true);
+        buyBuildingButton.setVisible(true);
+        buyBuildingLabel.setVisible(true);
+        mortgageButton.setVisible(true);
+        mortgageLabel.setVisible(true);
+        agreementButton.setVisible(true);
+        agreementLabel.setVisible(true);
+        endTurnButton.setVisible(false);
+        endTurnLabel.setVisible(false);
     }
 
     public void handleSaveGameButton() {
-        DataManager.getInstance().saveGame("testSave");
+        DataManager.getInstance().saveGame("SaveGame1");
+
     }
 
     public static void handleChanceRegionPopup() {
