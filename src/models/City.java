@@ -1,5 +1,7 @@
 package models;
 
+import controllers.modelcontrollers.GameManager;
+
 public class City extends Region {
     private Buildings buildings;
     private Player owner;

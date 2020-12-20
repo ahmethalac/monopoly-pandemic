@@ -45,6 +45,9 @@ public class Player extends Observable implements Serializable {
                 quarantineTourCounter = GameManager.getInstance().getTour();
             }
         }
+        else{
+            quarantineTourCounter = -1;
+        }
         isInQuarantine = bool;
         this.notifyGameLogObserver("quarantine", bool ? 1 : 0);
     }
@@ -84,6 +87,9 @@ public class Player extends Observable implements Serializable {
             if(!isInfected){
                 infectTourCounter = GameManager.getInstance().getTour();
             }
+        }
+        else{
+            infectTourCounter = -1;
         }
         isInfected = bool;
         this.notifyAllObservers();

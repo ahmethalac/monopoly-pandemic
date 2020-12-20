@@ -21,6 +21,7 @@ public class GameManager {
     private static int NUMBER_OF_REGIONS = 40;
     private boolean diceRolled = false;
     private Card currentChanceCard = null;
+    private City currentInfectedCity = null;
 
 
     public static GameManager getInstance(){
@@ -48,11 +49,15 @@ public class GameManager {
 
     // infects a random city in a game
     public void infectRandomCity() {
+        if(currentInfectedCity != null){
+            currentInfectedCity.infect(false);
+        }
         int random = (int) (this.game.getRegionNumber() * Math.random());
         while( !(this.game.getRegion(random) instanceof City) ){
             random = (int) (this.game.getRegionNumber() * Math.random());
         }
         ((City) this.game.getRegion(random)).infect(true);
+        currentInfectedCity = ((City) this.game.getRegion(random));
     }
 
     // moves current player count number of steps
@@ -167,6 +172,9 @@ public class GameManager {
         Player currentPlayer = this.game.getCurrentPlayer();
         Region currentRegion = (this.game.getRegion(currentPlayer.getLocation()));
         if(currentRegion instanceof City) {
+            if(((City) currentRegion).isInfected()){
+                currentPlayer.infect(true);
+            }
             performed = checkAgreements();
             if(!performed){
                 GameSceneController.handleBuyCityPopup();
@@ -201,6 +209,12 @@ public class GameManager {
             dice[0] = (int) (6*Math.random()) + 1;
             dice[1] = (int) (6*Math.random()) + 1;
             dice[2] = dice[0] + dice[1];
+            if(dice[0] == dice[1]){
+                diceRolled = false;
+                if(getCurrentPlayer().isInQuarantine()){
+                    getCurrentPlayer().quarantine(false);
+                }
+            }
             return dice;
         }
         else{
