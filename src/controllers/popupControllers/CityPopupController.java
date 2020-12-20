@@ -7,6 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import models.City;
 
 public class CityPopupController extends PopupController {
@@ -29,6 +32,8 @@ public class CityPopupController extends PopupController {
 
     public void setCity(City city) {
         this.city = city;
+        double rent = city.getRent();
+        System.out.println(rent);
 
         if (city.getOwner() != null) cityOwner.setText("Owned by: " + city.getOwner().getName());
 
@@ -43,9 +48,18 @@ public class CityPopupController extends PopupController {
         Label label4 = new Label("4 Houses ");
         Label label5 = new Label("Hotel ");
 
+
         for (int i = 0; i < 6; i++) {
             rentBoxList[i] = new BorderPane();
-            rentBoxList[i].setRight(new Label("" + rents[i]));
+            if (rents[i] == rent){
+                System.out.println("inloop");
+                Text rentText = new Text("→ " + rents[i]);
+                rentText.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+                rentBoxList[i].setRight(rentText);
+            }
+            else {
+                rentBoxList[i].setRight(new Text("" + rents[i]));
+            }
         }
 
         rentBoxList[0].setLeft(label0);
