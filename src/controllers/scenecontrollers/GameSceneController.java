@@ -167,16 +167,28 @@ public class GameSceneController implements Initializable {
         }
     }
 
-    public void handleRollDiceButton(){
+    public void handleRollDiceButton() throws IOException{
         int[] dice = GameManager.getInstance().rollDice();
         if(dice == null) {
             System.out.println("Your turn is end");
             return;
         }
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/RollDicePopup.fxml"));
+            Parent parent = fxmlLoader.load();
+            RollDicePopupController rdpc = fxmlLoader.getController();
+            rdpc.setDice(dice[0],dice[1]);
+
+            handlePopup(parent);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         //GameManager.getInstance().getCurrentPlayer().quarantine(true); // DEBUG
         GameManager.getInstance().moveForward(dice[2]);
         //GameManager.getInstance().moveForward(1); // DEBUG
         GameManager.getInstance().performRegionAction();
+
     }
 
     public void handleEndTurnButton(){
