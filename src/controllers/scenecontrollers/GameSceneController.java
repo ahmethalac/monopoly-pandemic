@@ -181,8 +181,8 @@ public class GameSceneController implements Initializable {
             e.printStackTrace();
         }
         //GameManager.getInstance().getCurrentPlayer().quarantine(true); // DEBUG
-        //GameManager.getInstance().moveForward(dice[2]);
-        GameManager.getInstance().moveForward(14); // DEBUG
+        GameManager.getInstance().moveForward(dice[2]);
+//        GameManager.getInstance().moveForward(1); // DEBUG
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
         executorService.schedule(GameManager.getInstance()::runPerformRegionAction, dice[2] * 300, TimeUnit.MILLISECONDS);
         rollDiceButton.setVisible(false);
