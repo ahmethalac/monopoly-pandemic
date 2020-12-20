@@ -29,8 +29,8 @@ public class LoadGameSceneController implements Initializable {
     private VBox loadBox;
     public void getSavedGames() {
         VBox buttonBox = new VBox();
-        buttonBox.setMaxWidth(1500);
-        buttonBox.setMaxHeight(700);
+        buttonBox.setPrefWidth(500);
+        buttonBox.setPrefHeight(700);
         buttonBox.setAlignment(Pos.TOP_CENTER);
         buttonBox.setStyle("-fx-padding: 50 50 50 220;");
         buttonBox.setSpacing(15.0);
@@ -42,6 +42,7 @@ public class LoadGameSceneController implements Initializable {
             newButton.setMinWidth(buttonBox.getWidth());
             newButton.setPrefWidth(300);
             newButton.setPrefHeight(100);
+            newButton.setMinHeight(100);
             newButton.setOnAction(this::handleLoadGameButton);
             buttonBox.getChildren().add(newButton);
         }
