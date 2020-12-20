@@ -1,7 +1,11 @@
 package controllers.observers;
 
 import controllers.modelcontrollers.GameManager;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.MeshView;
@@ -41,15 +45,18 @@ public class LocationObserver extends Observer {
             double[] offsets = getOffset(emptySlot);
 
             for (MeshView part : pawn) {
-                TranslateTransition horizontalMove = new TranslateTransition(Duration.seconds(1), part);
-                horizontalMove.setToX(coordinates.get(location)[0] + offsets[0]);
-                horizontalMove.setToY(coordinates.get(location)[1] + offsets[1]);
-                horizontalMove.play();
+                System.out.println(part);
+                Timeline timeline = new Timeline();
+                for ( int i = prevLocation[0] + 1; i <= location; i++ ){
+                    timeline.getKeyFrames().add(new KeyFrame(Duration.millis((i - prevLocation[0]) * 300), new KeyValue(part.translateXProperty(), coordinates.get(i)[0] + offsets[0])));
+                    timeline.getKeyFrames().add(new KeyFrame(Duration.millis((i - prevLocation[0]) * 300), new KeyValue(part.translateYProperty(), coordinates.get(i)[1] + offsets[1])));
+                }
+                timeline.play();
 
-                TranslateTransition verticalMove = new TranslateTransition(Duration.seconds(0.5), part);
+                TranslateTransition verticalMove = new TranslateTransition(Duration.seconds(0.15), part);
                 verticalMove.setAutoReverse(true);
-                verticalMove.setCycleCount(2);
-                verticalMove.setByZ(-50);
+                verticalMove.setCycleCount((location - prevLocation[0]) * 2);
+                verticalMove.setByZ(-20);
                 verticalMove.play();
             }
 
