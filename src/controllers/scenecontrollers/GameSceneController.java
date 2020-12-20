@@ -184,7 +184,7 @@ public class GameSceneController implements Initializable {
         //GameManager.getInstance().moveForward(dice[2]);
         GameManager.getInstance().moveForward(14); // DEBUG
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-        executorService.schedule(GameManager.getInstance()::runPerformRegionAction, (dice[2] + 1) * 3 / 10, TimeUnit.SECONDS);
+        executorService.schedule(GameManager.getInstance()::runPerformRegionAction, dice[2] * 300, TimeUnit.MILLISECONDS);
         rollDiceButton.setVisible(false);
         rollDiceLabel.setVisible(false);
     }

@@ -74,6 +74,9 @@ public class TableController extends SubScene {
 
     public void rotateTable(){
         double angle = (double)360 / GameManager.getInstance().getPlayers().size();
+        if ( angle == 360){
+            angle = 0;
+        }
         RotationUtil.rotateAroundCenter(this.getCamera(), angle);
         for ( MeshView[] pawn : pawns ){
             for ( MeshView part : pawn){

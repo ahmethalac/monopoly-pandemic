@@ -47,15 +47,21 @@ public class LocationObserver extends Observer {
             for (MeshView part : pawn) {
                 System.out.println(part);
                 Timeline timeline = new Timeline();
-                for ( int i = prevLocation[0] + 1; i <= location; i++ ){
-                    timeline.getKeyFrames().add(new KeyFrame(Duration.millis((i - prevLocation[0]) * 300), new KeyValue(part.translateXProperty(), coordinates.get(i)[0] + offsets[0])));
-                    timeline.getKeyFrames().add(new KeyFrame(Duration.millis((i - prevLocation[0]) * 300), new KeyValue(part.translateYProperty(), coordinates.get(i)[1] + offsets[1])));
+                int i = (prevLocation[0] + 1) % coordinates.size();
+                while ( i != location ){
+                    double duration = 300 * (i > prevLocation[0] ? i - prevLocation[0] : i + coordinates.size() - prevLocation[0]);
+                    timeline.getKeyFrames().add(new KeyFrame(Duration.millis(duration), new KeyValue(part.translateXProperty(), coordinates.get(i)[0] + offsets[0])));
+                    timeline.getKeyFrames().add(new KeyFrame(Duration.millis(duration), new KeyValue(part.translateYProperty(), coordinates.get(i)[1] + offsets[1])));
+                    i = (i + 1) % coordinates.size();
                 }
+                double duration = 300 * (location > prevLocation[0] ? location - prevLocation[0] : location + coordinates.size() - prevLocation[0]);
+                timeline.getKeyFrames().add(new KeyFrame(Duration.millis(duration), new KeyValue(part.translateXProperty(), coordinates.get(i)[0] + offsets[0])));
+                timeline.getKeyFrames().add(new KeyFrame(Duration.millis(duration), new KeyValue(part.translateYProperty(), coordinates.get(i)[1] + offsets[1])));
                 timeline.play();
 
                 TranslateTransition verticalMove = new TranslateTransition(Duration.seconds(0.15), part);
                 verticalMove.setAutoReverse(true);
-                verticalMove.setCycleCount((location - prevLocation[0]) * 2);
+                verticalMove.setCycleCount(timeline.getKeyFrames().size());
                 verticalMove.setByZ(-20);
                 verticalMove.play();
             }

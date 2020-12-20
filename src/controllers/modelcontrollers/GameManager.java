@@ -10,6 +10,9 @@ import storage.filemanager.DataManager;
 import storage.filemanager.SettingImporter;
 
 import java.util.ArrayList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class GameManager {
 
@@ -65,9 +68,11 @@ public class GameManager {
         if(!getCurrentPlayer().isInQuarantine()){
             if(this.game.getCurrentPlayer().getLocation() + count >= (NUMBER_OF_REGIONS - 1)
                     && this.game.getCurrentPlayer().isInfected()){
+                int moveCount = NUMBER_OF_REGIONS - 1 - this.game.getCurrentPlayer().getLocation();
                 this.game.getCurrentPlayer().setLocation(NUMBER_OF_REGIONS - 1);
                 TestRegion tr = (TestRegion) this.game.getRegion(39);
-                tr.performRegionAction();
+                ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+                executorService.schedule(tr::runPerformRegionAction, moveCount * 300 + 500, TimeUnit.MILLISECONDS);
             }
             else {
                 int newLocation;
