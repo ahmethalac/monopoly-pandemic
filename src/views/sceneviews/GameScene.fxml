@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -106,7 +106,7 @@
                 </VBox>
             </left>
             <right>
-                <VBox style="-fx-spacing: 30; -fx-padding: 30">
+                <VBox  alignment="CENTER_RIGHT" style="-fx-spacing: 30; -fx-padding: 30">
                     <children>
                         <Button fx:id="rollDiceButton" onAction="#handleRollDiceButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent">
                             <graphic>
@@ -161,6 +161,8 @@
                                 <Font size="18.0"/>
                             </font>
                         </Label>
+                        <Region VBox.vgrow="ALWAYS" />
+                        <VBox fx:id="gameLog" minWidth="200" alignment="CENTER_RIGHT" />
                     </children>
                 </VBox>
             </right>

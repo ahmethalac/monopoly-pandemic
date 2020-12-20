@@ -1,5 +1,6 @@
 package models;
 
+import controllers.observers.GameLogObserver;
 import controllers.observers.Observer;
 
 import java.util.ArrayList;
@@ -15,6 +16,14 @@ public class Observable {
     public void notifyAllObservers(){
         for (Observer observer : observers){
             observer.update();
+        }
+    }
+
+    public void notifyGameLogObserver(String changeType, double amount){
+        for (Observer observer : observers){
+            if (observer instanceof GameLogObserver){
+                ((GameLogObserver)observer).update(changeType, amount);
+            }
         }
     }
 }

@@ -1,7 +1,9 @@
 package controllers.modelcontrollers;
 
+import controllers.observers.GameLogObserver;
 import controllers.observers.PlayerObserver;
 import controllers.scenecontrollers.GameSceneController;
+import javafx.scene.layout.VBox;
 import models.*;
 import storage.filemanager.DataManager;
 import storage.filemanager.SettingImporter;
@@ -221,9 +223,10 @@ public class GameManager {
         }
     }
 
-    public void setPlayerObservers(GameSceneController controller){
+    public void setPlayerObservers(GameSceneController controller, VBox gameLog){
         for ( Player player : this.game.getPlayers()){
             new PlayerObserver(player, controller);
+            new GameLogObserver(player, gameLog);
         }
         this.game.getCurrentPlayer().notifyAllObservers();
     }

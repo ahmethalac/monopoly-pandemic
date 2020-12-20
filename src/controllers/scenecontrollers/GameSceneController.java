@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
@@ -43,6 +44,8 @@ public class GameSceneController implements Initializable {
     private Text playerName;
     @FXML
     private Button rollDiceButton;
+    @FXML
+    private VBox gameLog;
 
 
     @Override
@@ -50,7 +53,7 @@ public class GameSceneController implements Initializable {
         cameraScene = new TableController(this);
         stackPane.getChildren().add(cameraScene);
         cameraScene.toBack();
-        GameManager.getInstance().setPlayerObservers(this);
+        GameManager.getInstance().setPlayerObservers(this, gameLog);
 
 
         //test purpose

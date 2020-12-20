@@ -32,7 +32,10 @@ public class Player extends Observable implements Serializable {
         isInfected = false;
     }
 
-    public void bankrupt() { isBankrupted = true; }
+    public void bankrupt() {
+        isBankrupted = true;
+        this.notifyGameLogObserver("bankrupt", 0);
+    }
 
     public void quarantine(boolean bool)
     {
@@ -43,6 +46,7 @@ public class Player extends Observable implements Serializable {
             }
         }
         isInQuarantine = bool;
+        this.notifyGameLogObserver("quarantine", bool ? 1 : 0);
     }
 
     public boolean checkQuarantine(){
@@ -61,6 +65,7 @@ public class Player extends Observable implements Serializable {
             isBankrupted = false;
         }
         this.notifyAllObservers();
+        this.notifyGameLogObserver("money", money);
     }
 
     public void removeMoney(double money)
@@ -70,6 +75,7 @@ public class Player extends Observable implements Serializable {
             isBankrupted = true;
         }
         this.notifyAllObservers();
+        this.notifyGameLogObserver("money", -money);
     }
 
     public void infect(boolean bool)
@@ -81,6 +87,7 @@ public class Player extends Observable implements Serializable {
         }
         isInfected = bool;
         this.notifyAllObservers();
+        this.notifyGameLogObserver("infect", bool ? 1 : 0);
     }
 
     public boolean checkInfection(){
@@ -95,6 +102,7 @@ public class Player extends Observable implements Serializable {
     public boolean removeCity(City city){
         if (cities.remove(city)){
             this.notifyAllObservers();
+            this.notifyGameLogObserver("removeCity" + city.getName(), 0 );
             return true;
         }
         return false;
@@ -103,6 +111,7 @@ public class Player extends Observable implements Serializable {
     public void addCity(City city){
         cities.add(city);
         this.notifyAllObservers();
+        this.notifyGameLogObserver("addCity" + city.getName(), 0 );
     }
 
     //  Getters - Setters
