@@ -3,10 +3,10 @@ package models;
 public class TakePercentage extends ContiuousOffer {
     // properties
     private City city;
-    private double percentage;
+    private int percentage;
 
     // constructor
-    public TakePercentage(City city, double percentage){
+    public TakePercentage(City city, int percentage){
         this.city = city;
         this.percentage = percentage;
     }
@@ -14,8 +14,9 @@ public class TakePercentage extends ContiuousOffer {
     @Override
     public void performOffer(Player firstPlayer, Player secondPlayer) {
         // get percentage of rent from secondPlayers city
-        firstPlayer.addMoney(city.getRent() * percentage);
-        secondPlayer.addMoney(city.getRent() * (1 - percentage));
+        double rate = ((double)percentage)/10;
+        firstPlayer.addMoney(city.getRent() * rate);
+        secondPlayer.addMoney(city.getRent() * (1 - rate));
     }
 
     @Override
