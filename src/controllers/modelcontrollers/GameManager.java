@@ -41,7 +41,7 @@ public class GameManager {
     // setup a game
     public void initGame(ArrayList<Player> players) {
         ArrayList<Region> regions = SettingImporter.getRegions();
-        ArrayList<String> chanceCardNames = DataManager.getInstance().getChanceCardNames();
+        ArrayList<String> chanceCardNames = DataManager.getChanceCardNames();
         game = new Game(players,regions,chanceCardNames);
     }
 

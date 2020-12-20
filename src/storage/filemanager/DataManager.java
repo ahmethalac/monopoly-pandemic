@@ -9,25 +9,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DataManager {
-    // properties
-    private static DataManager dataManager = null;
-    private String saveGameFolder;
-
-    // constructor
-    public DataManager(){
-        String currentDir = System.getProperty("user.dir");
-        this.saveGameFolder = currentDir + "/saves/";
-    }
+    private static final String saveGameFolder = System.getProperty("user.dir") + "/saves/";
 
     // methods
-    public static DataManager getInstance(){
-        if(dataManager == null){
-            dataManager = new DataManager();
-        }
-        return dataManager;
-    }
-
-    public void saveGame(String saveName){
+    public static void saveGame(String saveName){
         try{
             FileOutputStream fout = new FileOutputStream(saveGameFolder + saveName + ".ser");
             ObjectOutputStream out = new ObjectOutputStream(fout);
@@ -40,7 +25,7 @@ public class DataManager {
         }
     }
 
-    public void loadGame(String saveName){
+    public static void loadGame(String saveName){
         try{
             FileInputStream fin = new FileInputStream(saveGameFolder + saveName + ".ser");
             ObjectInputStream in = new ObjectInputStream(fin);
@@ -56,10 +41,10 @@ public class DataManager {
      * gets filenames of saves in a List
      * @return the List of saved game file names, null if directory path is wrong or caught an exception
      */
-    public ArrayList<String> getSavedNames(){
+    public static ArrayList<String> getSavedNames(){
         ArrayList<String> savedNames = new ArrayList<>();
         //Creating a File object for directory
-        File directoryPath = new File(this.saveGameFolder);
+        File directoryPath = new File(saveGameFolder);
 
         try{
             String[] temp = directoryPath.list();
@@ -88,7 +73,7 @@ public class DataManager {
      * gets classNames of chance card classes in a List
      * @return the List of chance card classes file names, null if directory path is wrong or caught an exception
      */
-    public ArrayList<String> getChanceCardNames(){
+    public static ArrayList<String> getChanceCardNames(){
         ArrayList<String> names = new ArrayList<>();
         String currentDir = System.getProperty("user.dir");
         String folder = currentDir + "/src/models/chanceCards/";
