@@ -348,7 +348,7 @@ public class GameManager {
     }
 
     // will return if agreement need to be offered
-    private void offerAgreement() {
+    public void offerAgreement() {
         Agreement agreement = game.offerAgreement();
         if(agreement != null){
             GameSceneController.handleAgreementOfferPopup(agreement);
