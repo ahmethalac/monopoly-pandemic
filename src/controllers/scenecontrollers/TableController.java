@@ -160,7 +160,7 @@ public class TableController extends SubScene {
                 }
                 new ColorObserver(regions.get(i), group);
                 new BuildingObserver(regions.get(i), group);
-                new InfectedCityObserver((City) regions.get(i), coordinates.get(i), sceneItems);
+                new InfectedCityObserver((City) regions.get(i), coordinates.get(i), sceneItems, gameSceneController.getGameLog());
             } else if ( regions.get(i) instanceof ChanceRegion){
                 region.setMaterial(new PhongMaterial(Color.BLACK));
                 group.add(getQuestionMark(coordinates.get(i)[0], coordinates.get(i)[1]));

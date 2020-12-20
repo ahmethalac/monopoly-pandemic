@@ -265,4 +265,8 @@ public class GameSceneController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    public VBox getGameLog() {
+        return gameLog;
+    }
 }
