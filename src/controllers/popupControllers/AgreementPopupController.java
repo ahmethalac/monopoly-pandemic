@@ -230,8 +230,4 @@ public class AgreementPopupController extends PopupController implements Initial
         };
         return offer;
     }
-
-    private void assignBoxes(String offer, Player player, City city, VBox chooseOfferVBox, ComboBox<String> chooseOfferBox) {
-
-    }
 }

@@ -17,4 +17,9 @@ public class PayRentOrNot extends ContiuousOffer {
         //first player does not pay money for the city of second player
         //second player does not take any money from the first player for the specified city
     }
+
+    @Override
+    public String toString() {
+        return "Pay Rent Or Not: " + city;
+    }
 }
