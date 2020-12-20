@@ -5,6 +5,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import models.Player;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class GameLogObserver extends Observer {
 
@@ -56,6 +58,7 @@ public class GameLogObserver extends Observer {
                     log = name + " sold " + changeType.replaceAll("removeCity", "");
                 }
         }
+        log += " [" + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME).substring(0,8) + "]";
         Text text = new Text(log);
         text.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         if ( gameLog.getChildren().size() > 5) {
