@@ -207,14 +207,12 @@ public class AgreementPopupController extends PopupController implements Initial
 
     @FXML
     void submitButtonClicked(ActionEvent event) {
-        String offerType = chooseOfferBox.getSelectionModel().getSelectedItem();
-        String oppositeOfferType = chooseOppositeOfferBox.getSelectionModel().getSelectedItem();
+        String oppositeOfferType = chooseOfferBox.getSelectionModel().getSelectedItem();
+        String offerType = chooseOppositeOfferBox.getSelectionModel().getSelectedItem();
         String agreementName = agreementNameField.getText();
 
-        System.out.println(offerType);
-
-        Offer offer = getOffer(oppositeOfferType, city1, moneyField1, percentageField2);
-        Offer oppositeOffer = getOffer(offerType, city2, moneyField2, percentageField2);
+        Offer offer = getOffer(offerType, city1, moneyField1, percentageField2);
+        Offer oppositeOffer = getOffer(oppositeOfferType, city2, moneyField2, percentageField2);
 
         // create agreement
         GameManager.getInstance().newAgreement(offer, oppositeOffer, currentPlayer, player2, agreementName);
