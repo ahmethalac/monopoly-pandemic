@@ -118,6 +118,9 @@ public class Agreement implements Serializable {
         return firstPlayer;
     }
 
+    // get second player
+    public Player getSecondPlayer() { return secondPlayer; }
+
     // get id
     public String getName() { return name; }
 

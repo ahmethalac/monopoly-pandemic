@@ -125,7 +125,7 @@ public class Game implements Serializable {
 
     public Agreement offerAgreement(){
         for(Agreement agreement: agreements){
-            if(!agreement.isOffered()){
+            if(!agreement.isOffered() && (agreement.getSecondPlayer().getId() == currentPlayer)){
                 return agreement;
             }
         }
