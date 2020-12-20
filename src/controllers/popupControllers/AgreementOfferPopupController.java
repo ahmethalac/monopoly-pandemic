@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import models.Agreement;
 
-public class AgreementOfferPopupController extends PopupController{
+public class AgreementOfferPopupController extends PopupController {
     private Agreement agreement;
 
     @FXML
@@ -12,7 +12,7 @@ public class AgreementOfferPopupController extends PopupController{
         closeStage(event);
     }
 
-    public void setAgreement(Agreement agreement){
+    public void setAgreement(Agreement agreement) {
         this.agreement = agreement;
     }
 }

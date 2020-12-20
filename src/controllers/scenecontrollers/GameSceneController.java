@@ -3,7 +3,6 @@ package controllers.scenecontrollers;
 import controllers.modelcontrollers.GameManager;
 import controllers.popupControllers.*;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,18 +14,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Agreement;
 import models.City;
-import models.Game;
 import models.Player;
 import storage.filemanager.DataManager;
-import utils.Sleeper;
 
 import java.io.IOException;
 import java.net.URL;
@@ -74,18 +69,17 @@ public class GameSceneController implements Initializable {
     }
 
     //Update the game scene according to the current player
-    public void renderPlayer(Player player){
+    public void renderPlayer(Player player) {
         playerName.setText(player.getName());
         money.setText(player.getMoney() + "$");
         cardsBar.setStyle("-fx-spacing: 10;");
         cardsBar.getChildren().clear();
-        for(int i = 0; i < player.getCities().size(); i++){
+        for (int i = 0; i < player.getCities().size(); i++) {
             int finalI = i;
             Button button = new Button(player.getCities().get(i).getName());
-            if(player.getCities().get(finalI).isMortgaged()){
+            if (player.getCities().get(finalI).isMortgaged()) {
                 button.setStyle("-fx-text-fill: white; -fx-pref-height: 80; -fx-pref-width: 150 ;-fx-border-color: black; -fx-background-color: grey; -fx-border-width: 3 3 0 3");
-            }
-            else{
+            } else {
                 String color1 = player.getColor();
                 button.setStyle("-fx-background-color:" + color1 + ";" + "-fx-text-fill: white; -fx-pref-height: 80; -fx-pref-width: 150 ;-fx-border-color: black; -fx-border-width: 3 3 0 3");
 
@@ -127,7 +121,7 @@ public class GameSceneController implements Initializable {
     }
 
     public void handleAgreementPopup() throws IOException {
-        if(!GameManager.getInstance().isDiceRolled()) {
+        if (!GameManager.getInstance().isDiceRolled()) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/AgreementPopup.fxml"));
             Parent parent = fxmlLoader.load();
 
@@ -136,8 +130,8 @@ public class GameSceneController implements Initializable {
         }
     }
 
-    public void handleBuyBuildingPopup() throws IOException{
-        if(!GameManager.getInstance().isDiceRolled()) {
+    public void handleBuyBuildingPopup() throws IOException {
+        if (!GameManager.getInstance().isDiceRolled()) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/BuyBuildingPopup.fxml"));
             Parent parent = fxmlLoader.load();
             BuyBuildingPopupController buyBuildingController = fxmlLoader.getController();
@@ -145,8 +139,8 @@ public class GameSceneController implements Initializable {
         }
     }
 
-    public void handleSellBuildingPopup() throws IOException{
-        if(!GameManager.getInstance().isDiceRolled()){
+    public void handleSellBuildingPopup() throws IOException {
+        if (!GameManager.getInstance().isDiceRolled()) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/SellBuildingPopup.fxml"));
             Parent parent = fxmlLoader.load();
             SellBuildingPopupController sbpc = fxmlLoader.getController();
@@ -154,8 +148,8 @@ public class GameSceneController implements Initializable {
         }
     }
 
-    public void handleMortgageCityPopup() throws IOException{
-        if(!GameManager.getInstance().isDiceRolled()) {
+    public void handleMortgageCityPopup() throws IOException {
+        if (!GameManager.getInstance().isDiceRolled()) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/MortgageCityPopup.fxml"));
             Parent parent = fxmlLoader.load();
             MortgageCityPopupController mcpc = fxmlLoader.getController();
@@ -163,9 +157,9 @@ public class GameSceneController implements Initializable {
         }
     }
 
-    public void handleRollDiceButton() throws IOException{
+    public void handleRollDiceButton() throws IOException {
         int[] dice = GameManager.getInstance().rollDice();
-        if(dice == null) {
+        if (dice == null) {
             System.out.println("Your turn is end");
             return;
         }
@@ -173,7 +167,7 @@ public class GameSceneController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../views/popupViews/RollDicePopup.fxml"));
             Parent parent = fxmlLoader.load();
             RollDicePopupController rdpc = fxmlLoader.getController();
-            rdpc.setDice(dice[0],dice[1]);
+            rdpc.setDice(dice[0], dice[1]);
 
             handlePopup(parent);
 
@@ -187,81 +181,76 @@ public class GameSceneController implements Initializable {
         executorService.schedule(GameManager.getInstance()::runPerformRegionAction, dice[2] * 300, TimeUnit.MILLISECONDS);
 
         // repeat turn
-        if(dice[0] != dice[1]){
+        if (dice[0] != dice[1]) {
             rollDiceButton.setVisible(false);
             rollDiceLabel.setVisible(false);
         }
     }
 
-    public void handleEndTurnButton(){
-        if(GameManager.getInstance().isDiceRolled()){
+    public void handleEndTurnButton() {
+        if (GameManager.getInstance().isDiceRolled()) {
             GameManager.getInstance().endTurn();
             cameraScene.rotateTable();
-        }
-        else{
+        } else {
             System.out.println("Cannot end turn without rolling a dice.");
         }
         // if new player bankrupted, disable roll dice
-        if(GameManager.getInstance().getCurrentPlayer().isBankrupted()){
+        if (GameManager.getInstance().getCurrentPlayer().isBankrupted()) {
             // set isDiceRolled true
             GameManager.getInstance().setDiceRolled(true);
-        }
-        else{
+        } else {
             rollDiceButton.setVisible(true);
             rollDiceLabel.setVisible(true);
         }
 
     }
 
-    public void handleSaveGameButton(){
+    public void handleSaveGameButton() {
         DataManager.getInstance().saveGame("testSave");
     }
 
-    public static void handleChanceRegionPopup(){
+    public static void handleChanceRegionPopup() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(
                     GameSceneController.class.getResource("../../views/popupViews/ChanceRegionPopup.fxml"));
             Parent parent = fxmlLoader.load();
             handlePopup(parent);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void handleBuyCityPopup(){
+    public static void handleBuyCityPopup() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(
                     GameSceneController.class.getResource("../../views/popupViews/BuyCityPopup.fxml"));
             Parent parent = fxmlLoader.load();
             handlePopup(parent);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void handleAgreementOfferPopup(Agreement agreement){
+    public static void handleAgreementOfferPopup(Agreement agreement) {
         try {
             if (!GameManager.getInstance().isDiceRolled()) {
                 FXMLLoader fxmlLoader = new FXMLLoader(GameSceneController.class.getResource("../../views/popupViews/AgreementOfferPopup.fxml"));
                 Parent parent = fxmlLoader.load();
                 AgreementOfferPopupController agreementOfferPopupController = fxmlLoader.getController();
+                agreementOfferPopupController.setAgreement(agreement);
                 handlePopup(parent);
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void handlePirateRegionPopup(){
-        try{
+    public static void handlePirateRegionPopup() {
+        try {
             FXMLLoader fxmlLoader = new FXMLLoader(GameSceneController.class.getResource("../../views/popupViews/PirateRegionPopup.fxml"));
             Parent parent = fxmlLoader.load();
             handlePopup(parent);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
