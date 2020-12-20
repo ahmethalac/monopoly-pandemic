@@ -1,168 +1,169 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="controllers.scenecontrollers.GameSceneController">
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.scenecontrollers.GameSceneController">
     <children>
         <BorderPane pickOnBounds="false">
             <top>
-                <ToolBar prefHeight="40.0" prefWidth="318.0" style="-fx-background-color: Transparent"
-                         xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+                <ToolBar prefHeight="40.0" prefWidth="318.0" style="-fx-background-color: Transparent" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
                     <items>
-                        <Text style="-fx-font-size: 20" text="Player: "/>
-                        <Text fx:id="playerName" style="-fx-font-size: 20" text="Default"/>
-                        <Pane HBox.hgrow="ALWAYS"/>
-                        <Text style="-fx-font-size: 20" text="Money: "/>
-                        <Text fx:id="money" style="-fx-font-size: 20" text="0$"/>
+                        <Text style="-fx-font-size: 20" text="Player: " />
+                        <Text fx:id="playerName" style="-fx-font-size: 20" text="Default" />
+                        <Pane HBox.hgrow="ALWAYS" />
+                        <Text style="-fx-font-size: 20" text="Money: " />
+                        <Text fx:id="money" style="-fx-font-size: 20" text="0$" />
                     </items>
                 </ToolBar>
             </top>
             <bottom>
-                <HBox fx:id="cardsBar" prefHeight="80.0" prefWidth="318.0" style="-fx-background-color: Transparent"
-                      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+                <HBox fx:id="cardsBar" prefHeight="80.0" prefWidth="318.0" style="-fx-background-color: Transparent" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 
                 </HBox>
             </bottom>
             <left>
                 <VBox style="-fx-spacing: 30; -fx-padding: 30">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#handleBuyBuildingPopup" prefHeight="70.0"
-                                prefWidth="70.0" style="-fx-background-color: transparent;">
+                        <Button mnemonicParsing="false" onAction="#handleBuyBuildingPopup" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
                             <graphic>
                                 <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../assets/icons/buyBuildingIcon.png"/>
+                                        <Image url="@../../assets/icons/buyBuildingIcon.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                             <cursor>
-                                <Cursor fx:constant="HAND"/>
+                                <Cursor fx:constant="HAND" />
                             </cursor>
                         </Button>
                         <Label text="Buy Building" textFill="white">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#handleSellBuildingPopup" prefHeight="70.0"
-                                prefWidth="70.0" style="-fx-background-color: transparent;">
+                        <Button mnemonicParsing="false" onAction="#handleSellBuildingPopup" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
                             <graphic>
                                 <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../assets/icons/sellBuildingIcon.png"/>
+                                        <Image url="@../../assets/icons/sellBuildingIcon.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                             <cursor>
-                                <Cursor fx:constant="HAND"/>
+                                <Cursor fx:constant="HAND" />
                             </cursor>
                         </Button>
                         <Label text="Sell Building" textFill="white">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Label>
-                        <Button onAction="#handleMortgageCityPopup" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
-                                style="-fx-background-color: transparent;">
+                        <Button mnemonicParsing="false" onAction="#handleMortgageCityPopup" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
                             <graphic>
                                 <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../assets/icons/mortgageIcon.png"/>
+                                        <Image url="@../../assets/icons/mortgageIcon.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                             <cursor>
-                                <Cursor fx:constant="HAND"/>
+                                <Cursor fx:constant="HAND" />
                             </cursor>
                         </Button>
                         <Label text="Mortgage" textFill="white">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Label>
-                        <Button onAction="#handleAgreementPopup" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
-                                style="-fx-background-color: transparent;">
+                        <Button mnemonicParsing="false" onAction="#handleAgreementPopup" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
                             <graphic>
                                 <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../assets/icons/agreementIcon.png"/>
+                                        <Image url="@../../assets/icons/agreementIcon.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                             <cursor>
-                                <Cursor fx:constant="HAND"/>
+                                <Cursor fx:constant="HAND" />
                             </cursor>
                         </Button>
                         <Label text="Agreement" textFill="white">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Label>
                     </children>
                 </VBox>
             </left>
             <right>
-                <VBox  alignment="CENTER_RIGHT" style="-fx-spacing: 30; -fx-padding: 30">
+                <VBox alignment="CENTER_RIGHT" style="-fx-spacing: 30; -fx-padding: 30">
                     <children>
-                        <Button fx:id="rollDiceButton" onAction="#handleRollDiceButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent">
+                        <Button fx:id="rollDiceButton" mnemonicParsing="false" onAction="#handleRollDiceButton" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent">
                             <graphic>
                                 <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../assets/icons/rollDiceIcon.png"/>
+                                        <Image url="@../../assets/icons/rollDiceIcon.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                             <cursor>
-                                <Cursor fx:constant="HAND"/>
+                                <Cursor fx:constant="HAND" />
                             </cursor>
                         </Button>
-                        <Label text="Roll Dice" textFill="white">
+                        <Label fx:id="rollDiceLabel" text="Roll Dice" textFill="white">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Label>
-                        <Button onAction="#handleSaveGameButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
-                                style="-fx-background-color: transparent;">
+                        <Button mnemonicParsing="false" onAction="#handleSaveGameButton" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
                             <graphic>
                                 <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../assets/icons/saveFileIcon.png"/>
+                                        <Image url="@../../assets/icons/saveFileIcon.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                             <cursor>
-                                <Cursor fx:constant="HAND"/>
+                                <Cursor fx:constant="HAND" />
                             </cursor>
                         </Button>
                         <Label text="Save Game" textFill="white">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Label>
-                        <Button onAction="#handleEndTurnButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0"
-                                style="-fx-background-color: transparent;">
+                        <Button mnemonicParsing="false" onAction="#handleEndTurnButton" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;">
                             <graphic>
                                 <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../assets/icons/endTurnIcon.png"/>
+                                        <Image url="@../../assets/icons/endTurnIcon.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                             <cursor>
-                                <Cursor fx:constant="HAND"/>
+                                <Cursor fx:constant="HAND" />
                             </cursor>
                         </Button>
                         <Label text="End Turn" textFill="white">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Label>
                         <Region VBox.vgrow="ALWAYS" />
-                        <VBox fx:id="gameLog" minWidth="200" alignment="CENTER_RIGHT" />
+                        <VBox fx:id="gameLog" alignment="CENTER_RIGHT" minWidth="200" />
                     </children>
                 </VBox>
             </right>

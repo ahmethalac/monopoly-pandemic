@@ -11,6 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -46,6 +47,8 @@ public class GameSceneController implements Initializable {
     private Button rollDiceButton;
     @FXML
     private VBox gameLog;
+    @FXML
+    private Label rollDiceLabel;
 
 
     @Override
@@ -54,7 +57,6 @@ public class GameSceneController implements Initializable {
         stackPane.getChildren().add(cameraScene);
         cameraScene.toBack();
         GameManager.getInstance().setPlayerObservers(this, gameLog);
-
 
         //test purpose
         //double[] rents = {1,2,3,4,5,6};
@@ -90,15 +92,6 @@ public class GameSceneController implements Initializable {
             cardsBar.getChildren().add(button);
 
         }
-        if(GameManager.getInstance().getCurrentPlayer().isInQuarantine()){
-            rollDiceButton.setDisable(true);
-            rollDiceButton.setVisible(false);
-        }
-        else{
-            rollDiceButton.setDisable(false);
-            rollDiceButton.setVisible(true);
-        }
-
     }
 
     //For debug purposes
@@ -188,7 +181,8 @@ public class GameSceneController implements Initializable {
         GameManager.getInstance().moveForward(dice[2]);
         //GameManager.getInstance().moveForward(1); // DEBUG
         GameManager.getInstance().performRegionAction();
-
+        rollDiceButton.setVisible(false);
+        rollDiceLabel.setVisible(false);
     }
 
     public void handleEndTurnButton(){
@@ -199,6 +193,8 @@ public class GameSceneController implements Initializable {
         else{
             System.out.println("Cannot end turn without rolling a dice.");
         }
+        rollDiceButton.setVisible(true);
+        rollDiceLabel.setVisible(true);
     }
 
     public void handleSaveGameButton(){
