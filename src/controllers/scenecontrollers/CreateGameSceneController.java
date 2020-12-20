@@ -115,9 +115,6 @@ public class CreateGameSceneController implements Initializable {
         ImageView avatar = new ImageView();
         Label nameLabel = new Label();
 
-        //debug
-        Label idLabel = new Label();
-
         PlayerComboBox colorBox;
         Button avatarButton = new Button();
         PlayerButton deleteButton;
@@ -143,12 +140,6 @@ public class CreateGameSceneController implements Initializable {
             HBox.setHgrow(nameLabel, Priority.ALWAYS);
             nameLabel.setFont(new Font(32));
             setMargin(nameLabel, new Insets(0, 0, 0, 20));
-
-            //debug
-            idLabel.setText(String.valueOf(player.getId()));
-            idLabel.setMaxWidth(Double.MAX_VALUE);
-            HBox.setHgrow(idLabel, Priority.ALWAYS);
-            idLabel.setFont(new Font(32));
 
             colorBox = new PlayerComboBox(FXCollections.observableArrayList(ColorUtil.colors), player);
             colorBox.getSelectionModel().select(player.getColor());
@@ -199,7 +190,7 @@ public class CreateGameSceneController implements Initializable {
                 }
             });
 
-            this.getChildren().addAll(avatar, nameLabel, idLabel, avatarButton, colorBox, deleteButton);
+            this.getChildren().addAll(avatar, nameLabel, avatarButton, colorBox, deleteButton);
         }
 
         public Player getPlayer() {
