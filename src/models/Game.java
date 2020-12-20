@@ -2,6 +2,7 @@ package models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Game implements Serializable {
 
@@ -28,6 +29,7 @@ public class Game implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Collections.shuffle(chanceCards);
     }
 
     // copy constructor to load game
