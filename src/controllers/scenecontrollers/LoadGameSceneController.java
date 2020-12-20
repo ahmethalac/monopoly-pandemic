@@ -31,7 +31,7 @@ public class LoadGameSceneController implements Initializable {
         VBox buttonBox = new VBox();
         buttonBox.setMaxWidth(1500);
         buttonBox.setMaxHeight(700);
-        buttonBox.setAlignment(Pos.CENTER);
+        buttonBox.setAlignment(Pos.TOP_CENTER);
         buttonBox.setStyle("-fx-padding: 50 50 50 220;");
         buttonBox.setSpacing(15.0);
         DataManager dataManager = DataManager.getInstance();
@@ -51,7 +51,7 @@ public class LoadGameSceneController implements Initializable {
         scrollPane.setPrefViewportHeight(500);
         scrollPane.setPrefViewportWidth(150);
         scrollPane.setContent(buttonBox);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         loadBox.getChildren().add(scrollPane);
     }
 

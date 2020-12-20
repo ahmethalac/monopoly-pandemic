@@ -1,36 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 
-<VBox fx:id="loadBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;"
-      xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="controllers.scenecontrollers.LoadGameSceneController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.scenecontrollers.LoadGameSceneController">
    <HBox prefHeight="100.0" prefWidth="200.0">
-      <Button style="-fx-background-color: transparent;" mnemonicParsing="false" onAction="#handleBackButton"
-              prefHeight="65.0" prefWidth="50.0" text="Back" textAlignment="CENTER">
+      <Button mnemonicParsing="false" onAction="#handleBackButton" prefHeight="65.0" prefWidth="50.0" style="-fx-background-color: transparent;" text="Back" textAlignment="CENTER">
          <graphic>
             <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@../../assets/icons/backIcon.png"/>
+               <Image url="@../../assets/icons/backIcon.png" />
             </ImageView>
          </graphic>
          <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
    </HBox>
-   <Label alignment="TOP_CENTER" text="Saved Games" textFill="WHITE">
-      <font>
-         <Font name="System Bold" size="42.0"/>
-      </font>
-      <padding>
-         <Insets left="150.0" right="150.0" top="50.0"/>
-      </padding>
-   </Label>
+   <VBox fx:id="loadBox" alignment="TOP_CENTER">
+      <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="Saved Games" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="42.0" />
+         </font>
+      </Label>
+   </VBox>
 </VBox>
