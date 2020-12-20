@@ -59,7 +59,7 @@ public class GameManager {
         if(!getCurrentPlayer().isInQuarantine()){
             if(this.game.getCurrentPlayer().getLocation() + count >= (NUMBER_OF_REGIONS - 1)
                     && this.game.getCurrentPlayer().isInfected()){
-                this.game.getCurrentPlayer().setLocation(NUMBER_OF_REGIONS);
+                this.game.getCurrentPlayer().setLocation(NUMBER_OF_REGIONS - 1);
                 TestRegion tr = (TestRegion) this.game.getRegion(39);
                 tr.performRegionAction();
             }
