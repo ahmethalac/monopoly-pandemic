@@ -211,7 +211,7 @@ public class AgreementPopupController extends PopupController implements Initial
         String offerType = chooseOppositeOfferBox.getSelectionModel().getSelectedItem();
         String agreementName = agreementNameField.getText();
 
-        Offer offer = getOffer(offerType, city1, moneyField1, percentageField2);
+        Offer offer = getOffer(offerType, city1, moneyField1, percentageField1);
         Offer oppositeOffer = getOffer(oppositeOfferType, city2, moneyField2, percentageField2);
 
         // create agreement
