@@ -14,7 +14,7 @@ public class TakePercentage extends ContiuousOffer {
     @Override
     public void performOffer(Player firstPlayer, Player secondPlayer) {
         // get percentage of rent from secondPlayers city
-        double rate = ((double)percentage)/10;
+        double rate = ((double)percentage)/100;
         firstPlayer.addMoney(city.getRent() * rate);
         secondPlayer.addMoney(city.getRent() * (1 - rate));
     }

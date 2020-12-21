@@ -15,6 +15,7 @@ public class SellRegion extends OneTimeOffer {
         if(secondPlayer.removeCity(city)){
             // add city to first player (if possible)
             firstPlayer.addCity(city);
+            city.setOwner(firstPlayer);
             return;
         }
         System.out.println("Second player does not own city: " + city.getName());

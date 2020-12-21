@@ -58,7 +58,6 @@ public class Agreement implements Serializable {
                             firstOffer.performOffer(firstPlayer,secondPlayer);
                         }
                     }
-                    firstOffer.performOffer(firstPlayer, secondPlayer);
                 }
             }
             // if secondOffer instanceof ContinuousOffer
@@ -77,7 +76,6 @@ public class Agreement implements Serializable {
                             secondOffer.performOffer(firstPlayer,secondPlayer);
                         }
                     }
-                    secondOffer.performOffer(firstPlayer, secondPlayer);
                 }
             }
         }
@@ -87,8 +85,15 @@ public class Agreement implements Serializable {
     // check offers if city is involved
     public boolean checkOffers(City city) {
         if(isOffered) {
-            return city.getId() == ((ContiuousOffer) firstOffer).getCity().getId()
-                    || city.getId() == ((ContiuousOffer) secondOffer).getCity().getId();
+            if(firstOffer instanceof ContiuousOffer){
+                return city.getId() == ((ContiuousOffer) firstOffer).getCity().getId();
+            }
+            else if(secondOffer instanceof ContiuousOffer){
+                return city.getId() == ((ContiuousOffer) secondOffer).getCity().getId();
+            }
+            else {
+                return false;
+            }
         }
         else {
             return false;
