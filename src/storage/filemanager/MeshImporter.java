@@ -56,4 +56,8 @@ public class MeshImporter {
     public static MeshView[] getHospital() {
         return getNodeArray("Hospital.obj");
     }
+
+    public static MeshView[] getStartingFlag() {
+        return getNodeArray("StartingFlag.obj");
+    }
 }

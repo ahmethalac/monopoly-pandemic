@@ -169,6 +169,12 @@ public class TableController extends SubScene {
                 group.add(getPirate(coordinates.get(i)[0], coordinates.get(i)[1]));
             } else if ( regions.get(i) instanceof StartingRegion){
                 region.setMaterial(new PhongMaterial(Color.WHITE));
+                MeshView[] startingFlag = MeshImporter.getStartingFlag();
+                for ( MeshView part : startingFlag) {
+                    part.setTranslateX(coordinates.get(i)[0]);
+                    part.setTranslateY(coordinates.get(i)[1]);
+                    group.add(part);
+                }
             } else if ( regions.get(i) instanceof TestRegion){
                 region.setMaterial(new PhongMaterial(Color.rgb(69,172,139)));
                 MeshView[] test = MeshImporter.getTest();
