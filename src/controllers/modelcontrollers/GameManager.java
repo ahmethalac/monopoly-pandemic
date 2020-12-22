@@ -60,6 +60,7 @@ public class GameManager {
             random = (int) (this.game.getRegionNumber() * Math.random());
         }
         ((City) this.game.getRegion(random)).infect(true);
+        this.game.infectPlayersAt(this.game.getRegion(random).getId());
     }
 
     // moves current player count number of steps

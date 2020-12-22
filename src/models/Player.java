@@ -17,7 +17,7 @@ public class Player extends Observable implements Serializable {
     private boolean isInfected;
     private int quarantineTourCounter;
     private int infectTourCounter;
-    private final int INFECTION_TIME = 2;
+    private final int INFECTION_TIME = 1;
     private final int QUARANTINE_TIME = 2;
 
     public Player(String name, String color, String pawn, int id)

@@ -14,8 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -262,9 +260,7 @@ public class GameSceneController implements Initializable {
 
     public void handleSaveGameButton() {
         DataManager.saveGame("SaveGame1");
-        Text text = new Text("Game saved as SaveGame1!");
-        text.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-        gameLog.getChildren().add(text);
+
     }
 
     public static void handleChanceRegionPopup() {

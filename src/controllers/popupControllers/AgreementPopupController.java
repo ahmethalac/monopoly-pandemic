@@ -211,8 +211,8 @@ public class AgreementPopupController extends PopupController implements Initial
         String offerType = chooseOppositeOfferBox.getSelectionModel().getSelectedItem();
         String agreementName = agreementNameField.getText();
 
-        Offer offer = getOffer(offerType, city1, moneyField1, percentageField1);
-        Offer oppositeOffer = getOffer(oppositeOfferType, city2, moneyField2, percentageField2);
+        Offer offer = getOffer(offerType, city1, moneyField1, percentageField1, currentPlayer);
+        Offer oppositeOffer = getOffer(oppositeOfferType, city2, moneyField2, percentageField2, player2);
 
         // create agreement
         GameManager.getInstance().newAgreement(offer, oppositeOffer, currentPlayer, player2, agreementName);
@@ -220,10 +220,10 @@ public class AgreementPopupController extends PopupController implements Initial
         closeStage(event);
     }
 
-    private Offer getOffer(String oppositeOfferType, City city, TextField moneyField, TextField percentageField) {
+    private Offer getOffer(String oppositeOfferType, City city, TextField moneyField, TextField percentageField, Player giver) {
         Offer offer = switch (oppositeOfferType) {
             case "Sell Region" -> new SellRegion(city);
-            case "Give Money" -> new GiveMoney(Integer.parseInt(moneyField.getText()));
+            case "Give Money" -> new GiveMoney(Integer.parseInt(moneyField.getText()),giver);
             case "Pay Rent or Not" -> new PayRentOrNot(city);
             case "Take Percentage" -> new TakePercentage(city, Integer.parseInt(percentageField.getText()));
             default -> throw new IllegalStateException("Unexpected value: " + oppositeOfferType);

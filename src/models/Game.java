@@ -132,4 +132,12 @@ public class Game implements Serializable {
         return null;
     }
 
+    public void infectPlayersAt(int location){
+        for(Player player: players){
+            if(player.getLocation() == location){
+                player.infect(true);
+            }
+        }
+    }
+
 }
