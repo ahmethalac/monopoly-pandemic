@@ -3,15 +3,17 @@ package models;
 public class SellRegion extends OneTimeOffer {
     // properties
     private City city;
+    private Player owner;
 
     // constructor
-    public SellRegion(City city){
+    public SellRegion(City city, Player owner){
         this.city = city;
+        this.owner = owner;
     }
 
     @Override
     public void performOffer(Player firstPlayer, Player secondPlayer) {
-        if(city.getOwner().getId() == firstPlayer.getId()){
+        if(owner.getId() == firstPlayer.getId()){
             // remove city from second player (if possible)
             if(firstPlayer.removeCity(city)){
                 // add city to first player (if possible)

@@ -220,12 +220,12 @@ public class AgreementPopupController extends PopupController implements Initial
         closeStage(event);
     }
 
-    private Offer getOffer(String oppositeOfferType, City city, TextField moneyField, TextField percentageField, Player giver) {
+    private Offer getOffer(String oppositeOfferType, City city, TextField moneyField, TextField percentageField, Player owner) {
         Offer offer = switch (oppositeOfferType) {
-            case "Sell Region" -> new SellRegion(city);
-            case "Give Money" -> new GiveMoney(Integer.parseInt(moneyField.getText()),giver);
+            case "Sell Region" -> new SellRegion(city, owner);
+            case "Give Money" -> new GiveMoney(Integer.parseInt(moneyField.getText()), owner);
             case "Pay Rent or Not" -> new PayRentOrNot(city);
-            case "Take Percentage" -> new TakePercentage(city, Integer.parseInt(percentageField.getText()));
+            case "Take Percentage" -> new TakePercentage(city, Integer.parseInt(percentageField.getText()), owner);
             default -> throw new IllegalStateException("Unexpected value: " + oppositeOfferType);
         };
         return offer;
